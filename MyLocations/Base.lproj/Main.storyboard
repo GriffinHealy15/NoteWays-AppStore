@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Current Location View Controller-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="CurrentLocationViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-l1-SAa">
+                                <rect key="frame" x="83" y="456" width="154" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Get My Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getLocation" destination="9pv-A4-QxB" eventType="touchUpInside" id="A8m-Bh-SH9"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iml-fY-fCS">
+                                <rect key="frame" x="16" y="150" width="288" height="246"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Message Label)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2s-Sv-zjE">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Longitude goes here)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UM-Ie-Ivi">
+                                        <rect key="frame" x="91" y="126.5" width="185" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIp-tz-syH">
+                                        <rect key="frame" x="0.0" y="99.5" width="82" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJ4-He-ilu">
+                                        <rect key="frame" x="0.0" y="128.5" width="82" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Latitude goes here)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSa-m5-1yP">
+                                        <rect key="frame" x="105" y="97.5" width="171" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV9-3h-dga">
+                                        <rect key="frame" x="0.0" y="202" width="288" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Tag Location"/>
+                                        <connections>
+                                            <segue destination="Nlh-8p-OMz" kind="show" identifier="TagLocation" id="OGw-S4-OzE"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Address goes here)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFa-Mm-qPN">
+                                        <rect key="frame" x="0.0" y="157.5" width="288" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="FlI-Rd-xVO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="x2s-Sv-zjE" secondAttribute="trailing" id="5lM-AM-5Zm"/>
+                                    <constraint firstItem="HIp-tz-syH" firstAttribute="trailing" secondItem="DJ4-He-ilu" secondAttribute="trailing" id="8tD-Sr-j0c"/>
+                                    <constraint firstItem="x2s-Sv-zjE" firstAttribute="top" secondItem="iml-fY-fCS" secondAttribute="top" id="AjP-TA-zML"/>
+                                    <constraint firstItem="x2s-Sv-zjE" firstAttribute="leading" secondItem="HIp-tz-syH" secondAttribute="leading" id="BLh-Nw-vIa"/>
+                                    <constraint firstItem="HIp-tz-syH" firstAttribute="top" secondItem="x2s-Sv-zjE" secondAttribute="bottom" constant="77" id="DH4-ka-0QI"/>
+                                    <constraint firstItem="DJ4-He-ilu" firstAttribute="top" secondItem="HIp-tz-syH" secondAttribute="bottom" constant="8" symbolic="YES" id="G8i-W7-eFa"/>
+                                    <constraint firstItem="bFa-Mm-qPN" firstAttribute="top" secondItem="DJ4-He-ilu" secondAttribute="bottom" constant="8" id="Isn-S4-iR0"/>
+                                    <constraint firstAttribute="bottom" secondItem="hV9-3h-dga" secondAttribute="bottom" constant="8" id="Kay-71-m00"/>
+                                    <constraint firstItem="HIp-tz-syH" firstAttribute="leading" secondItem="DJ4-He-ilu" secondAttribute="leading" id="Pp3-YA-yre"/>
+                                    <constraint firstItem="bFa-Mm-qPN" firstAttribute="trailing" secondItem="hV9-3h-dga" secondAttribute="trailing" id="VnZ-vu-9pp"/>
+                                    <constraint firstItem="HIp-tz-syH" firstAttribute="baseline" secondItem="BSa-m5-1yP" secondAttribute="baseline" id="Vqt-W3-Tp5"/>
+                                    <constraint firstItem="x2s-Sv-zjE" firstAttribute="leading" secondItem="iml-fY-fCS" secondAttribute="leading" id="ftf-rc-NFZ"/>
+                                    <constraint firstItem="BSa-m5-1yP" firstAttribute="trailing" secondItem="9UM-Ie-Ivi" secondAttribute="trailing" id="kK8-ju-Cd2"/>
+                                    <constraint firstItem="x2s-Sv-zjE" firstAttribute="trailing" secondItem="bFa-Mm-qPN" secondAttribute="trailing" id="rkm-6Q-cHK"/>
+                                    <constraint firstItem="BSa-m5-1yP" firstAttribute="leading" secondItem="HIp-tz-syH" secondAttribute="trailing" constant="23" id="siu-ct-m4G"/>
+                                    <constraint firstItem="DJ4-He-ilu" firstAttribute="leading" secondItem="bFa-Mm-qPN" secondAttribute="leading" id="wSz-nW-ueM"/>
+                                    <constraint firstItem="bFa-Mm-qPN" firstAttribute="leading" secondItem="hV9-3h-dga" secondAttribute="leading" id="wYr-I9-mq5"/>
+                                    <constraint firstItem="DJ4-He-ilu" firstAttribute="baseline" secondItem="9UM-Ie-Ivi" secondAttribute="baseline" id="xNx-Fl-YhW"/>
+                                    <constraint firstItem="9UM-Ie-Ivi" firstAttribute="leading" secondItem="DJ4-He-ilu" secondAttribute="trailing" constant="9" id="y5z-E2-cWN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="iml-fY-fCS" firstAttribute="centerX" secondItem="MoI-l1-SAa" secondAttribute="centerX" id="193-0b-Vzx"/>
+                            <constraint firstItem="iml-fY-fCS" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="QNI-fx-ksJ"/>
+                            <constraint firstItem="iml-fY-fCS" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="86" id="Uzl-qn-Ch8"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="MoI-l1-SAa" secondAttribute="bottom" constant="27" id="fEz-8W-ozV"/>
+                            <constraint firstItem="MoI-l1-SAa" firstAttribute="top" secondItem="iml-fY-fCS" secondAttribute="bottom" constant="60" id="yB0-Ky-YkQ"/>
+                            <constraint firstItem="iml-fY-fCS" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="zbI-6B-Rg6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GtP-Bt-THa"/>
+                    <connections>
+                        <outlet property="addressLabel" destination="bFa-Mm-qPN" id="jAH-am-rq9"/>
+                        <outlet property="containerView" destination="iml-fY-fCS" id="Kvg-mR-SB1"/>
+                        <outlet property="getButton" destination="MoI-l1-SAa" id="Cbo-VY-iTH"/>
+                        <outlet property="latitudeLabel" destination="BSa-m5-1yP" id="pk1-GQ-9ys"/>
+                        <outlet property="latitudeTextLabel" destination="HIp-tz-syH" id="FIX-NM-QO9"/>
+                        <outlet property="longitudeLabel" destination="9UM-Ie-Ivi" id="ycr-Ir-J6J"/>
+                        <outlet property="longitudeTextLabel" destination="DJ4-He-ilu" id="FvI-YS-fVu"/>
+                        <outlet property="messageLabel" destination="x2s-Sv-zjE" id="1V3-D4-Jgz"/>
+                        <outlet property="tagButton" destination="hV9-3h-dga" id="1LN-0n-t4h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747.5" y="-320.07042253521126"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="6th-2d-yfy">
+            <objects>
+                <tableViewController id="hx4-WO-Vqp" customClass="LocationsViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="a24-Nf-LtK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="58" id="MgY-kD-mga" customClass="LocationCell" customModule="MyLocations" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="58"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MgY-kD-mga" id="mjM-Ol-A8Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjy-I7-iMG">
+                                            <rect key="frame" x="86" y="40" width="189" height="17"/>
+                                            <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D94-FC-2pk">
+                                            <rect key="frame" x="16" y="2" width="52" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="52" id="a1b-uj-RER"/>
+                                                <constraint firstAttribute="width" constant="52" id="nUb-i1-gS7"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3v-WC-WN6">
+                                            <rect key="frame" x="86" y="11" width="189" height="21"/>
+                                            <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="o3v-WC-WN6" secondAttribute="bottom" constant="15" id="4z7-fd-Fua"/>
+                                        <constraint firstAttribute="trailing" secondItem="Sjy-I7-iMG" secondAttribute="trailing" constant="45" id="8de-Pk-J3H"/>
+                                        <constraint firstItem="Sjy-I7-iMG" firstAttribute="leading" secondItem="D94-FC-2pk" secondAttribute="trailing" constant="18" id="BSB-el-6Tn"/>
+                                        <constraint firstItem="D94-FC-2pk" firstAttribute="top" secondItem="mjM-Ol-A8Y" secondAttribute="top" constant="2" id="CBC-f1-urM"/>
+                                        <constraint firstAttribute="bottom" secondItem="Sjy-I7-iMG" secondAttribute="bottom" constant="0.5" id="Xn5-7G-a90"/>
+                                        <constraint firstItem="Sjy-I7-iMG" firstAttribute="top" secondItem="o3v-WC-WN6" secondAttribute="bottom" constant="8" id="aTh-6I-DPf"/>
+                                        <constraint firstItem="o3v-WC-WN6" firstAttribute="trailing" secondItem="mjM-Ol-A8Y" secondAttribute="trailingMargin" constant="-29" id="bUC-XP-HWL"/>
+                                        <constraint firstItem="o3v-WC-WN6" firstAttribute="leading" secondItem="D94-FC-2pk" secondAttribute="trailing" constant="18" id="nk7-Jr-z88"/>
+                                        <constraint firstItem="D94-FC-2pk" firstAttribute="leading" secondItem="mjM-Ol-A8Y" secondAttribute="leading" constant="16" id="nrS-Ni-5MQ"/>
+                                        <constraint firstItem="o3v-WC-WN6" firstAttribute="top" secondItem="mjM-Ol-A8Y" secondAttribute="topMargin" id="xJx-Bn-oHO"/>
+                                        <constraint firstAttribute="bottom" secondItem="D94-FC-2pk" secondAttribute="bottom" constant="3.5" id="zU2-cc-Ar6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="addressLabel" destination="Sjy-I7-iMG" id="6qP-Ms-0vg"/>
+                                    <outlet property="descriptionLabel" destination="o3v-WC-WN6" id="9Wd-xW-fdI"/>
+                                    <outlet property="photoImageView" destination="D94-FC-2pk" id="IBj-F9-3d0"/>
+                                    <segue destination="Nlh-8p-OMz" kind="show" identifier="EditLocation" id="1lZ-cp-pQT"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hx4-WO-Vqp" id="DCH-gb-E7T"/>
+                            <outlet property="delegate" destination="hx4-WO-Vqp" id="uQ2-pf-CiE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Locations" id="XLQ-a7-u0I"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ypd-4J-M3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="418.3098591549296"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="HbN-hY-v9s">
+            <objects>
+                <viewController title="Map" id="aqS-kM-LRJ" customClass="MapViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hZi-K9-2c2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HuQ-Ef-JqO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aqS-kM-LRJ" id="cBJ-TE-LXV"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HuQ-Ef-JqO" secondAttribute="bottom" id="AGu-9N-0MZ"/>
+                            <constraint firstItem="HuQ-Ef-JqO" firstAttribute="top" secondItem="hZi-K9-2c2" secondAttribute="top" id="BiM-jU-LGq"/>
+                            <constraint firstItem="HuQ-Ef-JqO" firstAttribute="trailing" secondItem="QmD-QK-9lZ" secondAttribute="trailing" id="cjR-mZ-oZ6"/>
+                            <constraint firstItem="HuQ-Ef-JqO" firstAttribute="leading" secondItem="QmD-QK-9lZ" secondAttribute="leading" id="r0V-0z-Ijf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QmD-QK-9lZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="zX5-Gt-qqn">
+                        <barButtonItem key="leftBarButtonItem" title="Locations" image="Pin" id="9DC-d9-bbO">
+                            <connections>
+                                <action selector="showLocations" destination="aqS-kM-LRJ" id="Z3k-Pd-fDY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="User" image="User" id="1ma-Cb-q0I">
+                            <connections>
+                                <action selector="showUser" destination="aqS-kM-LRJ" id="Jzg-aB-Vyt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="HuQ-Ef-JqO" id="Yte-rP-j87"/>
+                        <segue destination="Nlh-8p-OMz" kind="show" identifier="EditLocation" id="OG4-Uq-4sM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Qh-Qy-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747.5" y="1147.1830985915492"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="rD3-EC-3Aj">
+            <objects>
+                <tableViewController id="eaJ-se-er4" userLabel="Search" customClass="SearchViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vlg-Gf-Wbg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Address Coordinates:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rzc-DX-nD0">
+                            <rect key="frame" x="0.0" y="163" width="320" height="129"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="135" id="Ylv-86-92K" customClass="SearchCell" customModule="MyLocations" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="135"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ylv-86-92K" id="hTT-4Z-sXg">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for an Address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ffK-RB-QZd">
+                                            <rect key="frame" x="16" y="25.5" width="123" height="83.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-kS-JsQ">
+                                            <rect key="frame" x="149" y="25.5" width="144" height="83.5"/>
+                                            <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="19"/>
+                                            <state key="normal" title="Search Address">
+                                                <color key="titleColor" red="0.054955051370000001" green="0.93333333330000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="searchButton:" destination="Ylv-86-92K" eventType="touchUpInside" id="NpC-k3-cHa"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ffK-RB-QZd" secondAttribute="bottom" constant="15" id="JUR-0M-NjL"/>
+                                        <constraint firstItem="Ili-kS-JsQ" firstAttribute="leading" secondItem="ffK-RB-QZd" secondAttribute="trailing" constant="10" id="Ofd-mx-JCo"/>
+                                        <constraint firstItem="ffK-RB-QZd" firstAttribute="top" secondItem="Ili-kS-JsQ" secondAttribute="top" id="Yac-hz-JBf"/>
+                                        <constraint firstItem="ffK-RB-QZd" firstAttribute="bottom" secondItem="Ili-kS-JsQ" secondAttribute="bottom" id="erb-tt-aoX"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ili-kS-JsQ" secondAttribute="trailing" constant="11" id="iVV-3b-Tbe"/>
+                                        <constraint firstItem="ffK-RB-QZd" firstAttribute="leading" secondItem="hTT-4Z-sXg" secondAttribute="leadingMargin" id="pXx-W6-zvE"/>
+                                        <constraint firstItem="ffK-RB-QZd" firstAttribute="centerY" secondItem="hTT-4Z-sXg" secondAttribute="centerY" id="uuU-mQ-XoT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="findSearchedText" destination="ffK-RB-QZd" id="SY8-gf-4BN"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eaJ-se-er4" id="rAU-uf-DPh"/>
+                            <outlet property="delegate" destination="eaJ-se-er4" id="vSp-kB-Rho"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Get Future Addresses" id="jug-Km-I4q">
+                        <barButtonItem key="rightBarButtonItem" title="Tag Location" id="gXX-pf-g9H">
+                            <connections>
+                                <segue destination="Nlh-8p-OMz" kind="show" identifier="TagFutureLocation" id="g1i-LN-5sn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="TagLocationButton" destination="gXX-pf-g9H" id="Shq-cL-kVU"/>
+                        <outlet property="addressTextToDisplay" destination="rzc-DX-nD0" id="DFm-HZ-jc3"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0uR-jc-86N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="1839.0845070422536"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="bi2-hC-YJm">
+            <objects>
+                <navigationController id="5sj-aH-UCO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Locations" image="Locations" id="pxt-vv-PRL" userLabel="Locations"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vGF-4f-dgh">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hx4-WO-Vqp" kind="relationship" relationship="rootViewController" id="vE9-dd-GBJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EoW-MM-hxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="419"/>
+        </scene>
+        <!--Tag Location-->
+        <scene sceneID="Jrg-Re-UYf">
+            <objects>
+                <tableViewController id="Nlh-8p-OMz" customClass="LocationDetailsViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mlz-jU-eky">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Description" id="HXq-VR-3EW">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="C78-Qj-Rrf">
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C78-Qj-Rrf" id="Z3Y-Af-zoM">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(Description goes here)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rRk-4v-bAs">
+                                                    <rect key="frame" x="16" y="10" width="288" height="67.5"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rRk-4v-bAs" firstAttribute="leading" secondItem="Z3Y-Af-zoM" secondAttribute="leading" constant="16" id="4VI-IW-a04"/>
+                                                <constraint firstItem="rRk-4v-bAs" firstAttribute="top" secondItem="Z3Y-Af-zoM" secondAttribute="top" constant="10" id="Bnf-c4-f51"/>
+                                                <constraint firstAttribute="bottom" secondItem="rRk-4v-bAs" secondAttribute="bottom" constant="10" id="kKH-Bd-coE"/>
+                                                <constraint firstAttribute="trailing" secondItem="rRk-4v-bAs" secondAttribute="trailing" constant="16" id="mfF-pP-JWf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BeC-bL-Jet" detailTextLabel="GMG-PM-W5h" style="IBUITableViewCellStyleValue1" id="M8d-XO-UFV">
+                                        <rect key="frame" x="0.0" y="143.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M8d-XO-UFV" id="sZL-Vv-7GV">
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BeC-bL-Jet">
+                                                    <rect key="frame" x="16" y="11" width="70.5" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                    <color key="textColor" red="0.29188577368288526" green="0.84460263324873097" blue="0.40911415343882684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="0.99999600649999998" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GMG-PM-W5h">
+                                                    <rect key="frame" x="241" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="0.99999600649999998" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="Ojj-hM-1kM" kind="show" identifier="PickCategory" id="S9B-Q0-2Px"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="G9e-if-hoQ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="jvX-Tz-aKd">
+                                        <rect key="frame" x="0.0" y="223.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jvX-Tz-aKd" id="k3P-DU-kIH">
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suO-9g-3bz">
+                                                    <rect key="frame" x="16" y="11.5" width="81.5" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="0.84313725490196079" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h59-Hd-9us">
+                                                    <rect key="frame" x="105.5" y="7" width="161.5" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="29" id="lzc-px-fHc"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="h59-Hd-9us" firstAttribute="top" secondItem="k3P-DU-kIH" secondAttribute="top" constant="7" id="Dog-NJ-3nR"/>
+                                                <constraint firstItem="suO-9g-3bz" firstAttribute="leading" secondItem="k3P-DU-kIH" secondAttribute="leadingMargin" id="HTh-m2-LHy"/>
+                                                <constraint firstAttribute="trailing" secondItem="h59-Hd-9us" secondAttribute="trailing" constant="19" id="POj-Ui-sgH"/>
+                                                <constraint firstItem="suO-9g-3bz" firstAttribute="centerY" secondItem="k3P-DU-kIH" secondAttribute="centerY" id="VLo-rP-dvE"/>
+                                                <constraint firstAttribute="bottom" secondItem="h59-Hd-9us" secondAttribute="bottom" constant="7.5" id="c7D-jx-9Iy"/>
+                                                <constraint firstItem="h59-Hd-9us" firstAttribute="leading" secondItem="suO-9g-3bz" secondAttribute="trailing" constant="8" id="xhb-Up-hfY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="pHa-Wg-VKJ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="sSJ-qT-eTz" detailTextLabel="fEr-Q6-BGc" style="IBUITableViewCellStyleValue1" id="jly-t5-7eE">
+                                        <rect key="frame" x="0.0" y="303.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jly-t5-7eE" id="FWo-mh-DX0">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sSJ-qT-eTz">
+                                                    <rect key="frame" x="16" y="11" width="64.5" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                    <color key="textColor" red="0.29188577370000002" green="0.84460263319999995" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fEr-Q6-BGc">
+                                                    <rect key="frame" x="260" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="0NF-Lw-UOv" detailTextLabel="bEv-vD-MFh" style="IBUITableViewCellStyleValue1" id="aaX-0N-Zbs">
+                                        <rect key="frame" x="0.0" y="347.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aaX-0N-Zbs" id="eu2-vb-bBi">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0NF-Lw-UOv">
+                                                    <rect key="frame" x="16" y="11" width="77.5" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                    <color key="textColor" red="0.29188577370000002" green="0.84460263319999995" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bEv-vD-MFh">
+                                                    <rect key="frame" x="260" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="dbW-xP-n61">
+                                        <rect key="frame" x="0.0" y="391.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbW-xP-n61" id="wny-p8-fBC">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFb-vb-3ru">
+                                                    <rect key="frame" x="16" y="11.5" width="63" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                    <color key="textColor" red="0.29188577370000002" green="0.84460263319999995" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ik-9T-5hd">
+                                                    <rect key="frame" x="260" y="11.5" width="44" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rFb-vb-3ru" firstAttribute="leading" secondItem="wny-p8-fBC" secondAttribute="leadingMargin" id="NHj-Fw-jxB"/>
+                                                <constraint firstItem="8Ik-9T-5hd" firstAttribute="centerY" secondItem="wny-p8-fBC" secondAttribute="centerY" id="Qgz-39-X2I"/>
+                                                <constraint firstItem="rFb-vb-3ru" firstAttribute="centerY" secondItem="wny-p8-fBC" secondAttribute="centerY" id="RPv-tB-z7w"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8Ik-9T-5hd" secondAttribute="trailing" id="aNY-8F-qEf"/>
+                                                <constraint firstItem="8Ik-9T-5hd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rFb-vb-3ru" secondAttribute="trailing" constant="8" id="kVh-SR-PZP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="Z3J-CO-8dK" detailTextLabel="vth-pW-aog" style="IBUITableViewCellStyleValue1" id="dSx-F6-xij">
+                                        <rect key="frame" x="0.0" y="435.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dSx-F6-xij" id="Ji3-yo-tsI">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z3J-CO-8dK">
+                                                    <rect key="frame" x="16" y="11" width="36.5" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="0.84313725490196079" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vth-pW-aog">
+                                                    <rect key="frame" x="260" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="highlightedColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Nlh-8p-OMz" id="Ka9-Th-Yr6"/>
+                            <outlet property="delegate" destination="Nlh-8p-OMz" id="28W-YI-Yyd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tag Location" id="mZj-L0-oCq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wRB-4r-zbL">
+                            <connections>
+                                <action selector="cancel" destination="Nlh-8p-OMz" id="Im0-uK-ySS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="GDq-aK-Jsn">
+                            <connections>
+                                <action selector="done" destination="Nlh-8p-OMz" id="MkX-mU-2Bq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addPhotoLabel" destination="suO-9g-3bz" id="DR0-5l-aui"/>
+                        <outlet property="addressLabel" destination="8Ik-9T-5hd" id="Uuu-7z-bmY"/>
+                        <outlet property="categoryLabel" destination="GMG-PM-W5h" id="XqH-zg-HuJ"/>
+                        <outlet property="dateLabel" destination="vth-pW-aog" id="cQb-58-PwK"/>
+                        <outlet property="descriptionTextView" destination="rRk-4v-bAs" id="KDc-dq-3qg"/>
+                        <outlet property="imageHeight" destination="lzc-px-fHc" id="QzK-6J-bwd"/>
+                        <outlet property="imageView" destination="h59-Hd-9us" id="g0s-rQ-cK1"/>
+                        <outlet property="latitudeLabel" destination="fEr-Q6-BGc" id="MEw-Ud-79s"/>
+                        <outlet property="longitudeLabel" destination="bEv-vD-MFh" id="QvA-Lu-jSq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sWY-Sj-olV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2581.875" y="-317.95774647887322"/>
+        </scene>
+        <!--Category Picker View Controller-->
+        <scene sceneID="mBi-bO-Hak">
+            <objects>
+                <tableViewController id="Ojj-hM-1kM" customClass="CategoryPickerViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9BT-xz-fxV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.99999600649999998" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="gxF-ZZ-QXO" style="IBUITableViewCellStyleDefault" id="26P-iA-zkQ">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="26P-iA-zkQ" id="SjL-IB-Lbu">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gxF-ZZ-QXO">
+                                            <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                            <color key="textColor" red="0.29019607843137252" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="pX9-Tj-Azi" kind="unwind" identifier="PickedCategory" unwindAction="categoryPickerDidPickCategory:" id="kn7-0c-eUd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ojj-hM-1kM" id="O9k-dU-gb9"/>
+                            <outlet property="delegate" destination="Ojj-hM-1kM" id="ZEF-JB-BfQ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5SW-fH-JOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="pX9-Tj-Azi" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3364" y="-315"/>
+        </scene>
+        <!--My Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" customClass="MyTabBarController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="JHL-WC-nwb" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="5sj-aH-UCO" kind="relationship" relationship="viewControllers" id="YIo-TS-GPH"/>
+                        <segue destination="2w6-1j-cJF" kind="relationship" relationship="viewControllers" id="EgV-h2-ug2"/>
+                        <segue destination="ilD-s6-LGO" kind="relationship" relationship="viewControllers" id="9ZW-sm-JTh"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-129" y="83"/>
+        </scene>
+        <!--Tag-->
+        <scene sceneID="13Z-AJ-Ury">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JHL-WC-nwb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tag" image="Tag" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e6P-cf-Mrr">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="9eD-Gz-MXb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1wU-1a-2k4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-320.07042253521126"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="fZH-If-SWT">
+            <objects>
+                <navigationController title="Map" automaticallyAdjustsScrollViewInsets="NO" id="2w6-1j-cJF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="PzX-te-vkO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a3O-He-AJw">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aqS-kM-LRJ" kind="relationship" relationship="rootViewController" id="ssx-nW-enK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AsD-IE-HmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1147.1830985915492"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="Mag-dP-Zka">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ilD-s6-LGO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="search60" id="Sbm-xZ-FAE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uvD-D6-ypq">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eaJ-se-er4" kind="relationship" relationship="rootViewController" id="nyx-Af-aIF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kjY-O1-RVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1839"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Locations" width="30" height="30"/>
+        <image name="Map" width="30" height="30"/>
+        <image name="Pin" width="24" height="24"/>
+        <image name="Tag" width="30" height="30"/>
+        <image name="User" width="24" height="24"/>
+        <image name="search60" width="180" height="180"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="g1i-LN-5sn"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.9376605308219178" green="0.77239404965753422" blue="0.14533390410958905" alpha="1" colorSpace="calibratedRGB"/>
+</document>
