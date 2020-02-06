@@ -33,21 +33,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
-    // persistent data put into the manageedObjectContext lazy var
+    // persistent data put into the managedObjectContext lazy var
     lazy var managedObjectContext: NSManagedObjectContext =
         persistentContainer.viewContext
+    
+    // this is a closure, so it is done with lazy loading, not performed right away
+    lazy var persistentContainerNote: NSPersistentContainer = {
+        // closure
+        // Instantiate a new NSPersistentContainer object with the name of the data model you created earlier, DataModel.
+        // says, look for data model "DataModel" and put into container
+        let container = NSPersistentContainer(name: "TheNoteDataModel")
+        // Tell it to loadPersistentStores(), which loads the data from the database into memory and sets up the Core Data stack.
+        container.loadPersistentStores(completionHandler: { // loads persistent data into memory
+            // closure executed after loading persistent data into memory, looks for error basically
+            storeDescription, error in
+            if let error = error {
+                fatalError("Could load data store: \(error)")
+            }
+        })
+        return container
+    }()
+    
+    // persistent data put into the managedObjectContext lazy var
+    lazy var managedObjectContextNote: NSManagedObjectContext =
+        persistentContainerNote.viewContext
 
-
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions:
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // customize the navigation bar to black and text color to white
         customizeAppearance()
+        
+//        let bounds = UIScreen.main.bounds
+//        self.window = UIWindow(frame: bounds)
+//        self.window!.rootViewController = MainTabBarController()
+//        self.window?.makeKeyAndVisible()
+//        let mainTabBarController = MainTabBarController()
+//        mainTabBarController.managedObjectContext = self.managedObjectContext
+//        let homeController = HomeController()
+//        homeController.managedObjectContext = managedObjectContext
+//
+//        
         // access root view contoller, which is tab bar view controller
         let tabController = window!.rootViewController
             as! UITabBarController
         // find the first view controller of tab bar which is navigation controller
-        
+
         if let tabViewControllers = tabController.viewControllers {
             // First tab
             var navController = tabViewControllers[0]
@@ -55,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let controller1 = navController.viewControllers.first
                 as! CurrentLocationViewController
             controller1.managedObjectContext = managedObjectContext
-            
+
             // Second tab
             navController = tabViewControllers[1]
                 as! UINavigationController
@@ -63,24 +95,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 as! LocationsViewController
             controller2.managedObjectContext = managedObjectContext
             let _ = controller2.view
-            
+
             // Third tab
             navController = tabViewControllers[2] as! UINavigationController
             let controller3 = navController.viewControllers.first
                 as! MapViewController
             controller3.managedObjectContext = managedObjectContext
-            
+
             // Fourth tab
-            navController = tabViewControllers[3]
-                as! UINavigationController
+            navController = tabViewControllers[3] as! UINavigationController
             let controller4 = navController.viewControllers.first
                 as! SearchViewController
             controller4.managedObjectContext = managedObjectContext
+            
+            // Fifth tab
+            navController = tabViewControllers[4] as! UINavigationController
+            let controller6 = navController.viewControllers.first
+                as! CreateNoteController
+            controller6.managedObjectContext = managedObjectContextNote
         }
        // notification handler is registered here with the notification center
         listenForFatalCoreDataNotifications()
         
-        print("documents directory: \(applicationDocumentsDirectory)")
+        //print("documents directory: \(applicationDocumentsDirectory)")
         return true
     }
 

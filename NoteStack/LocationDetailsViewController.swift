@@ -19,7 +19,7 @@ private let dateFormatter: DateFormatter = {
     formatter.dateStyle = .medium
     formatter.timeStyle = .short
     // return the formatter to dateFormatter
-    print("**Date Formatter Executed")
+    //print("**Date Formatter Executed")
     return formatter
 }()
 
@@ -90,6 +90,7 @@ class LocationDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // if we passed a loationToEdit value, that means we want to edit, set title 'Edit Location'
+        //print(managedObjectContext)
         if let location = locationToEdit {
             title = "Edit Location"
             // New code block, if location object has image (has a photoID value) then we set the imageView with the image using show. it puts 260x260 image in the 260x26 imageview. Remember, we changed imageview height constraint to 260 when there's image
@@ -247,7 +248,7 @@ class LocationDetailsViewController: UITableViewController {
             // if a location object is new, then we give it an id, and url with that id (i.e Photo-5) and then we save the image (as data blob) to the url.
             if !location.hasPhoto {location.photoID = Location.nextPhotoID() as NSNumber
             }
-            print("location photo ID: \(String(describing: location.photoID))")
+            //print("location photo ID: \(String(describing: location.photoID))")
             // 2
             //  The image.jpegData(compressionQuality: 0.5) call converts the UIImage to JPEG format and returns a Data object. Data is an object that represents a blob of binary data, usually the contents of a file.
             if let data = image.jpegData(compressionQuality: 0.5) {

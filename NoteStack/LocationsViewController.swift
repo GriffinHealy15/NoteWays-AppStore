@@ -65,7 +65,7 @@ class LocationsViewController: UITableViewController {
                             numberOfRowsInSection section: Int) -> Int {
         // ask fetchResultsController for number of sections, and for all sections, we find the number of objects in the section
         let sectionInfo = fetchedResultsController.sections![section]
-        // print("Number of objects \(sectionInfo.numberOfObjects)")
+        print("Number of objects \(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
     // tableView asks controller for a cell for each of the rows
@@ -112,7 +112,7 @@ class LocationsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             titleForHeaderInSection section: Int) -> String? {
         let sectionInfo = fetchedResultsController.sections![section]
-        print("Section Info: \(sectionInfo.name)")
+        //print("Section Info: \(sectionInfo.name)")
         return sectionInfo.name.uppercased() // fetchResultsController has attriute name which we save a name key in the initializing of fetchedResultsController
     }
     // This method gets called once for each section in the table view. Here, you create a label for the section name, a 1-pixel high view that functions as a separator line, and a container view to hold these two subviews.

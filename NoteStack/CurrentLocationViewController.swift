@@ -49,7 +49,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         // update labels from initial load
         updateLabels()
         // Do any additional setup after loading the view, typically from a nib.
+        //print("loading sound effect")
         loadSoundEffect("Success.wav")
+        
+//        print(managedObjectContext)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -131,7 +134,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
-        print("didUpdateLocations \(newLocation)")
+        //print("didUpdateLocations \(newLocation)")
         // 1
         if newLocation.timestamp.timeIntervalSinceNow < -5 {
             return
@@ -154,7 +157,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             // 4
             lastLocationError = nil
             location = newLocation
-            print("LOCATION:\n\n \(newLocation)")
+            //print("LOCATION:\n\n \(newLocation)")
             // 5
             if newLocation.horizontalAccuracy <=
                 locationManager.desiredAccuracy {
@@ -223,7 +226,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         if updatingLocation {
             getButton.setTitle("Stop", for: .normal)
             if view.viewWithTag(spinnerTag) == nil {
-                let spinner = UIActivityIndicatorView(style: .white)
+                let spinner = UIActivityIndicatorView(style: .medium)
                 spinner.center = messageLabel.center
                 spinner.center.y += spinner.bounds.size.height/2 + 25
                 spinner.startAnimating()
@@ -398,6 +401,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         AudioServicesDisposeSystemSoundID(soundID)
         soundID = 0 }
     func playSoundEffect() {
+        //print(soundID)
         AudioServicesPlaySystemSound(soundID)
     }
     // MARK:- Animation Delegate Methods

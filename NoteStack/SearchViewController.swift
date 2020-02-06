@@ -63,7 +63,6 @@ class SearchViewController: UITableViewController, SearchCellDelegate {
     //MARK:- SearchCell Delegate Methods
     // we declared us the delegate of searchCell, and so, we implement this function below (custom cell passes foundText to us, as long as we implement the func below)
     func retrievedSearchedText(cell: SearchCell, foundText: String) {
-        
         // GeoCode your address, so it turns the address into coordinates
         let geocoder = CLGeocoder()
         let addressForGeocoding = foundText

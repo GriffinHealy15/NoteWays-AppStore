@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		109A062F3FD64C93188EE6C1 /* Pods_NoteStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D16F7FB0606CCCF9B4B3F88 /* Pods_NoteStack.framework */; };
 		9908614121F63EAD00494A28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908614021F63EAD00494A28 /* AppDelegate.swift */; };
 		9908614321F63EAD00494A28 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */; };
 		9908614821F63EAD00494A28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9908614621F63EAD00494A28 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 		9922D219220CD7E5005445EC /* Water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D218220CD7E5005445EC /* Water.wav */; };
 		9922D21B220CD9AA005445EC /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D21A220CD9AA005445EC /* Success.wav */; };
 		9922D21F220CDF1F005445EC /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D21E220CDF1F005445EC /* Click.wav */; };
+		99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */; };
 		9951FD1F2200D8EC00CC6F01 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FD1E2200D8EC00CC6F01 /* MapViewController.swift */; };
 		9951FD212204BA1F00CC6F01 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FD202204BA1F00CC6F01 /* UIImage+Resize.swift */; };
 		9951FD232204D55C00CC6F01 /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FD222204D55C00CC6F01 /* String+AddText.swift */; };
@@ -30,13 +32,23 @@
 		99543FB721FA886E00DA87EF /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99543FB521FA886E00DA87EF /* Location+CoreDataProperties.swift */; };
 		99543FB921FB91B000DA87EF /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99543FB821FB91B000DA87EF /* LocationsViewController.swift */; };
 		99543FBC21FB9C8F00DA87EF /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99543FBB21FB9C8F00DA87EF /* LocationCell.swift */; };
+		995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A970123E5E46A00C7CED4 /* CreateNoteController.swift */; };
+		9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962891E23EC856A00364A05 /* EditNoteModalController.swift */; };
 		99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */; };
 		99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E6220B4BD700D0574D /* SearchCell.swift */; };
 		99B9B9BA2200D82600B7C904 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B9B9B92200D82600B7C904 /* MapKit.framework */; };
+		99BFE6E823E8C1C8008967CD /* CreateActualNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */; };
+		99C3FCE123EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCDF23EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld */; };
+		99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */; };
+		99C3FCE923EA191700DEE562 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */; };
+		99E625B423EB4298002D578D /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E625B323EB4298002D578D /* NoteCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9908613D21F63EAD00494A28 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		198F9EEF0E5582750C227719 /* Pods-NoteStack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteStack.debug.xcconfig"; path = "Target Support Files/Pods-NoteStack/Pods-NoteStack.debug.xcconfig"; sourceTree = "<group>"; };
+		5723D6510182AD69EC65447D /* Pods-NoteStack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteStack.release.xcconfig"; path = "Target Support Files/Pods-NoteStack/Pods-NoteStack.release.xcconfig"; sourceTree = "<group>"; };
+		6D16F7FB0606CCCF9B4B3F88 /* Pods_NoteStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9908613D21F63EAD00494A28 /* NoteStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9908614021F63EAD00494A28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
 		9908614721F63EAD00494A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,6 +58,7 @@
 		9922D218220CD7E5005445EC /* Water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Water.wav; sourceTree = "<group>"; };
 		9922D21A220CD9AA005445EC /* Success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success.wav; sourceTree = "<group>"; };
 		9922D21E220CDF1F005445EC /* Click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Click.wav; sourceTree = "<group>"; };
+		99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomClassViewController.swift; sourceTree = "<group>"; };
 		9951FD1E2200D8EC00CC6F01 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9951FD202204BA1F00CC6F01 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		9951FD222204D55C00CC6F01 /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
@@ -61,9 +74,16 @@
 		99543FB521FA886E00DA87EF /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		99543FB821FB91B000DA87EF /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		99543FBB21FB9C8F00DA87EF /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		995A970123E5E46A00C7CED4 /* CreateNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteController.swift; sourceTree = "<group>"; };
+		9962891E23EC856A00364A05 /* EditNoteModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteModalController.swift; sourceTree = "<group>"; };
 		99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		99A5C3E6220B4BD700D0574D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		99B9B9B92200D82600B7C904 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActualNoteController.swift; sourceTree = "<group>"; };
+		99C3FCE023EA0C4400DEE562 /* TheNoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TheNoteDataModel.xcdatamodel; sourceTree = "<group>"; };
+		99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
+		99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		99E625B323EB4298002D578D /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,39 +92,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				99B9B9BA2200D82600B7C904 /* MapKit.framework in Frameworks */,
+				109A062F3FD64C93188EE6C1 /* Pods_NoteStack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B17651E5D1F8B8A6FEAF58A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				198F9EEF0E5582750C227719 /* Pods-NoteStack.debug.xcconfig */,
+				5723D6510182AD69EC65447D /* Pods-NoteStack.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9908613421F63EAD00494A28 = {
 			isa = PBXGroup;
 			children = (
+				99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */,
+				99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */,
 				99543FB421FA886E00DA87EF /* Location+CoreDataClass.swift */,
 				99543FB521FA886E00DA87EF /* Location+CoreDataProperties.swift */,
-				9908613F21F63EAD00494A28 /* MyLocations */,
+				9908613F21F63EAD00494A28 /* NoteStack */,
 				9908613E21F63EAD00494A28 /* Products */,
 				99B9B9B82200D82600B7C904 /* Frameworks */,
+				1B17651E5D1F8B8A6FEAF58A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		9908613E21F63EAD00494A28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9908613D21F63EAD00494A28 /* MyLocations.app */,
+				9908613D21F63EAD00494A28 /* NoteStack.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9908613F21F63EAD00494A28 /* MyLocations */ = {
+		9908613F21F63EAD00494A28 /* NoteStack */ = {
 			isa = PBXGroup;
 			children = (
 				9908614021F63EAD00494A28 /* AppDelegate.swift */,
 				9908614921F63EAE00494A28 /* Assets.xcassets */,
 				99543FAB21F926C500DA87EF /* CategoryPickerViewController.swift */,
+				99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */,
+				995A970123E5E46A00C7CED4 /* CreateNoteController.swift */,
 				9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */,
 				99543FB121FA849100DA87EF /* DataModel.xcdatamodeld */,
+				9962891E23EC856A00364A05 /* EditNoteModalController.swift */,
 				99543FAF21FA577D00DA87EF /* Functions.swift */,
 				99543FAD21FA31B100DA87EF /* HudView.swift */,
 				9908614E21F63EAE00494A28 /* Info.plist */,
@@ -119,9 +155,12 @@
 				99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */,
 				9951FD28220A0AE300CC6F01 /* Sound */,
 				9951FD222204D55C00CC6F01 /* String+AddText.swift */,
+				99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */,
+				99C3FCDF23EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld */,
 				9951FD202204BA1F00CC6F01 /* UIImage+Resize.swift */,
+				99E625B223EB4288002D578D /* Views */,
 			);
-			path = MyLocations;
+			path = NoteStack;
 			sourceTree = "<group>";
 		};
 		9951FD28220A0AE300CC6F01 /* Sound */ = {
@@ -140,28 +179,39 @@
 			isa = PBXGroup;
 			children = (
 				99B9B9B92200D82600B7C904 /* MapKit.framework */,
+				6D16F7FB0606CCCF9B4B3F88 /* Pods_NoteStack.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99E625B223EB4288002D578D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99E625B323EB4298002D578D /* NoteCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9908613C21F63EAD00494A28 /* MyLocations */ = {
+		9908613C21F63EAD00494A28 /* NoteStack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9908615121F63EAE00494A28 /* Build configuration list for PBXNativeTarget "MyLocations" */;
+			buildConfigurationList = 9908615121F63EAE00494A28 /* Build configuration list for PBXNativeTarget "NoteStack" */;
 			buildPhases = (
+				3CAD060A9B3FCA6C9D62EAD2 /* [CP] Check Pods Manifest.lock */,
 				9908613921F63EAD00494A28 /* Sources */,
 				9908613A21F63EAD00494A28 /* Frameworks */,
 				9908613B21F63EAD00494A28 /* Resources */,
+				A91322BE82E86A49C2D46866 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MyLocations;
+			name = NoteStack;
 			productName = MyLocations;
-			productReference = 9908613D21F63EAD00494A28 /* MyLocations.app */;
+			productReference = 9908613D21F63EAD00494A28 /* NoteStack.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -184,7 +234,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9908613821F63EAD00494A28 /* Build configuration list for PBXProject "MyLocations" */;
+			buildConfigurationList = 9908613821F63EAD00494A28 /* Build configuration list for PBXProject "NoteStack" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -197,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9908613C21F63EAD00494A28 /* MyLocations */,
+				9908613C21F63EAD00494A28 /* NoteStack */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +269,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3CAD060A9B3FCA6C9D62EAD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NoteStack-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A91322BE82E86A49C2D46866 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NoteStack/Pods-NoteStack-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NoteStack/Pods-NoteStack-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NoteStack/Pods-NoteStack-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9908613921F63EAD00494A28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -226,9 +318,14 @@
 			files = (
 				99543FAA21F8F88A00DA87EF /* LocationDetailsViewController.swift in Sources */,
 				99543FB321FA849100DA87EF /* DataModel.xcdatamodeld in Sources */,
+				99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */,
 				99543FAE21FA31B100DA87EF /* HudView.swift in Sources */,
 				99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */,
+				995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */,
+				99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */,
+				9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */,
 				9951FD272204F27E00CC6F01 /* MyImagePickerController.swift in Sources */,
+				99BFE6E823E8C1C8008967CD /* CreateActualNoteController.swift in Sources */,
 				99543FB921FB91B000DA87EF /* LocationsViewController.swift in Sources */,
 				99543FB721FA886E00DA87EF /* Location+CoreDataProperties.swift in Sources */,
 				99543FBC21FB9C8F00DA87EF /* LocationCell.swift in Sources */,
@@ -240,6 +337,9 @@
 				99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */,
 				9951FD232204D55C00CC6F01 /* String+AddText.swift in Sources */,
 				9908614321F63EAD00494A28 /* CurrentLocationViewController.swift in Sources */,
+				99C3FCE123EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld in Sources */,
+				99C3FCE923EA191700DEE562 /* Notes+CoreDataProperties.swift in Sources */,
+				99E625B423EB4298002D578D /* NoteCell.swift in Sources */,
 				9951FD1F2200D8EC00CC6F01 /* MapViewController.swift in Sources */,
 				9951FD252204F16F00CC6F01 /* MyTabBarController.swift in Sources */,
 			);
@@ -310,7 +410,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -365,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -377,38 +477,42 @@
 		};
 		9908615221F63EAE00494A28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 198F9EEF0E5582750C227719 /* Pods-NoteStack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H5XL2GBF4E;
-				INFOPLIST_FILE = MyLocations/Info.plist;
+				INFOPLIST_FILE = NoteStack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GriffinHealyCo.MyLocations;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GriffinHealyCo.NoteStack;
+				PRODUCT_NAME = NoteStack;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		9908615321F63EAE00494A28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5723D6510182AD69EC65447D /* Pods-NoteStack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H5XL2GBF4E;
-				INFOPLIST_FILE = MyLocations/Info.plist;
+				INFOPLIST_FILE = NoteStack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GriffinHealyCo.MyLocations;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GriffinHealyCo.NoteStack;
+				PRODUCT_NAME = NoteStack;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -416,7 +520,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9908613821F63EAD00494A28 /* Build configuration list for PBXProject "MyLocations" */ = {
+		9908613821F63EAD00494A28 /* Build configuration list for PBXProject "NoteStack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9908614F21F63EAE00494A28 /* Debug */,
@@ -425,7 +529,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9908615121F63EAE00494A28 /* Build configuration list for PBXNativeTarget "MyLocations" */ = {
+		9908615121F63EAE00494A28 /* Build configuration list for PBXNativeTarget "NoteStack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9908615221F63EAE00494A28 /* Debug */,
@@ -444,6 +548,16 @@
 			);
 			currentVersion = 99543FB221FA849100DA87EF /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		99C3FCDF23EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				99C3FCE023EA0C4400DEE562 /* TheNoteDataModel.xcdatamodel */,
+			);
+			currentVersion = 99C3FCE023EA0C4400DEE562 /* TheNoteDataModel.xcdatamodel */;
+			path = TheNoteDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
