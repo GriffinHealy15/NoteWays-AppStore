@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // notification handler is registered here with the notification center
         listenForFatalCoreDataNotifications()
         
-        //print("documents directory: \(applicationDocumentsDirectory)")
+        print("documents directory: \(applicationDocumentsDirectory)")
         return true
     }
 

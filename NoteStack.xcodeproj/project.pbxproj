@@ -34,6 +34,7 @@
 		99543FBC21FB9C8F00DA87EF /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99543FBB21FB9C8F00DA87EF /* LocationCell.swift */; };
 		995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A970123E5E46A00C7CED4 /* CreateNoteController.swift */; };
 		9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962891E23EC856A00364A05 /* EditNoteModalController.swift */; };
+		9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */; };
 		99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */; };
 		99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E6220B4BD700D0574D /* SearchCell.swift */; };
 		99B9B9BA2200D82600B7C904 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B9B9B92200D82600B7C904 /* MapKit.framework */; };
@@ -76,6 +77,7 @@
 		99543FBB21FB9C8F00DA87EF /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		995A970123E5E46A00C7CED4 /* CreateNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteController.swift; sourceTree = "<group>"; };
 		9962891E23EC856A00364A05 /* EditNoteModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteModalController.swift; sourceTree = "<group>"; };
+		9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupController.swift; sourceTree = "<group>"; };
 		99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		99A5C3E6220B4BD700D0574D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		99B9B9B92200D82600B7C904 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -153,6 +155,7 @@
 				9951FD242204F16F00CC6F01 /* MyTabBarController.swift */,
 				99A5C3E6220B4BD700D0574D /* SearchCell.swift */,
 				99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */,
+				9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */,
 				9951FD28220A0AE300CC6F01 /* Sound */,
 				9951FD222204D55C00CC6F01 /* String+AddText.swift */,
 				99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */,
@@ -325,6 +328,7 @@
 				99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */,
 				9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */,
 				9951FD272204F27E00CC6F01 /* MyImagePickerController.swift in Sources */,
+				9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */,
 				99BFE6E823E8C1C8008967CD /* CreateActualNoteController.swift in Sources */,
 				99543FB921FB91B000DA87EF /* LocationsViewController.swift in Sources */,
 				99543FB721FA886E00DA87EF /* Location+CoreDataProperties.swift in Sources */,

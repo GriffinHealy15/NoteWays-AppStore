@@ -424,8 +424,6 @@ UINavigationControllerDelegate {
         UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 // end of extension here
