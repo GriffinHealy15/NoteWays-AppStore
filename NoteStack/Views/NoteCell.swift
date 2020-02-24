@@ -32,6 +32,7 @@ class NoteCell: UITableViewCell {
         } else {
             // find attribute or property locationDescription and label to that value
             noteLabel.text = note.noteText
+            noteLabel.font = UIFont(name: "PingFangHK-Regular", size: 17)
         }
     }
 }

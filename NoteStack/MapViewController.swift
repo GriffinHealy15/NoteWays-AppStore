@@ -82,25 +82,33 @@ class MapViewController: UIViewController {
     @objc func showLocationDetails(_ sender: UIButton) {
         print("Clicked")
         self.playSoundEffect()
-        performSegue(withIdentifier: "EditLocation", sender: sender)
+        //performSegue(withIdentifier: "EditLocation", sender: sender)
+        
+        let location = locations[sender.tag]
+        // give controller the location object (contains that location from an index in array, and it contains its properties)
+        let locationsDetailsContrl = CurrentOrSearchDetailController()
+        locationsDetailsContrl.locationToEdit = location
+        locationsDetailsContrl.managedObjectContext = managedObjectContext
+        let locDetailsController = UINavigationController(rootViewController: locationsDetailsContrl)
+        present(locDetailsController, animated: true)
     }
     
     // MARK:- Navigation
-    override func prepare(for segue: UIStoryboardSegue,
-                          sender: Any?) {
-        // the segue that is about to be triggered is "EditLocation" (because that is what showLocationDetails said that identifiers segue should go to happens)
-        if segue.identifier == "EditLocation" {
-            // set controller dest as Locations Details
-            let controller = segue.destination
-                as! LocationDetailsViewController
-            // pass the context object to destination controller
-            controller.managedObjectContext = managedObjectContext
-            let button = sender as! UIButton
-            // retrieve the button tag (the number assigned to the annotation, which corresponds to the index of the locations array
-            let location = locations[button.tag]
-            // pass that location object to Locations Details, so to edit the location
-            controller.locationToEdit = location
-        } }
+//    override func prepare(for segue: UIStoryboardSegue,
+//                          sender: Any?) {
+//        // the segue that is about to be triggered is "EditLocation" (because that is what showLocationDetails said that identifiers segue should go to happens)
+//        if segue.identifier == "EditLocation" {
+//            // set controller dest as Locations Details
+//            let controller = segue.destination
+//                as! LocationDetailsViewController
+//            // pass the context object to destination controller
+//            controller.managedObjectContext = managedObjectContext
+//            let button = sender as! UIButton
+//            // retrieve the button tag (the number assigned to the annotation, which corresponds to the index of the locations array
+//            let location = locations[button.tag]
+//            // pass that location object to Locations Details, so to edit the location
+//            controller.locationToEdit = location
+//        } }
     
     // MARK:- Helper methods
     // add annotations

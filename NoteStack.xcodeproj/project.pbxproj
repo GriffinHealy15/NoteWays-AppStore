@@ -12,11 +12,15 @@
 		9908614321F63EAD00494A28 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */; };
 		9908614821F63EAD00494A28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9908614621F63EAD00494A28 /* Main.storyboard */; };
 		9908614A21F63EAE00494A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9908614921F63EAE00494A28 /* Assets.xcassets */; };
+		9914558323F60428000F2FAE /* CurrentOrSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914558223F60428000F2FAE /* CurrentOrSearchController.swift */; };
 		9922D217220CD207005445EC /* Pin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D216220CD207005445EC /* Pin.wav */; };
 		9922D219220CD7E5005445EC /* Water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D218220CD7E5005445EC /* Water.wav */; };
 		9922D21B220CD9AA005445EC /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D21A220CD9AA005445EC /* Success.wav */; };
 		9922D21F220CDF1F005445EC /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D21E220CDF1F005445EC /* Click.wav */; };
 		99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */; };
+		994E174523FB401400152C6C /* CategoryPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994E174423FB401400152C6C /* CategoryPopoverController.swift */; };
+		994FE63F23FDCC3E007EDA09 /* SearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */; };
+		994FE64123FDCDDC007EDA09 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */; };
 		9951FD1F2200D8EC00CC6F01 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FD1E2200D8EC00CC6F01 /* MapViewController.swift */; };
 		9951FD212204BA1F00CC6F01 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FD202204BA1F00CC6F01 /* UIImage+Resize.swift */; };
 		9951FD232204D55C00CC6F01 /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FD222204D55C00CC6F01 /* String+AddText.swift */; };
@@ -35,10 +39,21 @@
 		995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A970123E5E46A00C7CED4 /* CreateNoteController.swift */; };
 		9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962891E23EC856A00364A05 /* EditNoteModalController.swift */; };
 		9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */; };
+		999CA51923F72F8200B57222 /* CurrentOrSearchDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */; };
 		99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */; };
 		99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E6220B4BD700D0574D /* SearchCell.swift */; };
+		99AC041B23FC78DA0056971D /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99AC041A23FC78DA0056971D /* pop.wav */; };
+		99AC041D23FC7A380056971D /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC041C23FC7A380056971D /* bubble.mp3 */; };
+		99AC041F23FC7A9B0056971D /* select.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC041E23FC7A9B0056971D /* select.mp3 */; };
+		99AC042123FC7B2C0056971D /* map.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042023FC7B2C0056971D /* map.mp3 */; };
+		99AC042323FC7DA30056971D /* pin_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042223FC7DA30056971D /* pin_high.mp3 */; };
+		99AC042523FC7DA90056971D /* pin_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042423FC7DA90056971D /* pin_low.mp3 */; };
+		99AC042723FC7F160056971D /* pin_low2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042623FC7F150056971D /* pin_low2.mp3 */; };
+		99AC042923FC82930056971D /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042823FC82930056971D /* success.mp3 */; };
+		99AC042B23FC83700056971D /* swipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042A23FC83700056971D /* swipe.mp3 */; };
 		99B9B9BA2200D82600B7C904 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B9B9B92200D82600B7C904 /* MapKit.framework */; };
 		99BFE6E823E8C1C8008967CD /* CreateActualNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */; };
+		99C2730F23FF3DBC002BCA3B /* SearchBarTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C2730E23FF3DBC002BCA3B /* SearchBarTableController.swift */; };
 		99C3FCE123EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCDF23EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld */; };
 		99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */; };
 		99C3FCE923EA191700DEE562 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */; };
@@ -55,11 +70,15 @@
 		9908614721F63EAD00494A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9908614921F63EAE00494A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9908614E21F63EAE00494A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9914558223F60428000F2FAE /* CurrentOrSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrSearchController.swift; sourceTree = "<group>"; };
 		9922D216220CD207005445EC /* Pin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pin.wav; sourceTree = "<group>"; };
 		9922D218220CD7E5005445EC /* Water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Water.wav; sourceTree = "<group>"; };
 		9922D21A220CD9AA005445EC /* Success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success.wav; sourceTree = "<group>"; };
 		9922D21E220CDF1F005445EC /* Click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Click.wav; sourceTree = "<group>"; };
 		99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomClassViewController.swift; sourceTree = "<group>"; };
+		994E174423FB401400152C6C /* CategoryPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopoverController.swift; sourceTree = "<group>"; };
+		994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarController.swift; sourceTree = "<group>"; };
+		994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		9951FD1E2200D8EC00CC6F01 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9951FD202204BA1F00CC6F01 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		9951FD222204D55C00CC6F01 /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
@@ -78,10 +97,21 @@
 		995A970123E5E46A00C7CED4 /* CreateNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteController.swift; sourceTree = "<group>"; };
 		9962891E23EC856A00364A05 /* EditNoteModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteModalController.swift; sourceTree = "<group>"; };
 		9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupController.swift; sourceTree = "<group>"; };
+		999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrSearchDetailController.swift; sourceTree = "<group>"; };
 		99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		99A5C3E6220B4BD700D0574D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		99AC041A23FC78DA0056971D /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		99AC041C23FC7A380056971D /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
+		99AC041E23FC7A9B0056971D /* select.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select.mp3; sourceTree = "<group>"; };
+		99AC042023FC7B2C0056971D /* map.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = map.mp3; sourceTree = "<group>"; };
+		99AC042223FC7DA30056971D /* pin_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pin_high.mp3; sourceTree = "<group>"; };
+		99AC042423FC7DA90056971D /* pin_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pin_low.mp3; sourceTree = "<group>"; };
+		99AC042623FC7F150056971D /* pin_low2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pin_low2.mp3; sourceTree = "<group>"; };
+		99AC042823FC82930056971D /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
+		99AC042A23FC83700056971D /* swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe.mp3; sourceTree = "<group>"; };
 		99B9B9B92200D82600B7C904 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActualNoteController.swift; sourceTree = "<group>"; };
+		99C2730E23FF3DBC002BCA3B /* SearchBarTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTableController.swift; sourceTree = "<group>"; };
 		99C3FCE023EA0C4400DEE562 /* TheNoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TheNoteDataModel.xcdatamodel; sourceTree = "<group>"; };
 		99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -138,9 +168,12 @@
 				9908614021F63EAD00494A28 /* AppDelegate.swift */,
 				9908614921F63EAE00494A28 /* Assets.xcassets */,
 				99543FAB21F926C500DA87EF /* CategoryPickerViewController.swift */,
+				994E174423FB401400152C6C /* CategoryPopoverController.swift */,
 				99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */,
 				995A970123E5E46A00C7CED4 /* CreateNoteController.swift */,
 				9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */,
+				9914558223F60428000F2FAE /* CurrentOrSearchController.swift */,
+				999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */,
 				99543FB121FA849100DA87EF /* DataModel.xcdatamodeld */,
 				9962891E23EC856A00364A05 /* EditNoteModalController.swift */,
 				99543FAF21FA577D00DA87EF /* Functions.swift */,
@@ -148,11 +181,14 @@
 				9908614E21F63EAE00494A28 /* Info.plist */,
 				99543FBB21FB9C8F00DA87EF /* LocationCell.swift */,
 				99543FA921F8F88A00DA87EF /* LocationDetailsViewController.swift */,
+				994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */,
 				99543FB821FB91B000DA87EF /* LocationsViewController.swift */,
 				9908614621F63EAD00494A28 /* Main.storyboard */,
 				9951FD1E2200D8EC00CC6F01 /* MapViewController.swift */,
 				9951FD262204F27E00CC6F01 /* MyImagePickerController.swift */,
 				9951FD242204F16F00CC6F01 /* MyTabBarController.swift */,
+				994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */,
+				99C2730E23FF3DBC002BCA3B /* SearchBarTableController.swift */,
 				99A5C3E6220B4BD700D0574D /* SearchCell.swift */,
 				99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */,
 				9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */,
@@ -171,7 +207,16 @@
 			children = (
 				9951FD29220A0AE300CC6F01 /* Sound.caf */,
 				9922D216220CD207005445EC /* Pin.wav */,
+				99AC042423FC7DA90056971D /* pin_low.mp3 */,
+				99AC042623FC7F150056971D /* pin_low2.mp3 */,
+				99AC041C23FC7A380056971D /* bubble.mp3 */,
+				99AC042A23FC83700056971D /* swipe.mp3 */,
+				99AC042823FC82930056971D /* success.mp3 */,
+				99AC042223FC7DA30056971D /* pin_high.mp3 */,
+				99AC042023FC7B2C0056971D /* map.mp3 */,
 				9922D218220CD7E5005445EC /* Water.wav */,
+				99AC041E23FC7A9B0056971D /* select.mp3 */,
+				99AC041A23FC78DA0056971D /* pop.wav */,
 				9922D21A220CD9AA005445EC /* Success.wav */,
 				9922D21E220CDF1F005445EC /* Click.wav */,
 			);
@@ -260,13 +305,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99AC042323FC7DA30056971D /* pin_high.mp3 in Resources */,
 				9922D21F220CDF1F005445EC /* Click.wav in Resources */,
 				9908614A21F63EAE00494A28 /* Assets.xcassets in Resources */,
+				99AC041D23FC7A380056971D /* bubble.mp3 in Resources */,
+				99AC042723FC7F160056971D /* pin_low2.mp3 in Resources */,
+				99AC041B23FC78DA0056971D /* pop.wav in Resources */,
+				99AC041F23FC7A9B0056971D /* select.mp3 in Resources */,
+				99AC042923FC82930056971D /* success.mp3 in Resources */,
 				9922D21B220CD9AA005445EC /* Success.wav in Resources */,
+				99AC042123FC7B2C0056971D /* map.mp3 in Resources */,
 				9951FD2A220A0AE300CC6F01 /* Sound.caf in Resources */,
+				99AC042523FC7DA90056971D /* pin_low.mp3 in Resources */,
 				9922D217220CD207005445EC /* Pin.wav in Resources */,
 				9922D219220CD7E5005445EC /* Water.wav in Resources */,
 				9908614821F63EAD00494A28 /* Main.storyboard in Resources */,
+				99AC042B23FC83700056971D /* swipe.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,21 +373,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9914558323F60428000F2FAE /* CurrentOrSearchController.swift in Sources */,
 				99543FAA21F8F88A00DA87EF /* LocationDetailsViewController.swift in Sources */,
 				99543FB321FA849100DA87EF /* DataModel.xcdatamodeld in Sources */,
+				99C2730F23FF3DBC002BCA3B /* SearchBarTableController.swift in Sources */,
 				99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */,
 				99543FAE21FA31B100DA87EF /* HudView.swift in Sources */,
 				99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */,
 				995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */,
+				994E174523FB401400152C6C /* CategoryPopoverController.swift in Sources */,
 				99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */,
 				9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */,
 				9951FD272204F27E00CC6F01 /* MyImagePickerController.swift in Sources */,
+				994FE64123FDCDDC007EDA09 /* LocationSearchTable.swift in Sources */,
 				9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */,
 				99BFE6E823E8C1C8008967CD /* CreateActualNoteController.swift in Sources */,
 				99543FB921FB91B000DA87EF /* LocationsViewController.swift in Sources */,
 				99543FB721FA886E00DA87EF /* Location+CoreDataProperties.swift in Sources */,
 				99543FBC21FB9C8F00DA87EF /* LocationCell.swift in Sources */,
 				9951FD212204BA1F00CC6F01 /* UIImage+Resize.swift in Sources */,
+				999CA51923F72F8200B57222 /* CurrentOrSearchDetailController.swift in Sources */,
 				99543FB021FA577D00DA87EF /* Functions.swift in Sources */,
 				9908614121F63EAD00494A28 /* AppDelegate.swift in Sources */,
 				99543FB621FA886E00DA87EF /* Location+CoreDataClass.swift in Sources */,
@@ -345,6 +404,7 @@
 				99C3FCE923EA191700DEE562 /* Notes+CoreDataProperties.swift in Sources */,
 				99E625B423EB4298002D578D /* NoteCell.swift in Sources */,
 				9951FD1F2200D8EC00CC6F01 /* MapViewController.swift in Sources */,
+				994FE63F23FDCC3E007EDA09 /* SearchBarController.swift in Sources */,
 				9951FD252204F16F00CC6F01 /* MyTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

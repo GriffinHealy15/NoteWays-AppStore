@@ -40,12 +40,27 @@ class LocationsViewController: UITableViewController {
     
     var soundID: SystemSoundID = 0
     
+    var storyboard_1 = UIStoryboard()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         performFetch()
-        navigationItem.rightBarButtonItem = editButtonItem
+        //navigationItem.rightBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation)), editButtonItem]
         loadSoundEffect("Click.wav")
     }
+    
+    @objc func findLocation() {
+        loadSoundEffect("map.mp3")
+        playSoundEffect()
+        print("Creating location nav...")
+        let currentLocationController = CurrentOrSearchController()
+        currentLocationController.managedObjectContext = managedObjectContext
+        currentLocationController.storyboard_1 = storyboard_1
+        let navController = UINavigationController(rootViewController: currentLocationController)
+        present(navController, animated: true)
+    }
+    
     // MARK:- Helper methods
     func performFetch() {
         do {
@@ -102,6 +117,23 @@ class LocationsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        loadSoundEffect("select.mp3")
+        playSoundEffect()
+        let location = fetchedResultsController.object(at: indexPath)
+        // give controller the location object (contains that location from an index in array, and it contains its properties)
+        let locationsDetailsContrl = CurrentOrSearchDetailController()
+        locationsDetailsContrl.locationToEdit = location
+        locationsDetailsContrl.managedObjectContext = managedObjectContext
+        let locDetailsController = UINavigationController(rootViewController: locationsDetailsContrl)
+        present(locDetailsController, animated: true)
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     // find the number of sections
     override func numberOfSections(in tableView: UITableView)
         -> Int {
@@ -123,22 +155,23 @@ class LocationsViewController: UITableViewController {
                                width: 300, height: 14)
         let label = UILabel(frame: labelRect)
         label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.backgroundColor = .white
         // ask the tableView's dataSource (which is this view controller LocationsViewController) for the text for each section, to put in the header were creating
         label.text = tableView.dataSource!.tableView!(
             tableView, titleForHeaderInSection: section)
-        label.textColor = UIColor(white: 1.0, alpha: 0.6)
-        label.backgroundColor = UIColor.clear
+        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        label.backgroundColor = UIColor.white
         let separatorRect = CGRect(
             x: 15, y: tableView.sectionHeaderHeight - 0.5,
             width: tableView.bounds.size.width - 15, height: 0.5)
         let separator = UIView(frame: separatorRect)
-        separator.backgroundColor = tableView.separatorColor
+        separator.backgroundColor = .white
         let viewRect = CGRect(x: 0, y: 0,
                               width: tableView.bounds.size.width,
                               height: tableView.sectionHeaderHeight)
         // create a container view to hold the label and the seperator. Add the two views to the container
         let view = UIView(frame: viewRect)
-        view.backgroundColor = UIColor(white: 0, alpha: 0.85)
+        view.backgroundColor = .white
         view.addSubview(label)
         view.addSubview(separator)
         return view
@@ -164,21 +197,21 @@ class LocationsViewController: UITableViewController {
     
  
     // MARK:- Navigation
-    override func prepare(for segue: UIStoryboardSegue,
-                          sender: Any?) { // sender is any, but for "EditLocation" sender is UITableViewCell
-        playSoundEffect()
-        if segue.identifier == "EditLocation" {
-            let controller = segue.destination
-                as! LocationDetailsViewController
-            // give controller (LocationDetailsViewController) the manageObjectContext
-            controller.managedObjectContext = managedObjectContext
-            if let indexPath = tableView.indexPath(for: sender // we know sender is table cell so we look for the indexPath of the tapped cell
-                as! UITableViewCell) {
-                let location = fetchedResultsController.object(at: indexPath)
-                // give controller the location object (contains that location from an index in array, and it contains its properties)
-                controller.locationToEdit = location
-            }
-        } }
+//    override func prepare(for segue: UIStoryboardSegue,
+//                          sender: Any?) { // sender is any, but for "EditLocation" sender is UITableViewCell
+//        playSoundEffect()
+//        if segue.identifier == "EditLocation" {
+//            let controller = segue.destination
+//                as! LocationDetailsViewController
+//            // give controller (LocationDetailsViewController) the manageObjectContext
+//            controller.managedObjectContext = managedObjectContext
+//            if let indexPath = tableView.indexPath(for: sender // we know sender is table cell so we look for the indexPath of the tapped cell
+//                as! UITableViewCell) {
+//                let location = fetchedResultsController.object(at: indexPath)
+//                // give controller the location object (contains that location from an index in array, and it contains its properties)
+//                controller.locationToEdit = location
+//            }
+//        } }
 }
 
 

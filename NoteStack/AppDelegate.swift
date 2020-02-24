@@ -15,7 +15,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+    let storyboard_1 = UIStoryboard(name: "Main", bundle: Bundle.main)
     // this is a closure, so it is done with lazy loading, not performed right away
     lazy var persistentContainer: NSPersistentContainer = {
         // closure
@@ -82,34 +82,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let tabViewControllers = tabController.viewControllers {
             // First tab
-            var navController = tabViewControllers[0]
-                as! UINavigationController
-            let controller1 = navController.viewControllers.first
-                as! CurrentLocationViewController
-            controller1.managedObjectContext = managedObjectContext
+//            var navController = tabViewControllers[0]
+//                as! UINavigationController
+//            let controller1 = navController.viewControllers.first
+//                as! CurrentLocationViewController
+//            controller1.managedObjectContext = managedObjectContext
 
             // Second tab
-            navController = tabViewControllers[1]
+            var navController = tabViewControllers[0]
                 as! UINavigationController
             let controller2 = navController.viewControllers.first
                 as! LocationsViewController
             controller2.managedObjectContext = managedObjectContext
+            controller2.storyboard_1 = storyboard_1
             let _ = controller2.view
-
+            
             // Third tab
-            navController = tabViewControllers[2] as! UINavigationController
+            navController = tabViewControllers[1] as! UINavigationController
             let controller3 = navController.viewControllers.first
                 as! MapViewController
             controller3.managedObjectContext = managedObjectContext
 
             // Fourth tab
-            navController = tabViewControllers[3] as! UINavigationController
-            let controller4 = navController.viewControllers.first
-                as! SearchViewController
-            controller4.managedObjectContext = managedObjectContext
+//            navController = tabViewControllers[3] as! UINavigationController
+//            let controller4 = navController.viewControllers.first
+//                as! SearchViewController
+//            controller4.managedObjectContext = managedObjectContext
             
             // Fifth tab
-            navController = tabViewControllers[4] as! UINavigationController
+            navController = tabViewControllers[2] as! UINavigationController
             let controller6 = navController.viewControllers.first
                 as! CreateNoteController
             controller6.managedObjectContext = managedObjectContextNote

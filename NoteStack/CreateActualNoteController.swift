@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import LBTATools
-
+import AudioToolbox
 
 protocol CreateNoteDelegate {
     func retrievedNoteText(noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?],
@@ -27,7 +27,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     // delegate var for the protocol above
     var delegate: CreateNoteDelegate?
        
-    var noteTextField = UITextView(text: "", font: .boldSystemFont(ofSize: 18), textColor: .lightGray, textAlignment: .left)
+    var noteTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .lightGray, textAlignment: .left)
     var noteText = ""
     
     lazy var addPhotoButton = UIButton(image: #imageLiteral(resourceName: "photo"), tintColor: .black, target: self, action: #selector(addPhoto))
@@ -46,6 +46,8 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     var noteAttributedArray: [NSAttributedString] = []
     var noteLocation: Int = 0
     var attString: NSAttributedString?
+        
+    var soundID: SystemSoundID = 0
     
     {
         didSet
@@ -63,7 +65,8 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .rgb(red: 178, green: 253, blue: 254)
+        //view.backgroundColor = .rgb(red: 178, green: 253, blue: 254)
+        view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
         
         fill_view.withHeight(50)
         fill_view1.withHeight(100)
@@ -77,11 +80,12 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         addlocationButton.withHeight(200)
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
         noteTextField.autocapitalizationType = .none
-        noteTextField.backgroundColor = .rgb(red: 178, green: 253, blue: 254)
+        noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
         noteTextField.delegate = self
+        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "SaveNote"), style: .plain, target: self, action: #selector(saveNote))
         navigationItem.rightBarButtonItem?.tintColor = .green
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:)))
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelNote)),UIBarButtonItem(image: #imageLiteral(resourceName: "setting"), style: .plain, target: self, action: #selector(addSettings(_:)))]
         navigationItem.leftBarButtonItem?.tintColor = .green
         title = "Create Note"
         let formView = UIView()
@@ -94,8 +98,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         formContainerStackView.addArrangedSubview(formView)
     }
     
+    @objc func cancelNote() {
+        dismiss(animated: true)
+    }
+    
     @objc func saveNote() {
         print("Saving note...")
+        loadSoundEffect("swipe.mp3")
+        playSoundEffect()
         let createNoteController = CreateNoteController()
         createNoteController.managedObjectContext = managedObjectContext
         self.delegate = createNoteController
@@ -103,10 +113,29 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         self.navigationController?.dismiss(animated: true)
     }
     
+    // MARK:- Sound effects
+    func loadSoundEffect(_ name: String) {
+        if let path = Bundle.main.path(forResource: name,
+                                       ofType: nil) {
+            let fileURL = URL(fileURLWithPath: path, isDirectory: false)
+            let error = AudioServicesCreateSystemSoundID(
+                fileURL as CFURL, &soundID)
+            if error != kAudioServicesNoError {
+                print("Error code \(error) loading sound: \(path)")
+            }
+        } }
+    func unloadSoundEffect() {
+        AudioServicesDisposeSystemSoundID(soundID)
+        soundID = 0 }
+    func playSoundEffect() {
+        AudioServicesPlaySystemSound(soundID)
+    }
+    
+    
     @objc func addPhoto() {
         print("Adding photo...")
     }
-    
+
     @objc func addSettings(_ sender: Any) {
            let vc = SettingsPopupController()
            vc.managedObjectContext = managedObjectContext
@@ -117,7 +146,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
            ppc?.permittedArrowDirections = .any
            ppc?.delegate = self
            ppc!.sourceView = sender as? UIView
-           ppc?.barButtonItem = navigationItem.leftBarButtonItem
+        ppc?.barButtonItem = navigationItem.leftBarButtonItems![1]
            present(vc, animated: true, completion: nil)
        }
     
@@ -151,15 +180,15 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     func textViewDidBeginEditing(_ textView: UITextView) {
 //        noteTextField.text = ""
-        noteTextField.textColor = .black
-        noteTextField.font = .boldSystemFont(ofSize: 18)
+        noteTextField.textColor = .white
+        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
     }
     
     func textViewDidChange(_ textView: UITextView) {
         noteImagesArray = []
         noteLocationsArray = []
         noteText = noteTextField.text
-        noteTextField.font = .boldSystemFont(ofSize: 18)
+        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         noteTextField.attributedText.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: noteTextField.attributedText.length), options: []) { (value, range, stop) in
 
             if (value is NSTextAttachment){
