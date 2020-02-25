@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AudioToolbox
 
 protocol HandleAddressSelectDelegate {
     func handleAddress(address: String, selectedName: String)
@@ -30,6 +31,12 @@ class SearchBarTableController: UITableViewController {
     
     // CreateActualNoteController
     var currentOrSearchController:CurrentOrSearchController?
+    
+    var soundID: SystemSoundID = 0
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 330)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +87,24 @@ class SearchBarTableController: UITableViewController {
         return addressLine
     }
     
+    // MARK:- Sound effects
+    func loadSoundEffect(_ name: String) {
+        if let path = Bundle.main.path(forResource: name,
+                                       ofType: nil) {
+            let fileURL = URL(fileURLWithPath: path, isDirectory: false)
+            let error = AudioServicesCreateSystemSoundID(
+                fileURL as CFURL, &soundID)
+            if error != kAudioServicesNoError {
+                print("Error code \(error) loading sound: \(path)")
+            }
+        } }
+    func unloadSoundEffect() {
+        AudioServicesDisposeSystemSoundID(soundID)
+        soundID = 0 }
+    func playSoundEffect() {
+        AudioServicesPlaySystemSound(soundID)
+    }
+    
 }
 
 extension SearchBarTableController : CLLocationManagerDelegate {
@@ -119,7 +144,7 @@ extension SearchBarTableController : UISearchResultsUpdating {
             }
             self.matchingItems = response.mapItems
             //self.tableView.frame = CGRect(x: 20, y: self.view.frame.size.height / 2.0, width: 334, height: 300)
-            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 350)
+            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 330)
             self.tableView.reloadData()
 //            var frame = self.tableView.frame
 //            frame.size.height = self.tableView.contentSize.height - 100
@@ -153,7 +178,10 @@ extension SearchBarTableController {
         dismiss(animated: true, completion: nil)
         let currentSearchController = currentOrSearchController
         self.delegate = currentSearchController
-        delegate?.handleAddress(address: address, selectedName: selectedItem.name ?? "No Name")
+        let parsedAddress = parseAddress(selectedItem: selectedItem)
+        loadSoundEffect("navtap.mp3")
+        playSoundEffect()
+        delegate?.handleAddress(address: parsedAddress, selectedName: selectedItem.name ?? "No Name")
         dismiss(animated: true)
     }
 }

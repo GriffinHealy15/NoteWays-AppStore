@@ -39,6 +39,8 @@
 		995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A970123E5E46A00C7CED4 /* CreateNoteController.swift */; };
 		9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962891E23EC856A00364A05 /* EditNoteModalController.swift */; };
 		9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */; };
+		9997815B240463FC0055650B /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9997815A240463FC0055650B /* tap.mp3 */; };
+		9997815D240484480055650B /* navtap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9997815C240484470055650B /* navtap.mp3 */; };
 		999CA51923F72F8200B57222 /* CurrentOrSearchDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */; };
 		99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */; };
 		99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E6220B4BD700D0574D /* SearchCell.swift */; };
@@ -97,6 +99,8 @@
 		995A970123E5E46A00C7CED4 /* CreateNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteController.swift; sourceTree = "<group>"; };
 		9962891E23EC856A00364A05 /* EditNoteModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteModalController.swift; sourceTree = "<group>"; };
 		9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupController.swift; sourceTree = "<group>"; };
+		9997815A240463FC0055650B /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tap.mp3; sourceTree = "<group>"; };
+		9997815C240484470055650B /* navtap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = navtap.mp3; sourceTree = "<group>"; };
 		999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrSearchDetailController.swift; sourceTree = "<group>"; };
 		99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		99A5C3E6220B4BD700D0574D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
@@ -210,8 +214,10 @@
 				99AC042423FC7DA90056971D /* pin_low.mp3 */,
 				99AC042623FC7F150056971D /* pin_low2.mp3 */,
 				99AC041C23FC7A380056971D /* bubble.mp3 */,
+				9997815A240463FC0055650B /* tap.mp3 */,
 				99AC042A23FC83700056971D /* swipe.mp3 */,
 				99AC042823FC82930056971D /* success.mp3 */,
+				9997815C240484470055650B /* navtap.mp3 */,
 				99AC042223FC7DA30056971D /* pin_high.mp3 */,
 				99AC042023FC7B2C0056971D /* map.mp3 */,
 				9922D218220CD7E5005445EC /* Water.wav */,
@@ -317,9 +323,11 @@
 				99AC042123FC7B2C0056971D /* map.mp3 in Resources */,
 				9951FD2A220A0AE300CC6F01 /* Sound.caf in Resources */,
 				99AC042523FC7DA90056971D /* pin_low.mp3 in Resources */,
+				9997815D240484480055650B /* navtap.mp3 in Resources */,
 				9922D217220CD207005445EC /* Pin.wav in Resources */,
 				9922D219220CD7E5005445EC /* Water.wav in Resources */,
 				9908614821F63EAD00494A28 /* Main.storyboard in Resources */,
+				9997815B240463FC0055650B /* tap.mp3 in Resources */,
 				99AC042B23FC83700056971D /* swipe.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

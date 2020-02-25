@@ -11,6 +11,7 @@ import CoreLocation
 import CoreData
 import AudioToolbox
 import LBTATools
+import MapKit
 
 private let dateFormatter: DateFormatter = {
     // create a dateFormatter object
@@ -34,10 +35,12 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
 //        fatalError("init(coder:) has not been implemented")
 //    }
 
+    var window: UIWindow?
     // managed object context variable
     var managedObjectContext: NSManagedObjectContext!
     var coordinate = CLLocationCoordinate2D(latitude: 0,longitude: 0)
     var placemark: CLPlacemark?
+    var locationName: String?
     var date = Date()
     var locationToEdit: Location? { // optional, in add mode this value is nil
         didSet {
@@ -48,6 +51,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
                 coordinate = CLLocationCoordinate2DMake(
                     location.latitude, location.longitude)
                 placemark = location.placemark
+                locationName = location.locationName
             } }
     }
     
@@ -62,7 +66,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     var dateLabel = UILabel(text: "Date:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-     var dateText = UILabel(text: "Date", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var dateText = UILabel(text: "Date", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
     var latitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
 
@@ -78,13 +82,20 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     var categoryText = UILabel(text: "No Category", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
+    var locationNameLabel = UILabel(text: "Name:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    
+    var locationNameText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    
+    var openInMapView = UIButton(title: "Open In Mapview", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .black, target: self, action: #selector(openMapView))
+    
+    var openGetDirections = UIButton(title: "Get Directions", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .black, target: self, action: #selector(getDirections))
+    
     var soundID: SystemSoundID = 0
     
     var addPhotoButton = UIButton(title: "Add Photo", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(addPhoto))
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         descriptionTextField.delegate = self
         descriptionTextField.layer.borderWidth = 0.7
         descriptionTextField.layer.borderColor = UIColor.black.cgColor
@@ -105,6 +116,14 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         longitudeText.text = String(format: "%.8f",
         coordinate.longitude)
         
+        locationNameText.text = locationName
+        openInMapView.layer.cornerRadius = 10
+        openInMapView.isEnabled = false
+        openInMapView.isHidden = true
+        
+        openGetDirections.layer.cornerRadius = 10
+        openGetDirections.isEnabled = false
+        openGetDirections.isHidden = true
         if let placemark = placemark {
             addressText.text = string(from: placemark)
         } else {
@@ -116,6 +135,10 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         
         if let location = locationToEdit {
             title = "Edit Location"
+            openInMapView.isEnabled = true
+            openInMapView.isHidden = false
+            openGetDirections.isEnabled = true
+            openGetDirections.isHidden = false
             // New code block, if location object has image (has a photoID value) then we set the imageView with the image using show. it puts 260x260 image in the 260x26 imageview. Remember, we changed imageview height constraint to 260 when there's image
             // everytime we load the details view controller, we want to see if the location object has a photo id. If if does that means there is a photoImage with the name Photo-ID that the location object stores. So a location objects photoID matches the ID of that picture. So ID = 5 for location object 5 has a photo with name Photo-5.jpg.
             if location.hasPhoto {
@@ -130,9 +153,26 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save Location", style: .plain, target: self, action: #selector(saveLocation))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelLocation))
         
+        if openInMapView.isEnabled == true {
+            openInMapView.withHeight(40.5).withWidth(60)
+        }
+        else {
+             openInMapView.withHeight(0).withWidth(0)
+        }
+        
+        if openGetDirections.isEnabled == true {
+            openGetDirections.withHeight(40.5).withWidth(60)
+        }
+        else {
+            openGetDirections.withHeight(0).withWidth(0)
+        }
+        
         let formView = UIView()
-        formView.stack(UIView().withHeight(10),descriptionLabel, UIView().withHeight(5),descriptionTextField.withHeight(100), UIView().withHeight(30),formView.hstack(categoryButton.withWidth(130),UIView().withWidth(50),categoryText),UIView().withHeight(20),
-                       addPhotoButton,UIView().withHeight(55),formView.hstack(latitudeLabel.withWidth(110), latitudeText),
+        formView.stack(UIView().withHeight(10),descriptionLabel, UIView().withHeight(5),descriptionTextField.withHeight(100), UIView().withHeight(30),formView.hstack(categoryButton.withWidth(130),UIView().withWidth(50),categoryText),UIView().withHeight(10), addPhotoButton,UIView().withHeight(15),formView.hstack(UIView().withWidth(50),openInMapView,UIView().withWidth(50)), UIView().withHeight(9),
+                       formView.hstack(UIView().withWidth(50),openGetDirections,UIView().withWidth(50)),
+                       UIView().withHeight(35),
+                       formView.hstack(locationNameLabel.withWidth(110), locationNameText), UIView().withHeight(20),
+                       formView.hstack(latitudeLabel.withWidth(110), latitudeText),
                        UIView().withHeight(20), formView.hstack(longitudeLabel.withWidth(110), longitudeText),UIView().withHeight(20), formView.hstack(addressLabel.withWidth(110), addressText), UIView().withHeight(20), formView.hstack(dateLabel.withWidth(110), dateText)).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
                
                formContainerStackView.addArrangedSubview(formView)
@@ -173,6 +213,43 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         return dateFormatter.string(from: date)
     }
     
+    @objc func getDirections(){
+        print("Get Directions")
+        let location = locationToEdit
+        guard let locPlacemark = location!.placemark else { return }
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: locPlacemark.location!.coordinate))
+        //let mapItem = MKMapItem(placemark: locPlacemark as! MKPlacemark)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        loadSoundEffect("tap.mp3")
+        playSoundEffect()
+        mapItem.openInMaps(launchOptions: launchOptions)
+    }
+    
+    @objc func openMapView() {
+        loadSoundEffect("tap.mp3")
+        playSoundEffect()
+        let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let mapViewController = storyboard_main.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        mapViewController.managedObjectContext = managedObjectContext
+        mapViewController.singleLocation = locationToEdit
+        navigationController?.pushViewController(mapViewController, animated: true)
+
+//                // access root view contoller, which is tab bar view controller
+//                let tabController = window!.rootViewController
+//                    as! UITabBarController
+//        print(tabController)
+//                // find the first view controller of tab bar which is navigation controller
+//
+//                if let tabViewControllers = tabController.viewControllers {
+//                    let navController = tabViewControllers[1] as! UINavigationController
+//                    let controller3 = navController.viewControllers.first
+//                        as! MapViewController
+//                    controller3.managedObjectContext = managedObjectContext
+//                    present(controller3, animated: true)
+//                }
+        
+    }
+    
     @objc func cancelLocation() {
         dismiss(animated: true)
     }
@@ -199,6 +276,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         location.longitude = coordinate.longitude
         location.date = date
         location.placemark = placemark
+        location.locationName = locationName ?? ""
                
                // Save image
                // if image has a value, we continue with saving the image
@@ -259,7 +337,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     func show(image: UIImage) {
         addPhotoButton.withHeight(250)
-        addPhotoButton.layer.borderWidth = 1.5
+        addPhotoButton.layer.borderWidth = 0.55
         addPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         addPhotoButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         addPhotoButton.layer.borderColor = UIColor.init(displayP3Red: 0, green: 172, blue: 237, alpha: 1).cgColor

@@ -33,16 +33,25 @@ class MapViewController: UIViewController {
     }
     var locations = [Location]()
     var soundID: SystemSoundID = 0
+    var singleLocation: Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // first fetches locations context object (from datastore), then add locations objects as annotations objects
         updateLocations()
         // if there are existing locations, call show locations
+        navigationItem.leftBarButtonItems![1].isEnabled = false
+        navigationItem.leftBarButtonItems![1].tintColor = .clear
         if !locations.isEmpty {
             showLocations()
         }
         loadSoundEffect("Pin.wav")
+        
+        if (singleLocation != nil) {
+            showSingleLocation()
+            navigationItem.leftBarButtonItems![1].isEnabled = true
+            navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 74, green: 255, blue: 255)
+        }
     }
     
     // MARK:- Sound effects
@@ -78,9 +87,22 @@ class MapViewController: UIViewController {
         mapView.setRegion(theRegion, animated: true)
     }
     
+    
+    @IBAction func closeController() {
+        loadSoundEffect("swipe.mp3")
+        playSoundEffect()
+        dismiss(animated: true)
+    }
+    
+    
+    func showSingleLocation() {
+        let theRegion = region(for: [singleLocation!])
+        mapView.setRegion(theRegion, animated: true)
+    }
+    
     // perform manual segue
     @objc func showLocationDetails(_ sender: UIButton) {
-        print("Clicked")
+        loadSoundEffect("Pin.wav")
         self.playSoundEffect()
         //performSegue(withIdentifier: "EditLocation", sender: sender)
         
@@ -89,8 +111,21 @@ class MapViewController: UIViewController {
         let locationsDetailsContrl = CurrentOrSearchDetailController()
         locationsDetailsContrl.locationToEdit = location
         locationsDetailsContrl.managedObjectContext = managedObjectContext
-        let locDetailsController = UINavigationController(rootViewController: locationsDetailsContrl)
-        present(locDetailsController, animated: true)
+        //let locDetailsController = UINavigationController(rootViewController: locationsDetailsContrl)
+        navigationController?.pushViewController(locationsDetailsContrl, animated: true)
+        //present(locDetailsController, animated: true)
+    }
+    
+    @objc func getDirections(_ sender: UIButton){
+        print("Get Directions")
+        let location = locations[sender.tag]
+        guard let locPlacemark = location.placemark else { return }
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: locPlacemark.location!.coordinate))
+        //let mapItem = MKMapItem(placemark: locPlacemark as! MKPlacemark)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        loadSoundEffect("tap.mp3")
+        playSoundEffect()
+        mapItem.openInMaps(launchOptions: launchOptions)
     }
     
     // MARK:- Navigation
@@ -208,7 +243,12 @@ extension MapViewController: MKMapViewDelegate {
                 //target-action pattern to hook up the button’s “Touch Up Inside” event with a method showLocationDetails(). calls LocationsDetailsViewController
                 rightButton.addTarget(self,
                 action: #selector(showLocationDetails(_:)), for: .touchUpInside)
+                let smallSquare = CGSize(width: 30, height: 30)
+                let leftButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+                leftButton.setBackgroundImage(UIImage(named: "car"), for: .normal)
+                leftButton.addTarget(self, action: #selector(getDirections(_:)), for: .touchUpInside)
                 // add the button to the annotation view’s accessory view.
+                pinView.leftCalloutAccessoryView = leftButton
                 pinView.rightCalloutAccessoryView = rightButton
                 annotationView = pinView
                 }
@@ -219,9 +259,15 @@ extension MapViewController: MKMapViewDelegate {
                 let button = annotationView.rightCalloutAccessoryView
                     as! UIButton
                     // find the location object index in the locations array
-                if let index = locations.index(of: annotation as! Location) {
+                    if let index = locations.firstIndex(of: annotation as! Location) {
                     button.tag = index
             }
+               let button1 = annotationView.leftCalloutAccessoryView
+                   as! UIButton
+                   // find the location object index in the locations array
+                   if let index1 = locations.firstIndex(of: annotation as! Location) {
+                   button1.tag = index1
+                    }
     }
             return annotationView
     }
