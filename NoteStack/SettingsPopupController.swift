@@ -49,12 +49,12 @@ class SettingsPopupController: LBTAFormController {
        addLocationButton.layer.borderColor = UIColor.black.cgColor
        addLocationButton.layer.borderWidth = 0.3
        addLocationButton.withHeight(100)
-
+        self.scrollView.isScrollEnabled = false
         
-       let formView = UIView()
-       formView.stack(addPhotoButton, addLocationButton, imageView)
+        let formView = UIView().withHeight(100)
+       formView.stack(addPhotoButton)
        
-       formContainerStackView.padBottom(-24)
+       formContainerStackView.padBottom(0)
        formContainerStackView.addArrangedSubview(formView)
        }
     

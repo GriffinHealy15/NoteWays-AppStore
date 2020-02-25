@@ -35,7 +35,7 @@ class SearchBarTableController: UITableViewController {
     var soundID: SystemSoundID = 0
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 330)
+        self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: self.view.frame.size.height - 100)
     }
     
     override func viewDidLoad() {
@@ -144,7 +144,7 @@ extension SearchBarTableController : UISearchResultsUpdating {
             }
             self.matchingItems = response.mapItems
             //self.tableView.frame = CGRect(x: 20, y: self.view.frame.size.height / 2.0, width: 334, height: 300)
-            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 330)
+            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: self.view.frame.size.height - 100)
             self.tableView.reloadData()
 //            var frame = self.tableView.frame
 //            frame.size.height = self.tableView.contentSize.height - 100

@@ -139,8 +139,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     @objc func addSettings(_ sender: Any) {
            let vc = SettingsPopupController()
            vc.managedObjectContext = managedObjectContext
-           vc.preferredContentSize = CGSize(width: 200, height: 200)
+           vc.preferredContentSize = CGSize(width: 100, height: 100)
            vc.modalPresentationStyle = .popover
+           vc.scrollView.isScrollEnabled = false
            vc.createActualNoteViewController = self
            let ppc = vc.popoverPresentationController
            ppc?.permittedArrowDirections = .any
