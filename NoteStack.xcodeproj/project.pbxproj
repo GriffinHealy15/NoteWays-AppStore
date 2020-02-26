@@ -12,6 +12,7 @@
 		9908614321F63EAD00494A28 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */; };
 		9908614821F63EAD00494A28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9908614621F63EAD00494A28 /* Main.storyboard */; };
 		9908614A21F63EAE00494A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9908614921F63EAE00494A28 /* Assets.xcassets */; };
+		990983C32406DA41002A614B /* NoteGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990983C22406DA41002A614B /* NoteGroupCell.swift */; };
 		9914558323F60428000F2FAE /* CurrentOrSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914558223F60428000F2FAE /* CurrentOrSearchController.swift */; };
 		9922D217220CD207005445EC /* Pin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D216220CD207005445EC /* Pin.wav */; };
 		9922D219220CD7E5005445EC /* Water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D218220CD7E5005445EC /* Water.wav */; };
@@ -38,6 +39,8 @@
 		99543FBC21FB9C8F00DA87EF /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99543FBB21FB9C8F00DA87EF /* LocationCell.swift */; };
 		995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A970123E5E46A00C7CED4 /* CreateNoteController.swift */; };
 		9962891F23EC856A00364A05 /* EditNoteModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962891E23EC856A00364A05 /* EditNoteModalController.swift */; };
+		99745706240589DE00F36648 /* CreateNoteGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99745705240589DE00F36648 /* CreateNoteGroupController.swift */; };
+		997457082405D01A00F36648 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997457072405D01A00F36648 /* GroupNameController.swift */; };
 		9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */; };
 		9997815B240463FC0055650B /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9997815A240463FC0055650B /* tap.mp3 */; };
 		9997815D240484480055650B /* navtap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9997815C240484470055650B /* navtap.mp3 */; };
@@ -59,6 +62,8 @@
 		99C3FCE123EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCDF23EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld */; };
 		99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */; };
 		99C3FCE923EA191700DEE562 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */; };
+		99C85D832406D03E0043A6F4 /* NotesGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C85D812406D03E0043A6F4 /* NotesGroup+CoreDataClass.swift */; };
+		99C85D842406D03E0043A6F4 /* NotesGroup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C85D822406D03E0043A6F4 /* NotesGroup+CoreDataProperties.swift */; };
 		99E625B423EB4298002D578D /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E625B323EB4298002D578D /* NoteCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +77,7 @@
 		9908614721F63EAD00494A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9908614921F63EAE00494A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9908614E21F63EAE00494A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990983C22406DA41002A614B /* NoteGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteGroupCell.swift; sourceTree = "<group>"; };
 		9914558223F60428000F2FAE /* CurrentOrSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrSearchController.swift; sourceTree = "<group>"; };
 		9922D216220CD207005445EC /* Pin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pin.wav; sourceTree = "<group>"; };
 		9922D218220CD7E5005445EC /* Water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Water.wav; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 		99543FBB21FB9C8F00DA87EF /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		995A970123E5E46A00C7CED4 /* CreateNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteController.swift; sourceTree = "<group>"; };
 		9962891E23EC856A00364A05 /* EditNoteModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteModalController.swift; sourceTree = "<group>"; };
+		99745705240589DE00F36648 /* CreateNoteGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteGroupController.swift; sourceTree = "<group>"; };
+		997457072405D01A00F36648 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
 		9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupController.swift; sourceTree = "<group>"; };
 		9997815A240463FC0055650B /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tap.mp3; sourceTree = "<group>"; };
 		9997815C240484470055650B /* navtap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = navtap.mp3; sourceTree = "<group>"; };
@@ -119,6 +127,8 @@
 		99C3FCE023EA0C4400DEE562 /* TheNoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TheNoteDataModel.xcdatamodel; sourceTree = "<group>"; };
 		99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		99C85D812406D03E0043A6F4 /* NotesGroup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotesGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
+		99C85D822406D03E0043A6F4 /* NotesGroup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotesGroup+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		99E625B323EB4298002D578D /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +157,8 @@
 		9908613421F63EAD00494A28 = {
 			isa = PBXGroup;
 			children = (
+				99C85D812406D03E0043A6F4 /* NotesGroup+CoreDataClass.swift */,
+				99C85D822406D03E0043A6F4 /* NotesGroup+CoreDataProperties.swift */,
 				99C3FCE623EA191700DEE562 /* Notes+CoreDataClass.swift */,
 				99C3FCE723EA191700DEE562 /* Notes+CoreDataProperties.swift */,
 				99543FB421FA886E00DA87EF /* Location+CoreDataClass.swift */,
@@ -175,12 +187,14 @@
 				994E174423FB401400152C6C /* CategoryPopoverController.swift */,
 				99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */,
 				995A970123E5E46A00C7CED4 /* CreateNoteController.swift */,
+				99745705240589DE00F36648 /* CreateNoteGroupController.swift */,
 				9908614221F63EAD00494A28 /* CurrentLocationViewController.swift */,
 				9914558223F60428000F2FAE /* CurrentOrSearchController.swift */,
 				999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */,
 				99543FB121FA849100DA87EF /* DataModel.xcdatamodeld */,
 				9962891E23EC856A00364A05 /* EditNoteModalController.swift */,
 				99543FAF21FA577D00DA87EF /* Functions.swift */,
+				997457072405D01A00F36648 /* GroupNameController.swift */,
 				99543FAD21FA31B100DA87EF /* HudView.swift */,
 				9908614E21F63EAE00494A28 /* Info.plist */,
 				99543FBB21FB9C8F00DA87EF /* LocationCell.swift */,
@@ -242,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				99E625B323EB4298002D578D /* NoteCell.swift */,
+				990983C22406DA41002A614B /* NoteGroupCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -384,6 +399,7 @@
 				9914558323F60428000F2FAE /* CurrentOrSearchController.swift in Sources */,
 				99543FAA21F8F88A00DA87EF /* LocationDetailsViewController.swift in Sources */,
 				99543FB321FA849100DA87EF /* DataModel.xcdatamodeld in Sources */,
+				99C85D832406D03E0043A6F4 /* NotesGroup+CoreDataClass.swift in Sources */,
 				99C2730F23FF3DBC002BCA3B /* SearchBarTableController.swift in Sources */,
 				99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */,
 				99543FAE21FA31B100DA87EF /* HudView.swift in Sources */,
@@ -395,6 +411,7 @@
 				9951FD272204F27E00CC6F01 /* MyImagePickerController.swift in Sources */,
 				994FE64123FDCDDC007EDA09 /* LocationSearchTable.swift in Sources */,
 				9990565B23EDEA7D00A7332F /* SettingsPopupController.swift in Sources */,
+				99C85D842406D03E0043A6F4 /* NotesGroup+CoreDataProperties.swift in Sources */,
 				99BFE6E823E8C1C8008967CD /* CreateActualNoteController.swift in Sources */,
 				99543FB921FB91B000DA87EF /* LocationsViewController.swift in Sources */,
 				99543FB721FA886E00DA87EF /* Location+CoreDataProperties.swift in Sources */,
@@ -402,10 +419,13 @@
 				9951FD212204BA1F00CC6F01 /* UIImage+Resize.swift in Sources */,
 				999CA51923F72F8200B57222 /* CurrentOrSearchDetailController.swift in Sources */,
 				99543FB021FA577D00DA87EF /* Functions.swift in Sources */,
+				990983C32406DA41002A614B /* NoteGroupCell.swift in Sources */,
 				9908614121F63EAD00494A28 /* AppDelegate.swift in Sources */,
 				99543FB621FA886E00DA87EF /* Location+CoreDataClass.swift in Sources */,
 				99543FAC21F926C500DA87EF /* CategoryPickerViewController.swift in Sources */,
 				99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */,
+				997457082405D01A00F36648 /* GroupNameController.swift in Sources */,
+				99745706240589DE00F36648 /* CreateNoteGroupController.swift in Sources */,
 				9951FD232204D55C00CC6F01 /* String+AddText.swift in Sources */,
 				9908614321F63EAD00494A28 /* CurrentLocationViewController.swift in Sources */,
 				99C3FCE123EA0C4400DEE562 /* TheNoteDataModel.xcdatamodeld in Sources */,

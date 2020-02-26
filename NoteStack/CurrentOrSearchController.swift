@@ -94,7 +94,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         let searchbarcontrl = navContrl.viewControllers.first as! SearchBarTableController
         searchbarcontrl.storyboard_1 = storyboard_1
         searchbarcontrl.currentOrSearchController = self
-        searchbarcontrl.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 300)
+//        searchbarcontrl.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 700)
            formView.stack(UIView().withHeight(10), navContrl.view.withHeight(50),
 //           formView.hstack(searchLocationText.withHeight(40).withWidth(250), UIView().withWidth(10).withHeight(50), searchLocationButton.withHeight(50)),
 //           UIView(backgroundColor: .white).withHeight(120),

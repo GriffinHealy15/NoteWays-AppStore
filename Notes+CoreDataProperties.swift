@@ -21,5 +21,6 @@ extension Notes {
     @NSManaged public var notePhotoId: NSNumber? // int 32, but NSNUmber is how objc handles numbers
     @NSManaged public var notePhotoIdArray: [NSNumber]
     @NSManaged public var notePhotoLocation: [NSNumber]
+    @NSManaged public var notesgroup: NotesGroup?
 
 }

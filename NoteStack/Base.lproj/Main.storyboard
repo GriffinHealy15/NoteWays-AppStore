@@ -324,26 +324,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0uR-jc-86N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="1839.0845070422536"/>
+            <point key="canvasLocation" x="3234" y="1201"/>
         </scene>
         <!--Your Notes-->
         <scene sceneID="yDW-dM-rIW">
             <objects>
-                <tableViewController id="qPK-qO-JHu" customClass="CreateNoteController" customModule="NoteStack" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateNoteController" id="qPK-qO-JHu" customClass="CreateNoteController" customModule="NoteStack" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hFT-2L-zkB">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="QR1-Dv-LPO" customClass="NoteCell" customModule="NoteStack" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="834" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="834" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QR1-Dv-LPO" id="sYa-wf-M59">
-                                    <rect key="frame" x="0.0" y="0.0" width="834" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="834" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfo-TZ-eWe">
-                                            <rect key="frame" x="25" y="11" width="666" height="21"/>
+                                            <rect key="frame" x="25" y="11" width="666" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -376,81 +376,76 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1g-Vy-dAQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="2545"/>
+            <point key="canvasLocation" x="1747" y="2275"/>
         </scene>
-        <!--Search-->
-        <scene sceneID="lAl-zh-OSY">
+        <!--Note Groups-->
+        <scene sceneID="Sbm-Ko-JUk">
             <objects>
-                <viewController storyboardIdentifier="SearchBarController" id="GEs-7q-Bfs" customClass="SearchBarController" customModule="NoteStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aly-V2-gvJ">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ubP-wg-N99">
-                                <rect key="frame" x="0.0" y="50" width="834" height="1144"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="ubP-wg-N99" firstAttribute="top" secondItem="GHv-hw-GYF" secondAttribute="top" id="O1t-0S-4zo"/>
-                            <constraint firstItem="ubP-wg-N99" firstAttribute="trailing" secondItem="GHv-hw-GYF" secondAttribute="trailing" id="V6G-nk-zSC"/>
-                            <constraint firstItem="ubP-wg-N99" firstAttribute="leading" secondItem="GHv-hw-GYF" secondAttribute="leading" id="jCW-Nq-WPt"/>
-                            <constraint firstAttribute="bottom" secondItem="ubP-wg-N99" secondAttribute="bottom" id="qJe-bU-BL9"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="GHv-hw-GYF"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Search" id="Jqs-Ud-QWJ"/>
-                    <connections>
-                        <outlet property="mapView" destination="ubP-wg-N99" id="pwj-JC-lgG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uUH-S5-Y4T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1755" y="3987"/>
-        </scene>
-        <!--Location Search Table-->
-        <scene sceneID="nDL-V8-RC0">
-            <objects>
-                <tableViewController storyboardIdentifier="LocationSearchTable" id="ziP-FD-fKj" customClass="LocationSearchTable" customModule="NoteStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kua-VN-pyL">
+                <tableViewController id="1yk-6U-7As" customClass="CreateNoteGroupController" customModule="NoteStack" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o6z-4o-bhC">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="crK-Q9-dsN" detailTextLabel="AAQ-U2-bIF" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="mDV-w7-OnT">
-                                <rect key="frame" x="0.0" y="28" width="834" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteGroupCell" id="Lm9-d6-Zvd" customClass="NoteGroupCell" customModule="NoteStack" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="834" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mDV-w7-OnT" id="XI8-KJ-y87">
-                                    <rect key="frame" x="0.0" y="0.0" width="834" height="60"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lm9-d6-Zvd" id="t9c-td-trn">
+                                    <rect key="frame" x="0.0" y="0.0" width="834" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="crK-Q9-dsN">
-                                            <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAQ-U2-bIF">
-                                            <rect key="frame" x="20" y="33.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBk-Tm-hrk" userLabel="Note Group Label">
+                                            <rect key="frame" x="20" y="8" width="711" height="26.5"/>
+                                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EBk-Tm-hrk" firstAttribute="top" secondItem="t9c-td-trn" secondAttribute="top" constant="8" id="E3n-Of-4CQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="EBk-Tm-hrk" secondAttribute="bottom" constant="9.5" id="Xu4-gR-BN8"/>
+                                        <constraint firstItem="EBk-Tm-hrk" firstAttribute="leading" secondItem="t9c-td-trn" secondAttribute="leading" constant="20" id="jcB-4O-WQR"/>
+                                        <constraint firstAttribute="trailing" secondItem="EBk-Tm-hrk" secondAttribute="trailing" constant="103" id="oev-vf-Nid"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="noteGroupLabel" destination="EBk-Tm-hrk" id="PfX-Wq-7II"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="ziP-FD-fKj" id="Cbv-9c-WTE"/>
-                            <outlet property="delegate" destination="ziP-FD-fKj" id="Gpv-Fv-m4b"/>
+                            <outlet property="dataSource" destination="1yk-6U-7As" id="Jpr-9j-4Ig"/>
+                            <outlet property="delegate" destination="1yk-6U-7As" id="NZt-tJ-ZpJ"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Note Groups" id="Bxk-oG-CAn" userLabel="Note Groups">
+                        <barButtonItem key="rightBarButtonItem" title="Add Group" image="plus" catalog="system" id="czd-Tm-Lhm">
+                            <connections>
+                                <action selector="createNoteGroup" destination="1yk-6U-7As" id="dDY-PZ-fzv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FVx-v8-7ko" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ct6-72-vC3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2581" y="3987"/>
+            <point key="canvasLocation" x="-172.66187050359713" y="2229.64824120603"/>
+        </scene>
+        <!--Note Group-->
+        <scene sceneID="0pE-Pz-wXl">
+            <objects>
+                <navigationController id="yOp-at-2vJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Note Group" image="Notegroup" id="ljx-WA-Z74"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tUC-9w-dKC">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1yk-6U-7As" kind="relationship" relationship="rootViewController" id="elH-bR-Uap"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hEP-EW-mvF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-929" y="2230"/>
         </scene>
         <!--Notes-->
         <scene sceneID="Av4-p0-pYl">
@@ -468,7 +463,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FrP-26-EKP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="2545"/>
+            <point key="canvasLocation" x="728" y="2275"/>
         </scene>
         <!--Locations-->
         <scene sceneID="bi2-hC-YJm">
@@ -787,6 +782,7 @@
                         <segue destination="5sj-aH-UCO" kind="relationship" relationship="viewControllers" id="YIo-TS-GPH"/>
                         <segue destination="2w6-1j-cJF" kind="relationship" relationship="viewControllers" id="EgV-h2-ug2"/>
                         <segue destination="yMb-jp-Cjy" kind="relationship" relationship="viewControllers" id="04e-Fp-0dK"/>
+                        <segue destination="yOp-at-2vJ" kind="relationship" relationship="viewControllers" id="teH-VC-ykl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -811,33 +807,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AsD-IE-HmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="1147.1830985915492"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="eAB-ZZ-012">
-            <objects>
-                <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="2Xf-GW-wEs" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sKc-Fl-ey1">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="GEs-7q-Bfs" kind="relationship" relationship="rootViewController" id="qvm-fG-Obn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VcK-bk-jyT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="750" y="3987"/>
         </scene>
         <!--Search Bar Table Controller-->
         <scene sceneID="QFy-3f-np5">
@@ -882,7 +851,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fo7-L3-KSL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="3250"/>
+            <point key="canvasLocation" x="1755" y="2949"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aQb-AV-x6w">
@@ -900,7 +869,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PaK-Ss-p7k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="3250"/>
+            <point key="canvasLocation" x="750" y="2949"/>
         </scene>
     </scenes>
     <resources>
@@ -908,8 +877,10 @@
         <image name="Locations" width="30" height="30"/>
         <image name="Map" width="30" height="30"/>
         <image name="Note" width="30" height="30"/>
+        <image name="Notegroup" width="30" height="30"/>
         <image name="Pin" width="24" height="24"/>
         <image name="User" width="24" height="24"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="g1i-LN-5sn"/>

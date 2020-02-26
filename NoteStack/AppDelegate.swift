@@ -114,6 +114,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let controller6 = navController.viewControllers.first
                 as! CreateNoteController
             controller6.managedObjectContext = managedObjectContextNote
+            
+            // Fifth tab
+            navController = tabViewControllers[3] as! UINavigationController
+            let controller7 = navController.viewControllers.first
+                as! CreateNoteGroupController
+            controller7.managedObjectContext = managedObjectContextNote
         }
        // notification handler is registered here with the notification center
         listenForFatalCoreDataNotifications()

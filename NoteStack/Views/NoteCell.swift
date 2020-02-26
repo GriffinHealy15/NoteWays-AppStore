@@ -31,7 +31,9 @@ class NoteCell: UITableViewCell {
             noteLabel.text = "(No Note)"
         } else {
             // find attribute or property locationDescription and label to that value
-            noteLabel.text = note.noteText
+            let trimmedString = note.noteText.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+            print(trimmedString)
+            noteLabel.text = trimmedString
             noteLabel.font = UIFont(name: "PingFangHK-Regular", size: 17)
         }
     }

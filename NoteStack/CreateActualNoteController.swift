@@ -147,7 +147,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
            ppc?.permittedArrowDirections = .any
            ppc?.delegate = self
            ppc!.sourceView = sender as? UIView
-        ppc?.barButtonItem = navigationItem.leftBarButtonItems![1]
+           ppc?.barButtonItem = navigationItem.leftBarButtonItems![1]
            present(vc, animated: true, completion: nil)
        }
     
@@ -168,6 +168,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.textStorage.insert(attString!, at: noteTextField.selectedRange.location)
         noteLocation = noteTextField.selectedRange.location
         noteLocationsArray.append(noteLocation)
+        noteTextField.selectedRange.location = noteTextField.selectedRange.location + 2
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
