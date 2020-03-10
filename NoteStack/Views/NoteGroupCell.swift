@@ -13,6 +13,8 @@ class NoteGroupCell: UITableViewCell {
     
     @IBOutlet weak var noteGroupLabel: UILabel!
     
+    @IBOutlet weak var noteCountLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let selection = UIView(frame: CGRect.zero)
@@ -21,12 +23,15 @@ class NoteGroupCell: UITableViewCell {
     
     // MARK:- Helper Method
     // passed note group object from array of note groups, will put note group oject into table view cell
-    func configure(for notegroup: NotesGroup) {
+    func configure(for notegroup: NotesGroup, count: Int) {
+        noteCountLabel.text = "\(count) Notes"
         if notegroup.groupName.isEmpty {
             noteGroupLabel.text = "(No Group)"
         } else {
             noteGroupLabel.text = notegroup.groupName
-            noteGroupLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
+//            let trimmedString = noteGroupLabel.text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+//            noteGroupLabel.text = trimmedString
+            noteGroupLabel.font = UIFont(name: "PingFangHK-Regular", size: 17)
         }
     }
 }

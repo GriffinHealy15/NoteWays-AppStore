@@ -24,6 +24,11 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
+
+protocol SavedDetailsDelegate {
+    func savedDetails()
+}
+
 class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, CAAnimationDelegate, PickCategoryDelegate {
     
 //    init(passedLatitude: String) {
@@ -35,6 +40,9 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
 //        fatalError("init(coder:) has not been implemented")
 //    }
 
+    var currentOrSearchCntrl = CurrentOrSearchController()
+    // delegate var for the protocol above
+    var delegate: SavedDetailsDelegate?
     var window: UIWindow?
     // managed object context variable
     var managedObjectContext: NSManagedObjectContext!
@@ -74,11 +82,11 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     var addressText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left)
+    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 19), textColor: .black, textAlignment: .left)
     
-    var descriptionLabel = UILabel(text: "Description", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var descriptionLabel = UILabel(text: "Description", font: UIFont(name: "PingFangTC-Semibold", size: 18), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    lazy var categoryButton = UIButton(title: "Category:", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(addCategory))
+    lazy var categoryButton = UIButton(title: "Category:", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
     
     var categoryText = UILabel(text: "No Category", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
@@ -86,19 +94,21 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     var locationNameText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var openInMapView = UIButton(title: "Open In Mapview", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .black, target: self, action: #selector(openMapView))
+    var openInMapView = UIButton(title: "Open in Mapview", titleColor: .black, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .rgb(red: 15, green: 243, blue: 148), target: self, action: #selector(openMapView))
     
-    var openGetDirections = UIButton(title: "Get Directions", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .black, target: self, action: #selector(getDirections))
+    var openGetDirections = UIButton(title: "Get Directions", titleColor: .black, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .rgb(red: 15, green: 243, blue: 148), target: self, action: #selector(getDirections))
     
     var soundID: SystemSoundID = 0
     
-    var addPhotoButton = UIButton(title: "Add Photo", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(addPhoto))
+    var addPhotoButton = UIButton(title: "Add Photo", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextField.delegate = self
+        descriptionTextField.backgroundColor = .white
         descriptionTextField.layer.borderWidth = 0.7
-        descriptionTextField.layer.borderColor = UIColor.black.cgColor
+        //descriptionTextField.layer.borderColor = UIColor.rgb(red: 2, green: 226, blue: 242).cgColor
+        descriptionTextField.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextField.layer.cornerRadius = 10
         descriptionTextField.textContainerInset = UIEdgeInsets(top: 7,left: 10,bottom: 3,right: 10)
         categoryButton.contentHorizontalAlignment = .left
@@ -150,8 +160,10 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         }
         
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save Location", style: .plain, target: self, action: #selector(saveLocation))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelLocation))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveLocation))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelLocation))
+        navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 197, blue: 255)
+        navigationItem.rightBarButtonItem?.tintColor = .black
         
         if openInMapView.isEnabled == true {
             openInMapView.withHeight(40.5).withWidth(60)
@@ -172,8 +184,8 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
                        formView.hstack(UIView().withWidth(50),openGetDirections,UIView().withWidth(50)),
                        UIView().withHeight(35),
                        formView.hstack(locationNameLabel.withWidth(110), locationNameText), UIView().withHeight(20),
-                       formView.hstack(latitudeLabel.withWidth(110), latitudeText),
-                       UIView().withHeight(20), formView.hstack(longitudeLabel.withWidth(110), longitudeText),UIView().withHeight(20), formView.hstack(addressLabel.withWidth(110), addressText), UIView().withHeight(20), formView.hstack(dateLabel.withWidth(110), dateText)).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
+                       formView.hstack(addressLabel.withWidth(110), addressText),
+                       UIView().withHeight(20), formView.hstack(longitudeLabel.withWidth(110), longitudeText),UIView().withHeight(20), formView.hstack(latitudeLabel.withWidth(110), latitudeText), UIView().withHeight(20), formView.hstack(dateLabel.withWidth(110), dateText)).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
                
                formContainerStackView.addArrangedSubview(formView)
     }
@@ -252,6 +264,8 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     @objc func cancelLocation() {
         dismiss(animated: true)
+        delegate?.savedDetails()
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func saveLocation() {
@@ -312,6 +326,11 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
                    fatalCoreDataError(error)
                }
         dismiss(animated: true)
+        self.delegate = currentOrSearchCntrl
+        print("current")
+        print(currentOrSearchCntrl)
+        delegate?.savedDetails()
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func addPhoto() {

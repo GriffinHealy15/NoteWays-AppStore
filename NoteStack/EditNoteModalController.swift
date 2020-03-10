@@ -11,11 +11,11 @@ import LBTATools
 import CoreData
 import AudioToolbox
 
-protocol EditeNoteDelegate {
-    func retrievedNoteText(noteText: String)
+protocol EditNoteDelegate {
+    func retrievedEditNoteText(NoteGroupNamePassed: String)
 }
 
-class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigationControllerDelegate {
+class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PhotoOrLocationDelegate2 {
     
     init(passednoteText: String, passedImage: UIImage?,
          passedNotesArray: [UIImage?], passedLocationsArray: [Int?]) {
@@ -30,6 +30,10 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
         fatalError("init(coder:) has not been implemented")
     }
     
+    var singleController = CreateNoteControllerSingle()
+    // delegate var for the protocol above
+    var delegate: EditNoteDelegate?
+    var NoteGroupNamePassed: String = ""
     var viewAppearedOnceBool: Bool = false
     var noteToEdit: Notes? 
     // Managed object context
@@ -47,48 +51,158 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     
     var soundID: SystemSoundID = 0
     
+    var noteTextField1: NSLayoutConstraint?
+    var noteTextField2: NSLayoutConstraint?
+    
+    var date = Date()
+    
+    var noteImagesArray: [UIImage] = []
+    var noteLocationsArray: [Int] = []
+    var noteAttributedArray: [NSAttributedString] = []
+    var noteLocation: Int = 0
+    var attString2: NSAttributedString?
+    var attString1: NSAttributedString?
+    
     override func viewDidLoad() {
        super.viewDidLoad()
+       //print(noteText.count)
        noteTextField.delegate = self
        noteTextField.text = noteText
        noteTextField.textColor = .white
-       view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+       noteTextField.tintColor = .orange
+       //view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+       view.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+       //view.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
        saveButton.layer.cornerRadius = 25
        saveButton.layer.borderColor = UIColor.black.cgColor
        saveButton.layer.borderWidth = 1.0
        noteTextField.autocapitalizationType = .none
-       noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+       //noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+       noteTextField.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+       //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
        navigationController?.navigationBar.isHidden = false
        title = "Edit Note"
-       navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "SaveNote"), style: .plain, target: self, action: #selector(saveNote))
-       navigationItem.rightBarButtonItem?.tintColor = .green
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelNote))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
+       navigationItem.rightBarButtonItem?.tintColor = .black
+       navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote)), UIBarButtonItem(image: #imageLiteral(resourceName: "cameraicon"), style: .plain, target: self, action: #selector(addSettings(_:)))]
+       navigationItem.leftBarButtonItems![1].tintColor = .black
+       navigationItem.leftBarButtonItems![0].tintColor = .rgb(red: 0, green: 197, blue: 255)
+        
+       noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 480)
+       noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 130)
+       noteTextField1!.isActive = false
+       noteTextField2!.isActive = true
+        
+       noteTextField.translatesAutoresizingMaskIntoConstraints = false
+
        let formView = UIView()
         
        formView.stack(UIView().withHeight(5),
-                      noteTextField.withHeight(650),
+                      noteTextField,
                       UIView().withHeight(30),spacing: 16).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
        
        formContainerStackView.padBottom(-24)
        formContainerStackView.addArrangedSubview(formView)
        }
     
+    @objc func addSettings(_ sender: Any) {
+        let vc = SettingsPopupController2()
+        vc.managedObjectContext = managedObjectContext
+        vc.preferredContentSize = CGSize(width: 85, height: 85)
+        vc.modalPresentationStyle = .popover
+        vc.scrollView.isScrollEnabled = false
+        vc.createEditNoteViewController = self
+        let ppc = vc.popoverPresentationController
+        ppc?.permittedArrowDirections = .any
+        ppc?.delegate = self
+        ppc!.sourceView = sender as? UIView
+        ppc?.barButtonItem = navigationItem.leftBarButtonItems![1]
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func retrievedPhoto(image: UIImage) {
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        noteImage = image
+        noteImagesArray.append(noteImage!)
+        //imageView.image = noteImage
+        let attachment = NSTextAttachment()
+        attachment.image = noteImage
+        let newImageWidth = (noteTextField.bounds.size.width - 9)
+        let scale = newImageWidth/image.size.width
+        let newImageHeight = image.size.height * scale
+        //resize this
+        attachment.bounds = CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
+        attString2 = NSAttributedString(attachment: attachment)
+        noteAttributedArray.append(attString2!)
+        //add this attributed string to the current position.
+        noteTextField.textStorage.insert(attString2!, at: noteTextField.selectedRange.location)
+        noteLocation = noteTextField.selectedRange.location
+        noteLocationsArray.append(noteLocation)
+        attString1 = NSAttributedString(string: "\n")
+        //noteTextField.textStorage.insert(attString1!, at: noteTextField.selectedRange.location + 1)
+        noteTextField.selectedRange.location = noteTextField.selectedRange.location  + 1
+        noteTextField.becomeFirstResponder()
+    noteTextField.scrollRangeToVisible(NSRange(location:noteTextField.selectedRange.location, length:0))
+        noteTextField.textColor = .white
+        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        print(noteTextField.selectedRange.location)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+           return .none
+       }
+    
+    
     @objc func cancelNote() {
-        dismiss(animated: true)
+        //dismiss(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func saveNote() {
         loadSoundEffect("swipe.mp3")
         playSoundEffect()
         let tempNoteIdArray = noteToEdit?.notePhotoIdArray
-        print("Deleting all images before re-saving new images...")
-        
+        //print("Deleting all images before re-saving new images...")
         print("Saving note...")
         noteText = noteTextField.text
+        print(noteText.count)
+        print(noteTextField.selectedRange.location)
         noteToEdit?.noteText = noteText
         noteToEdit?.notePhotoId = nil
+        noteToEdit?.date = date
+        //print(date)
         noteToEdit?.notePhotoIdArray = []
         noteToEdit?.notePhotoLocation = []
+        
+        
+        
+        //--- Start --- EDITED PHOTO - REMOVE SECTION IF ERRORS OCCUR --- START
+        noteText = noteTextField.text
+        noteTextField.font = .boldSystemFont(ofSize: 18)
+        
+        noteArray = []
+        notesLocationArray = []
+        noteText = noteTextField.text
+        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.attributedText.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: noteTextField.attributedText.length), options: []) { (value, range, stop) in
+
+            if (value is NSTextAttachment){
+                
+              let attachment: NSTextAttachment? = (value as? NSTextAttachment)
+
+                if ((attachment?.image) != nil) {
+                    noteArray.append(attachment!.image!)
+                    notesLocationArray.append(range.location)
+                }else{
+                    print("No image attched")
+                }
+            }
+        }
+        
+        //--- END --- EDITED PHOTO - REMOVE SECTION IF ERRORS OCCUR  --- END
+        
         // Save image
         if noteArray != [] {
             if !noteToEdit!.hasPhoto {
@@ -117,7 +231,10 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
                   // if save fails call below function with error message
                    print("Error saving")
               }
-        self.navigationController?.dismiss(animated: true)
+        //self.navigationController?.dismiss(animated: true)
+        // unhide tab bar
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.popViewController(animated: true)
         
                  if tempNoteIdArray != [] {
                     for noteToDelete in tempNoteIdArray! {
@@ -132,16 +249,21 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
                     }
                 }
         
-                    noteToEdit?.notePhotoId = tempNotePhotoID
-                        do {
-                            try managedObjectContext.save()
-                            // error handling for save()
-                        } catch {
-                            // 4
-                            // if save fails call below function with error message
-                             print("Error saving")
-                        }
-//
+            noteToEdit?.notePhotoId = tempNotePhotoID
+                do {
+                    try managedObjectContext.save()
+                    // error handling for save()
+                } catch {
+                    // 4
+                    // if save fails call below function with error message
+                     print("Error saving")
+                }
+        
+            let createNoteController = singleController
+            createNoteController.managedObjectContext = managedObjectContext
+            self.delegate = createNoteController
+            delegate?.retrievedEditNoteText(NoteGroupNamePassed: NoteGroupNamePassed)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -152,7 +274,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
         noteImageFromArray = noteArray[currentNoteImage]
         let attachment = NSTextAttachment()
                 attachment.image = noteImageFromArray
-        let newImageWidth = (noteTextField.bounds.size.width - 20 )
+        let newImageWidth = (noteTextField.bounds.size.width - 9)
          let scale = newImageWidth/noteImage!.size.width
          let newImageHeight = noteImage!.size.height * scale
         //resize this
@@ -160,12 +282,14 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
         attString = NSAttributedString(attachment: attachment)
         //add this attributed string to the current position.
         let templocation = notesLocationArray[currentNoteImage]! + count
+        //print(templocation)
         let location = templocation
+        //print(location)
         noteTextField.textStorage.insert(attString!, at: location)
         viewAppearedOnceBool = true
         count = count + 1
-        print(count)
-        print(notesLocationArray.count)
+        //print(count)
+        //print(notesLocationArray.count)
             }
         }
         }
@@ -193,9 +317,14 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     //        noteTextField.text = ""
             noteTextField.textColor = .white
             noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+            noteTextField1!.isActive = true
+            noteTextField2!.isActive = false
         }
 
         func textViewDidChange(_ textView: UITextView) {
+            print(noteTextField.selectedRange.location)
+            noteTextField1!.isActive = true
+            noteTextField2!.isActive = false
             noteText = noteTextField.text
             noteTextField.font = .boldSystemFont(ofSize: 18)
             
@@ -218,5 +347,9 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
                 }
             }
         }
-
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+           noteTextField1!.isActive = false
+           noteTextField2!.isActive = true
+       }
 }

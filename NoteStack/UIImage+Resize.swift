@@ -9,6 +9,7 @@
 import UIKit
 extension UIImage {
     // call resized(withBounds bounds) when we are creating the cell for the location object, that is to be shown in LocationsViewController
+    
     func resized(withBounds bounds: CGSize, aspectFit: Bool) -> UIImage {
         // these four lines below calculate how big the new image should be in order to fit inside the bounds rectangle
         // bounds.width = width passed using CGSize

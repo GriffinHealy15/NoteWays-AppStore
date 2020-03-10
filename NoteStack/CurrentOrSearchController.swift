@@ -12,7 +12,7 @@ import LBTATools
 import CoreLocation
 import AudioToolbox
 
-class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, CAAnimationDelegate, HandleAddressSelectDelegate {
+class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, CAAnimationDelegate, HandleAddressSelectDelegate, SavedDetailsDelegate {
     
     // Managed object context
     var managedObjectContext: NSManagedObjectContext!
@@ -40,12 +40,12 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
 
     var longitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var tagMyLocationButton = UIButton(title: "Get My Location", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(getMyLocation))
+    var tagMyLocationButton = UIButton(title: "Get My Location", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(getMyLocation))
     
     var searchLocationText = UITextView(text: "Search for locations", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .lightGray, textAlignment: .left)
     var searchLocationButton = UIButton(title: "Search", titleColor: .white, font: .boldSystemFont(ofSize: 17), backgroundColor: .darkGray, target: self, action: #selector(searchLocation))
     
-    var orText = UILabel(text: "or get my current location.", font: UIFont(name: "PingFangHK-Regular", size: 12), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
+    var orText = UILabel(text: "or find my current location", font: UIFont(name: "PingFangHK-Regular", size: 13.5), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
     var addressLabel = UILabel(text: "Address & Location", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
@@ -87,7 +87,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         formView2.stack(formView.hstack(latitudeLabel.withHeight(50).withWidth(100),latitudeText), formView.hstack(longitudeLabel.withHeight(50).withWidth(100),longitudeText),
                         addressLabel.withHeight(90).withWidth(150),
         UIView(backgroundColor: .rgb(red: 240, green: 240, blue: 240)).withHeight(5),
-        locationLabel.withHeight(50).withWidth(100))
+            locationLabel.withHeight(100).withWidth(100))
         
         //let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
         let navContrl = storyboard_1.instantiateViewController(withIdentifier: "NavControllerSearch") as! UINavigationController
@@ -118,9 +118,11 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                 //self.addressLabel.font = .boldSystemFont(ofSize: 20)
                 self.addressLabel.text = self.string(from: placemark)
                 self.addressLabel.textColor = .black
+                self.addressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
                 //self.locationLabel.font = .boldSystemFont(ofSize: 20)
                 self.locationName = selectedName
                 self.locationLabel.text = self.locationName
+                self.locationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
                   let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                   self.finalCoords = coordinates
                   let stringCoordsLat: String!  = ("\(String(describing: self.finalCoords!.latitude))")
@@ -194,6 +196,9 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
             startLocationManager()
         }
         // update labels for possible locations found (or other possible scenarios)
+        locationLabel.text = "My Current Location"
+        locationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        locationName = "My Current Location"
         updateLabels()
     }
     
@@ -242,15 +247,21 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
     }
     
     @objc func saveLocation() {
-        print("Save location...")
+        print("Save location.....")
         print("Creating location detail nav...")
         let currentDetailLocationController = CurrentOrSearchDetailController()
+        currentDetailLocationController.currentOrSearchCntrl = self
         currentDetailLocationController.coordinate = location!.coordinate
         currentDetailLocationController.placemark = placemark
         currentDetailLocationController.locationName = locationName
         currentDetailLocationController.managedObjectContext = managedObjectContext
         let navController = UINavigationController(rootViewController: currentDetailLocationController)
         present(navController, animated: true)
+    }
+    
+    func savedDetails() {
+        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // function called to update labels
@@ -264,21 +275,26 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
             latitudeText.isHidden = false
             longitudeText.isHidden = false
             if let placemark = placemark {
-                addressLabel.font = UIFont(name: "PingFangHK-Regular", size: 17)
+                addressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
                 addressLabel.text = string(from: placemark)
+                locationLabel.text = "My Current Location"
                 self.addressLabel.textColor = .black
                 addressLabel.adjustsFontSizeToFitWidth = false
             } else if performingReverseGeocoding {
                 addressLabel.text = "Searching for Address..."
+                locationLabel.text = "Searching..."
             } else if lastGeocodingError != nil {
                 addressLabel.text = "Error Finding Address"
+                locationLabel.text = "Error Finding Location"
             } else {
                 addressLabel.text = "No Address Found"
+                locationLabel.text = "No Location Found"
             }
         } else {
             //latitudeLabel.text = ""
             //longitudeLabel.text = ""
             addressLabel.text = ""
+            locationLabel.text = ""
             //tagButton.isHidden = true
             latitudeText.isHidden = true
             longitudeText.isHidden = true
@@ -303,6 +319,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                 //showLogoView()
             }
             addressLabel.text = statusMessage
+            locationLabel.text = statusMessage
         }
         //configureGetButton()
         if (self.location != nil && self.placemark != nil)

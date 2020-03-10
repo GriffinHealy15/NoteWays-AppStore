@@ -17,7 +17,7 @@ protocol PickCategoryDelegate {
 }
 
 
-class CategoryPopoverController: LBTAFormController, UINavigationControllerDelegate {
+class CategoryPopoverController: LBTAFormController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, CreateOtherDelegate {
     
     var delegate: PickCategoryDelegate?
     
@@ -27,26 +27,29 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
     // Managed object context
     var managedObjectContext: NSManagedObjectContext!
     
-    lazy var noCategoryButton = UIButton(title: "No Category", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var bankButton = UIButton(title: "Bank", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var barButton = UIButton(title: "Bar", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var bookstoreButton = UIButton(title: "Book Store", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var clubButton = UIButton(title: "Club", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var coffeeButton = UIButton(title: "Coffee", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var gasstationButton = UIButton(title: "Gas Station", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var groceriesButton = UIButton(title: "Groceries", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var historicButton = UIButton(title: "Historic Building", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var hospitalButton = UIButton(title: "Hospital", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var houseButton = UIButton(title: "House", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var landmarkButton = UIButton(title: "Landmark", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var mallButton = UIButton(title: "Mall", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var museumButton = UIButton(title: "Museum", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var parkinglotButton = UIButton(title: "Parking Lot", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var parkButton = UIButton(title: "Park", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var postofficeButton = UIButton(title: "Post Office", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var restaurantButton = UIButton(title: "Restaurant", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var stadiumButton = UIButton(title: "Stadium", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
-    lazy var workButton = UIButton(title: "Work", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(theCategory(_:)))
+    lazy var otherCategoryButton = UIButton(title: "Create Category", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(otherCategory))
+    lazy var noCategoryButton = UIButton(title: "No Category", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var bankButton = UIButton(title: "Bank", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var barButton = UIButton(title: "Bar", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var bookstoreButton = UIButton(title: "Book Store", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var clubButton = UIButton(title: "Club", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var coffeeButton = UIButton(title: "Coffee", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var foodButton = UIButton(title: "Food", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var gasstationButton = UIButton(title: "Gas Station", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var groceriesButton = UIButton(title: "Groceries", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var historicButton = UIButton(title: "Historic Building", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var hospitalButton = UIButton(title: "Hospital", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var houseButton = UIButton(title: "Home", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var landmarkButton = UIButton(title: "Landmark", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var mallButton = UIButton(title: "Mall", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var museumButton = UIButton(title: "Museum", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var parkinglotButton = UIButton(title: "Parking Lot", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var parkButton = UIButton(title: "Park", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var postofficeButton = UIButton(title: "Post Office", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var restaurantButton = UIButton(title: "Restaurant", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var stadiumButton = UIButton(title: "Stadium", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var storeButton = UIButton(title: "Store", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
+    lazy var workButton = UIButton(title: "Work", titleColor: .white, font: .boldSystemFont(ofSize: 20), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(theCategory(_:)))
     
     var soundID: SystemSoundID = 0
 
@@ -54,6 +57,11 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Categories"
+        
+        otherCategoryButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
+        otherCategoryButton.contentHorizontalAlignment = .left
+        otherCategoryButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        
         noCategoryButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         noCategoryButton.contentHorizontalAlignment = .left
         noCategoryButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
@@ -85,6 +93,10 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
         groceriesButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         groceriesButton.contentHorizontalAlignment = .left
         groceriesButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        
+        foodButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
+        foodButton.contentHorizontalAlignment = .left
+        foodButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
         
         historicButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         historicButton.contentHorizontalAlignment = .left
@@ -130,6 +142,10 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
         stadiumButton.contentHorizontalAlignment = .left
         stadiumButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
         
+        storeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
+        storeButton.contentHorizontalAlignment = .left
+        storeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        
         workButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         workButton.contentHorizontalAlignment = .left
         workButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
@@ -137,12 +153,54 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelController))
     
         let formView = UIView()
-        formView.stack(UIView().withHeight(30), noCategoryButton.withHeight(50), UIView().withHeight(10),
-                       bankButton.withHeight(50), UIView().withHeight(10) ,barButton.withHeight(50), UIView().withHeight(10), bookstoreButton.withHeight(50),UIView().withHeight(10), clubButton.withHeight(50), UIView().withHeight(10), coffeeButton.withHeight(50), UIView().withHeight(10), gasstationButton.withHeight(50), UIView().withHeight(10), historicButton.withHeight(50), UIView().withHeight(10), hospitalButton.withHeight(50), UIView().withHeight(10), landmarkButton.withHeight(50), UIView().withHeight(10), mallButton.withHeight(50), UIView().withHeight(10), museumButton.withHeight(50), UIView().withHeight(10), parkinglotButton.withHeight(50), UIView().withHeight(10), parkButton.withHeight(50), UIView().withHeight(10), postofficeButton.withHeight(50), UIView().withHeight(10), restaurantButton.withHeight(50), UIView().withHeight(10), stadiumButton.withHeight(50), UIView().withHeight(10), workButton.withHeight(50)).withMargins(.init(top: 0, left: 15, bottom: 0, right: 15))
+        formView.stack(UIView().withHeight(30),
+                       otherCategoryButton.withHeight(50), UIView().withHeight(10),
+                       noCategoryButton.withHeight(50), UIView().withHeight(10),
+                       bankButton.withHeight(50), UIView().withHeight(10) ,barButton.withHeight(50), UIView().withHeight(10), bookstoreButton.withHeight(50),UIView().withHeight(10), clubButton.withHeight(50), UIView().withHeight(10), coffeeButton.withHeight(50), UIView().withHeight(10),
+                           foodButton.withHeight(50), UIView().withHeight(10),
+                           gasstationButton.withHeight(50), UIView().withHeight(10),
+                           groceriesButton.withHeight(50), UIView().withHeight(10),
+                           historicButton.withHeight(50), UIView().withHeight(10),
+                           houseButton.withHeight(50), UIView().withHeight(10),
+                           hospitalButton.withHeight(50), UIView().withHeight(10), landmarkButton.withHeight(50), UIView().withHeight(10), mallButton.withHeight(50), UIView().withHeight(10), museumButton.withHeight(50), UIView().withHeight(10), parkinglotButton.withHeight(50), UIView().withHeight(10), parkButton.withHeight(50), UIView().withHeight(10), postofficeButton.withHeight(50), UIView().withHeight(10), restaurantButton.withHeight(50), UIView().withHeight(10), stadiumButton.withHeight(50), UIView().withHeight(10),
+                           storeButton.withHeight(50), UIView().withHeight(10),
+                           workButton.withHeight(50)).withMargins(.init(top: 10, left: 25, bottom: 10, right: 25))
                      formContainerStackView.addArrangedSubview(formView)
     }
     
     @objc func cancelController() {
+        dismiss(animated: true)
+    }
+    
+    @objc func otherCategory() {
+        loadSoundEffect("bubble.mp3")
+        playSoundEffect()
+        
+        let vc = CategoryOtherPopover()
+        vc.managedObjectContext = managedObjectContext
+        vc.preferredContentSize = CGSize(width: 275, height: 260)
+        vc.modalPresentationStyle = .popover
+        vc.popoverPresentationController?.delegate = self
+        vc.createCategoryNameContrll = self
+        let ppc = vc.popoverPresentationController
+        ppc?.permittedArrowDirections = .init(rawValue: 0)
+        ppc?.delegate = self
+        ppc!.sourceView = self.view
+        ppc?.passthroughViews = nil
+        ppc?.sourceRect =  CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY - 80, width: 0, height: 0)
+        present(vc, animated: true)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+           return .none
+       }
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return false
+    }
+
+    func retrievedOtherCategoryName(otherCategoryText: String) {
+        pickedCategory(category: otherCategoryText)
         dismiss(animated: true)
     }
     

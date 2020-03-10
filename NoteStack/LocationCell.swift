@@ -68,7 +68,11 @@ class LocationCell: UITableViewCell {
             return image.resized(withBounds: CGSize(width: 52,
                                                     height: 52), aspectFit: false)
         }
+        else {
+            let image = UIImage(imageLiteralResourceName: "placeholderLocation.png")
+            return image
+        }
         // if location object has no image, we give the object a placeholder image
-        return UIImage(named: "No Photo")!
+        //return UIImage(named: "No Photo")!
     }
 }

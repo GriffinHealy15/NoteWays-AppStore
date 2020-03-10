@@ -25,8 +25,12 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app lets you keep track of interesting places. It needs access to the GPS
 coordinates for your location.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Add Images to your camera roll.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Add Photos to your locations.</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch ScreenStoryboard</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -35,7 +39,7 @@ coordinates for your location.</string>
 		<string>location-services</string>
 	</array>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
+	<string>UIStatusBarStyleDarkContent</string>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
@@ -58,5 +62,7 @@ coordinates for your location.</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

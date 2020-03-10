@@ -174,7 +174,7 @@ class LocationDetailsViewController: UITableViewController {
         // print self, which prints '*** deinit' when this view controller is destroyed or deinit
         print("*** deinit \(self)")
         // remove 'observer' which means we no longer are observers (listeners) to the app telling us it has enterered the background
-        NotificationCenter.default.removeObserver(observer)
+        //NotificationCenter.default.removeObserver(observer)
     }
     
     // MARK:- Helper Methods
@@ -283,7 +283,7 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func categoryPickerDidPickCategory(

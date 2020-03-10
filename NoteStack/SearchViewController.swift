@@ -51,7 +51,7 @@ class SearchViewController: UITableViewController, SearchCellDelegate {
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        print(textView.text)
+        //print(textView.text)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

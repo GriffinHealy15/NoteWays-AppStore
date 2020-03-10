@@ -110,13 +110,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            controller4.managedObjectContext = managedObjectContext
             
             // Fifth tab
-            navController = tabViewControllers[2] as! UINavigationController
-            let controller6 = navController.viewControllers.first
-                as! CreateNoteController
-            controller6.managedObjectContext = managedObjectContextNote
+//            navController = tabViewControllers[3] as! UINavigationController
+//            let controller6 = navController.viewControllers.first
+//                as! CreateNoteController
+//            controller6.managedObjectContext = managedObjectContextNote
             
             // Fifth tab
-            navController = tabViewControllers[3] as! UINavigationController
+            navController = tabViewControllers[2] as! UINavigationController
             let controller7 = navController.viewControllers.first
                 as! CreateNoteGroupController
             controller7.managedObjectContext = managedObjectContextNote
@@ -153,16 +153,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK:- UI Apperance Changes
     // changes appearance of UINavigationBar
     func customizeAppearance() {
-        UINavigationBar.appearance().barTintColor = UIColor.black
+//        UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor:
-                UIColor.white ]
-        UITabBar.appearance().barTintColor = UIColor.black
+                UIColor.black ]
+        UITabBar.appearance().barTintColor = UIColor.rgb(red: 0, green: 197, blue: 255)
        // let tintColor = UIColor(red: 255/255.0, green: 238/255.0,
          //                       blue: 136/255.0, alpha: 1.0)
-        let tintColor1 = UIColor(red: 74/255.0, green: 255/255.0,
-                                blue: 255/255.0, alpha: 1.0)
-        UITabBar.appearance().tintColor = tintColor1
+//        let tintColor1 = UIColor(red: 74/255.0, green: 255/255.0,
+//                                blue: 255/255.0, alpha: 1.0)
+        UITabBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "DevanagariSangamMN-Bold", size: 21)!]
     }
     
     // MARK:- Helper methods

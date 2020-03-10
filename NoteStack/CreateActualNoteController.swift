@@ -11,8 +11,20 @@ import CoreData
 import LBTATools
 import AudioToolbox
 
+
+private let dateFormatter: DateFormatter = {
+    // create a dateFormatter object
+    let formatter = DateFormatter()
+    // give the object a date and time style
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+    // return the formatter to dateFormatter
+    //print("**Date Formatter Executed")
+    return formatter
+}()
+
 protocol CreateNoteDelegate {
-    func retrievedNoteText(noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?],
+    func retrievedNoteText(onlyNoteText: String, NoteGroupNamePassed: String, noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?],
                            noteLocationsArray: [Int?])
 }
 
@@ -24,12 +36,18 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     // Managed object context
     var managedObjectContext: NSManagedObjectContext!
     
+    var currentNotesGroup: NotesGroup?
+    
+    var NoteGroupNamePassed: String = ""
+    
+    var singleController = CreateNoteControllerSingle()
+    
     // delegate var for the protocol above
     var delegate: CreateNoteDelegate?
        
     var noteTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .lightGray, textAlignment: .left)
     var noteText = ""
-    
+    var onlyNoteText = ""
     lazy var addPhotoButton = UIButton(image: #imageLiteral(resourceName: "photo"), tintColor: .black, target: self, action: #selector(addPhoto))
     
     lazy var addlocationButton = UIButton(image: #imageLiteral(resourceName: "location"), tintColor: .black, target: self, action: #selector(addLocation))
@@ -46,9 +64,15 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     var noteAttributedArray: [NSAttributedString] = []
     var noteLocation: Int = 0
     var attString: NSAttributedString?
+    var attString1: NSAttributedString?
         
     var soundID: SystemSoundID = 0
     
+    var noteTextField1: NSLayoutConstraint?
+    var noteTextField2: NSLayoutConstraint?
+    
+    var date = Date()
+        
     {
         didSet
         {
@@ -64,10 +88,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //view.backgroundColor = .rgb(red: 178, green: 253, blue: 254)
-        view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
-        
+        //view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+        view.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
         fill_view.withHeight(50)
         fill_view1.withHeight(100)
         addPhotoButton.layer.cornerRadius = 25
@@ -80,21 +103,32 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         addlocationButton.withHeight(200)
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
         noteTextField.autocapitalizationType = .none
-        noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+        //noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
+        noteTextField.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+        //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
         noteTextField.delegate = self
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "SaveNote"), style: .plain, target: self, action: #selector(saveNote))
-        navigationItem.rightBarButtonItem?.tintColor = .green
-        navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelNote)),UIBarButtonItem(image: #imageLiteral(resourceName: "setting"), style: .plain, target: self, action: #selector(addSettings(_:)))]
-        navigationItem.leftBarButtonItem?.tintColor = .green
+        noteTextField.tintColor = .orange
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem?.tintColor = .darkGray
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote)),UIBarButtonItem(image: #imageLiteral(resourceName: "cameraicon"), style: .plain, target: self, action: #selector(addSettings(_:)))]
+        navigationItem.leftBarButtonItems![1].tintColor = .black
+        navigationItem.leftBarButtonItems![0].tintColor = .rgb(red: 0, green: 197, blue: 255)
         title = "Create Note"
         let formView = UIView()
         
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 480)
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
+        noteTextField1!.isActive = false
+        noteTextField2!.isActive = true
+        noteTextField.translatesAutoresizingMaskIntoConstraints = false
+        
         formView.stack(UIView().withHeight(5),
-        noteTextField.withHeight(650),
+        noteTextField,
         UIView().withHeight(30),spacing: 16).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
         
-              formContainerStackView.padBottom(-24)
+        formContainerStackView.padBottom(-24)
         formContainerStackView.addArrangedSubview(formView)
     }
     
@@ -104,16 +138,88 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     @objc func saveNote() {
         print("Saving note...")
+        if noteText.count == 0 {
+            noteText = noteTextField.text
+            //print(noteText)
+        }
+//        if (noteText.count < noteTextField.selectedRange.location) {
+//            let addToEnd = String(repeating: " ", count: noteTextField.selectedRange.location)
+//            noteText = noteTextField.text + addToEnd
+//        }
+//        else {
+        noteText = noteTextField.text
+       // }
+        
+        //print(noteTextField.selectedRange.location)
+        //print(noteText.count)
         loadSoundEffect("swipe.mp3")
         playSoundEffect()
-        let createNoteController = CreateNoteController()
+        
+        //let dateFound = format(date: date)
+        
+        let note: Notes
+         note = Notes(context: managedObjectContext)
+         note.noteText = noteText
+         note.notePhotoId = nil
+         note.date = date
+         // Save image
+         if noteImage != nil && noteImagesArray.count > 0 {
+             if !note.hasPhoto {
+                 for imageInArray in 0...noteImagesArray.count - 1 {
+                     note.notePhotoId = Notes.noteNextPhotoID() as NSNumber
+                     note.notePhotoIdArray.append(note.notePhotoId!)
+                    note.notePhotoLocation.append(noteLocationsArray[imageInArray] as NSNumber)
+                    if let data = noteImagesArray[imageInArray].jpegData(compressionQuality: 0.5) {
+                         // 3
+                         do {
+                             try data.write(to: note.photoURL, options: .atomic)
+                         } catch {
+                             print("Error writing file: \(error)")
+                         }
+                     }
+                 }
+             }
+         }
+         
+         let fetchGroupRequest = NSFetchRequest<NotesGroup>(entityName: "NotesGroup")
+         fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(NotesGroup.groupName),
+         NoteGroupNamePassed)
+         do {
+           let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
+           if results.count > 0 {
+             currentNotesGroup = results.first
+           }
+         } catch let error as NSError {
+           print("Fetch error: \(error) description: \(error.userInfo)")
+         }
+         
+         if let group = currentNotesGroup,
+             let notes = group.groupnotes?.mutableCopy()
+             as? NSMutableOrderedSet {
+           notes.add(note) // walks is currentDogs all walks. Add the newest walk to the set of all walks
+             group.groupnotes = notes
+         }
+
+         do {
+            try managedObjectContext.save()
+             print("Saved Successfully")
+            // error handling for save()
+        } catch {
+            // 4
+            // if save fails call below function with error message
+             print("Error saving")
+        }
+
+        let createNoteController = singleController
         createNoteController.managedObjectContext = managedObjectContext
         self.delegate = createNoteController
-        delegate?.retrievedNoteText(noteText: noteText, noteImage: noteImage, noteImagesArray: noteImagesArray, noteLocationsArray: noteLocationsArray)
+        delegate?.retrievedNoteText(onlyNoteText: onlyNoteText, NoteGroupNamePassed: NoteGroupNamePassed, noteText: noteText, noteImage: noteImage, noteImagesArray: noteImagesArray, noteLocationsArray: noteLocationsArray)
+        
         self.navigationController?.dismiss(animated: true)
+        //print("dismissed")
     }
     
-    // MARK:- Sound effects
+    // MARK:- Help Methods
     func loadSoundEffect(_ name: String) {
         if let path = Bundle.main.path(forResource: name,
                                        ofType: nil) {
@@ -131,6 +237,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         AudioServicesPlaySystemSound(soundID)
     }
     
+    func format(date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
     
     @objc func addPhoto() {
         print("Adding photo...")
@@ -139,7 +248,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     @objc func addSettings(_ sender: Any) {
            let vc = SettingsPopupController()
            vc.managedObjectContext = managedObjectContext
-           vc.preferredContentSize = CGSize(width: 100, height: 100)
+           vc.preferredContentSize = CGSize(width: 85, height: 85)
            vc.modalPresentationStyle = .popover
            vc.scrollView.isScrollEnabled = false
            vc.createActualNoteViewController = self
@@ -152,12 +261,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
        }
     
     func retrievedPhoto(image: UIImage) {
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.rightBarButtonItem?.tintColor = .black
         noteImage = image
         noteImagesArray.append(noteImage!)
         imageView.image = noteImage
         let attachment = NSTextAttachment()
         attachment.image = noteImage
-        let newImageWidth = (noteTextField.bounds.size.width - 20 )
+        let newImageWidth = (noteTextField.bounds.size.width - 10)
         let scale = newImageWidth/image.size.width
         let newImageHeight = image.size.height * scale
         //resize this
@@ -168,7 +279,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.textStorage.insert(attString!, at: noteTextField.selectedRange.location)
         noteLocation = noteTextField.selectedRange.location
         noteLocationsArray.append(noteLocation)
-        noteTextField.selectedRange.location = noteTextField.selectedRange.location + 2
+        //attString1 = NSAttributedString(string: "")
+        attString1 = NSAttributedString(string: "\n")
+        //noteTextField.textStorage.insert(attString1!, at: noteTextField.selectedRange.location + 1)
+        noteTextField.selectedRange.location = noteTextField.selectedRange.location  + 1
+        noteTextField.becomeFirstResponder()
+    noteTextField.scrollRangeToVisible(NSRange(location:noteTextField.selectedRange.location, length:0))
+        noteTextField.textColor = .white
+        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -181,12 +299,25 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-//        noteTextField.text = ""
+//        navigationItem.rightBarButtonItem?.isEnabled = true
+//        navigationItem.rightBarButtonItem?.tintColor = .black
         noteTextField.textColor = .white
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField1!.isActive = true
+        noteTextField2!.isActive = false
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        if noteTextField.text != "" {
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        }
+        if noteTextField.text == "" {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            navigationItem.rightBarButtonItem?.tintColor = .darkGray
+        }
+        noteTextField1!.isActive = true
+        noteTextField2!.isActive = false
         noteImagesArray = []
         noteLocationsArray = []
         noteText = noteTextField.text
@@ -203,8 +334,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
                 }else{
                     print("No image attched")
                 }
+                noteTextField.scrollRangeToVisible(NSRange(location:noteTextField.selectedRange.location, length:0))
             }
         }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        noteTextField1!.isActive = false
+        noteTextField2!.isActive = true
     }
 }
 

@@ -31,7 +31,7 @@ class SearchBarController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
+        //let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
         let locationSearchTable = storyboard_1.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController.searchResultsUpdater = locationSearchTable

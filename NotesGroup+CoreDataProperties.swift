@@ -19,6 +19,7 @@ extension NotesGroup {
 
     @NSManaged public var groupName: String
     @NSManaged public var groupnotes: NSOrderedSet?
+    @NSManaged var date: Date
 
 }
 

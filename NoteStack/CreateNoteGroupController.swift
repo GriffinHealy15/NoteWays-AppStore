@@ -11,10 +11,12 @@ import CoreData
 import LBTATools
 import AudioToolbox
 
-class CreateNoteGroupController: UITableViewController, UIPopoverPresentationControllerDelegate, CreateNoteGroupDelegate {
+class CreateNoteGroupController: UITableViewController, UIPopoverPresentationControllerDelegate, CreateNoteGroupDelegate,
+NoteRefreshProtocol{
 
     var managedObjectContext: NSManagedObjectContext!
     var notesGroupArray = [String]()
+    var notesgroup: NotesGroup?
     lazy var fetchedResultsController:
            NSFetchedResultsController<NotesGroup> = {
                // set up ns fetch results to tell it that were going to fetch locations object
@@ -24,7 +26,7 @@ class CreateNoteGroupController: UITableViewController, UIPopoverPresentationCon
                let entity = NotesGroup.entity()
                // the fetchRequest entity is  Location
                fetchRequest.entity = entity
-               let sort1 = NSSortDescriptor(key: "groupName", ascending: false)
+               let sort1 = NSSortDescriptor(key: "date", ascending: false)
                fetchRequest.sortDescriptors = [sort1]
                fetchRequest.fetchBatchSize = 5
                let fetchedResultsController = NSFetchedResultsController(
@@ -36,18 +38,27 @@ class CreateNoteGroupController: UITableViewController, UIPopoverPresentationCon
        }()
 
     var soundID: SystemSoundID = 0
+    
+    var date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .rgb(red: 242, green: 242, blue: 242)
-          performFetch()
-          navigationItem.leftBarButtonItem = editButtonItem
+        tableView.backgroundColor = .white
+        performFetch()
+        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
+        navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 3, green: 254, blue: 147)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     
     func retrievedGroupName(groupNameText: String) {
-          let notesgroup: NotesGroup
           notesgroup = NotesGroup(context: managedObjectContext)
-          notesgroup.groupName = groupNameText
+          notesgroup!.groupName = groupNameText
+          notesgroup?.date = date
         
         do {
             try managedObjectContext.save()
@@ -130,8 +141,41 @@ class CreateNoteGroupController: UITableViewController, UIPopoverPresentationCon
     func playSoundEffect() {
         AudioServicesPlaySystemSound(soundID)
     }
+    
+    func refreshGroupCount() {
+        self.tableView.reloadData()
+    }
 
-
+    func fetchGroup(NoteGroupNamePassed: String) -> Int {
+        var totalCount = 0
+        let fetchGroupRequest = NSFetchRequest<NotesGroup>(entityName: "NotesGroup")
+        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(NotesGroup.groupName),
+        NoteGroupNamePassed)
+        do {
+          let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
+          if results.count > 0 {
+            let results1 = results.first
+            let currentNotes = results1?.groupnotes
+            totalCount = currentNotes?.count ?? 0
+          }
+        } catch let error as NSError {
+          print("Fetch error: \(error) description: \(error.userInfo)")
+        }
+        return totalCount
+    }
+    
+    func handleConfirmPressed(indexPath:IndexPath) -> (_ alertAction:UIAlertAction) -> () {
+        return { alertAction in
+            print("Delete Item")
+            let notegroup = self.fetchedResultsController.object(at: indexPath)
+            self.managedObjectContext.delete(notegroup)
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                fatalCoreDataError(error)
+            }
+        }
+    }
     // MARK: - Table View Delegates
 
     override func tableView(_ tableView: UITableView,
@@ -150,9 +194,11 @@ class CreateNoteGroupController: UITableViewController, UIPopoverPresentationCon
                 for: indexPath) as! NoteGroupCell
             // ask fetch results for the location object at indexPath i, then return that object
             let notegroup = fetchedResultsController.object(at: indexPath)
+            let totalNotes = fetchGroup(NoteGroupNamePassed: notegroup.groupName)
             // print("Location: \(location)\n")
             // configure cell for the location object
-            cell.configure(for: notegroup)
+            cell.configure(for: notegroup, count: totalNotes)
+            //cell.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
             return cell }
 
     // enable swipe to delete, delete rows of objects that are no longer in the data store
@@ -160,27 +206,30 @@ class CreateNoteGroupController: UITableViewController, UIPopoverPresentationCon
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let alert = UIAlertController(title: "Delete Group", message: "Are you sure you want to delete this group?", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: handleConfirmPressed(indexPath: indexPath)))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             // get note group object from row index selected
-            let notegroup = fetchedResultsController.object(at: indexPath)
-              managedObjectContext.delete(notegroup)
-            do {
-              try managedObjectContext.save()
-            } catch {
-                fatalCoreDataError(error)
-            }
+//            let notegroup = fetchedResultsController.object(at: indexPath)
+//              managedObjectContext.delete(notegroup)
+//            do {
+//              try managedObjectContext.save()
+//            } catch {
+//                fatalCoreDataError(error)
+//            }
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadSoundEffect("select.mp3")
+        loadSoundEffect("navtap.mp3")
         playSoundEffect()
-        //let noteGroupNotes = fetchedResultsController.object(at: indexPath)
-        //let createNoteContrll = CreateNoteController()
-        
+        let noteGroupNotes = fetchedResultsController.object(at: indexPath)
         let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let createNoteContrll = storyboard_main.instantiateViewController(withIdentifier: "CreateNoteController") as! CreateNoteController
-        //createNoteContrll.noteToEdit = noteGroupNotes
+        let createNoteContrll = storyboard_main.instantiateViewController(withIdentifier: "CreateNoteControllerSingle") as! CreateNoteControllerSingle
+        createNoteContrll.NoteGroupNamePassed = noteGroupNotes.groupName
         createNoteContrll.managedObjectContext = managedObjectContext
+        createNoteContrll.singleGroupController = self
         navigationController?.pushViewController(createNoteContrll, animated: true)
     }
 
@@ -192,7 +241,7 @@ class CreateNoteGroupController: UITableViewController, UIPopoverPresentationCon
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 72
     }
 }
 

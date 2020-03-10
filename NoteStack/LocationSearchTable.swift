@@ -20,6 +20,7 @@ class LocationSearchTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("In search tableview")
+        tableView.separatorColor = .clear
     }
     
     func parseAddress(selectedItem:MKPlacemark) -> String {

@@ -22,5 +22,6 @@ extension Notes {
     @NSManaged public var notePhotoIdArray: [NSNumber]
     @NSManaged public var notePhotoLocation: [NSNumber]
     @NSManaged public var notesgroup: NotesGroup?
-
+    @NSManaged var date: Date
+    
 }

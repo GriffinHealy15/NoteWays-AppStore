@@ -33,11 +33,11 @@ class SettingsPopupController: LBTAFormController {
    
     var noteTextField = UITextView(text: "", font: .boldSystemFont(ofSize: 18), textColor: .black, textAlignment: .left)
     
-    lazy var addPhotoButton = UIButton(image: #imageLiteral(resourceName: "photo"), tintColor: .black, target: self, action: #selector(addPhoto))
+    lazy var addPhotoButton = UIButton(image: #imageLiteral(resourceName: "cameraicon"), tintColor: .black, target: self, action: #selector(addPhoto))
     
     lazy var addLocationButton = UIButton(image: #imageLiteral(resourceName: "location"), tintColor: .black, target: self, action: #selector(addLocation))
     
-    let imageView = UIImageView(frame: CGRect(x: 50, y: 50, width: 20, height: 20))
+    let imageView = UIImageView(frame: CGRect(x: 42.5, y: 42.5, width: 20, height: 20))
 
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -45,13 +45,13 @@ class SettingsPopupController: LBTAFormController {
        view.backgroundColor = .white
        addPhotoButton.layer.borderColor = UIColor.black.cgColor
        addPhotoButton.layer.borderWidth = 0.3
-       addPhotoButton.withHeight(100)
+       addPhotoButton.withHeight(85)
        addLocationButton.layer.borderColor = UIColor.black.cgColor
        addLocationButton.layer.borderWidth = 0.3
        addLocationButton.withHeight(100)
         self.scrollView.isScrollEnabled = false
         
-        let formView = UIView().withHeight(100)
+        let formView = UIView().withHeight(85)
        formView.stack(addPhotoButton)
        
        formContainerStackView.padBottom(0)

@@ -35,7 +35,7 @@ class SearchBarTableController: UITableViewController {
     var soundID: SystemSoundID = 0
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 405)
+        self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
     }
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class SearchBarTableController: UITableViewController {
         resultSearchController.searchResultsUpdater = self
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places.."
+        searchBar.placeholder = "Search for places..."
         navigationItem.titleView = resultSearchController?.searchBar
         navigationItem.titleView?.backgroundColor = .white
         resultSearchController.hidesNavigationBarDuringPresentation = false
@@ -116,9 +116,9 @@ extension SearchBarTableController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        //guard let location = locations.first else { return }
+        //let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        //let region = MKCoordinateRegion(center: location.coordinate, span: span)
         //mapView.setRegion(region, animated: true)
     }
     
@@ -144,7 +144,7 @@ extension SearchBarTableController : UISearchResultsUpdating {
             }
             self.matchingItems = response.mapItems
             //self.tableView.frame = CGRect(x: 20, y: self.view.frame.size.height / 2.0, width: 334, height: 300)
-            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 405)
+            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
             self.tableView.reloadData()
 //            var frame = self.tableView.frame
 //            frame.size.height = self.tableView.contentSize.height - 100

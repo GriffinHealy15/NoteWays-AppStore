@@ -13,6 +13,9 @@ import AudioToolbox
 
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
+    
+    
+    
     var managedObjectContext: NSManagedObjectContext! {
         //  didSet block tells the NotificationCenter to add an observer for the NSManagedObjectContextObjectsDidChange notification
         didSet {    NotificationCenter.default.addObserver(forName:
@@ -39,9 +42,15 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // first fetches locations context object (from datastore), then add locations objects as annotations objects
         updateLocations()
+        mapView.tintColor = UIColor(red: 0.0, green: 0.57, blue: 1.0, alpha: 1)
         // if there are existing locations, call show locations
-        navigationItem.leftBarButtonItems![1].isEnabled = false
-        navigationItem.leftBarButtonItems![1].tintColor = .clear
+        navigationItem.rightBarButtonItems![1].isEnabled = false
+        navigationItem.rightBarButtonItems![1].tintColor = .clear
+        navigationItem.leftBarButtonItems![0].isEnabled = false
+        navigationItem.leftBarButtonItems![0].tintColor = .clear
+        if (singleLocation == nil) {
+        navigationItem.leftBarButtonItems![0] = navigationItem.leftBarButtonItems![1]
+        }
         if !locations.isEmpty {
             showLocations()
         }
@@ -49,8 +58,12 @@ class MapViewController: UIViewController {
         
         if (singleLocation != nil) {
             showSingleLocation()
-            navigationItem.leftBarButtonItems![1].isEnabled = true
-            navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 74, green: 255, blue: 255)
+            navigationItem.leftBarButtonItems![0] = navigationItem.leftBarButtonItems![0]
+            navigationItem.leftBarButtonItems![1] = navigationItem.leftBarButtonItems![1]
+            navigationItem.rightBarButtonItems![1].isEnabled = true
+            navigationItem.rightBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
+            navigationItem.leftBarButtonItems![0].isEnabled = true
+            navigationItem.leftBarButtonItems![0].tintColor =  .black
         }
     }
     
@@ -79,6 +92,11 @@ class MapViewController: UIViewController {
             latitudinalMeters: 1000,longitudinalMeters: 1000)
         mapView.setRegion(mapView.regionThatFits(region),    animated: true)
     }
+    
+    @IBAction func backButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     // called through storyboard when Locations button presseed, button tells this func that it was pressed and that their linked. showLocations (IBAction then says, Ok I saw you were pressed, I will run this func now)
     @IBAction func showLocations() {
         // calls region func with parameter of locations object (that conforms to MKAnnotations protocol) this func finds the bounds of all annotations (to show all on the map)
@@ -234,8 +252,9 @@ extension MapViewController: MKMapViewDelegate {
                 self.playSoundEffect()
                 pinView.canShowCallout = true
                 pinView.animatesDrop = false
-                pinView.pinTintColor = UIColor(red: 0.32, green: 0.82,
-                blue: 0.4, alpha: 1)
+                //pinView.pinTintColor = UIColor(red: 0.32, green: 0.82,
+                    //blue: 0.4, alpha: 1)
+                    pinView.pinTintColor = UIColor(red: 0.0039, green: 0.98, blue: 0.35, alpha: 1)
                 pinView.tintColor = UIColor(white: 0.0, alpha: 0.5)
                 // 4
                 // Create a new UIButton object that looks like a detail disclosure button

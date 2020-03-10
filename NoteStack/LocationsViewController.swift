@@ -46,8 +46,12 @@ class LocationsViewController: UITableViewController {
         super.viewDidLoad()
         performFetch()
         //navigationItem.rightBarButtonItem = editButtonItem
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation)), editButtonItem]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation))]
+        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
+        navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 3, green: 254, blue: 147)
         loadSoundEffect("Click.wav")
+        UINavigationBar.appearance().barTintColor = UIColor.white
     }
     
     @objc func findLocation() {
@@ -59,6 +63,23 @@ class LocationsViewController: UITableViewController {
         currentLocationController.storyboard_1 = storyboard_1
         let navController = UINavigationController(rootViewController: currentLocationController)
         present(navController, animated: true)
+    }
+    
+    func handleConfirmPressed(indexPath:IndexPath) -> (_ alertAction:UIAlertAction) -> () {
+        return { alertAction in
+            print("Delete Location")
+            let location = self.fetchedResultsController.object(at: indexPath)
+            // call remove photo file to remove the photo for this location object. removePhotoFile() uses the ID of this specific location object (selected index in row, then we found this object). Then the removePhotoFile() uses the id and finds corresponding location object url. The url is then pointed to and removed
+            location.removePhotoFile()
+            // tell context to delete that object
+            //  This will trigger the NSFetchedResultsController to send a notification to the delegate, which then removes the corresponding row from the table
+            self.managedObjectContext.delete(location)
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                fatalCoreDataError(error)
+            }
+        }
     }
     
     // MARK:- Helper methods
@@ -102,23 +123,27 @@ class LocationsViewController: UITableViewController {
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let alert = UIAlertController(title: "Delete Location", message: "Are you sure you want to delete this location?", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: handleConfirmPressed(indexPath: indexPath)))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             // get location object from row index selected
-            let location = fetchedResultsController.object(at: indexPath)
-            // call remove photo file to remove the photo for this location object. removePhotoFile() uses the ID of this specific location object (selected index in row, then we found this object). Then the removePhotoFile() uses the id and finds corresponding location object url. The url is then pointed to and removed
-            location.removePhotoFile()
-            // tell context to delete that object
-            //  This will trigger the NSFetchedResultsController to send a notification to the delegate, which then removes the corresponding row from the table
-              managedObjectContext.delete(location)
-            do {
-              try managedObjectContext.save()
-            } catch {
-                fatalCoreDataError(error)
-            }
+//            let location = fetchedResultsController.object(at: indexPath)
+//            // call remove photo file to remove the photo for this location object. removePhotoFile() uses the ID of this specific location object (selected index in row, then we found this object). Then the removePhotoFile() uses the id and finds corresponding location object url. The url is then pointed to and removed
+//            location.removePhotoFile()
+//            // tell context to delete that object
+//            //  This will trigger the NSFetchedResultsController to send a notification to the delegate, which then removes the corresponding row from the table
+//              managedObjectContext.delete(location)
+//            do {
+//              try managedObjectContext.save()
+//            } catch {
+//                fatalCoreDataError(error)
+//            }
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadSoundEffect("select.mp3")
+        loadSoundEffect("navtap.mp3")
         playSoundEffect()
         let location = fetchedResultsController.object(at: indexPath)
         // give controller the location object (contains that location from an index in array, and it contains its properties)
@@ -131,9 +156,9 @@ class LocationsViewController: UITableViewController {
     }
     
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 70
+//        return 40
 //    }
-    
+//    
     // find the number of sections
     override func numberOfSections(in tableView: UITableView)
         -> Int {
@@ -251,6 +276,8 @@ NSFetchedResultsControllerDelegate {
             print("*** NSFetchedResultsChangeMove (object)")
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
+        @unknown default:
+            fatalError()
         } }
     func controller(_ controller:
         NSFetchedResultsController<NSFetchRequestResult>,
@@ -270,6 +297,8 @@ NSFetchedResultsControllerDelegate {
             print("*** NSFetchedResultsChangeUpdate (section)")
         case .move:
             print("*** NSFetchedResultsChangeMove (section)")
+        @unknown default:
+            fatalError()
         }
     }
     func controllerDidChangeContent(_ controller:
