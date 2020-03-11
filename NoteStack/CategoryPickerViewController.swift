@@ -8,7 +8,7 @@
 
 import UIKit
 import AudioToolbox
-// category
+// category tableview
 class CategoryPickerViewController: UITableViewController {
     var selectedCategoryName = ""
     var soundID: SystemSoundID = 0
