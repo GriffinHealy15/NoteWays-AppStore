@@ -48,6 +48,7 @@
 		999CA51923F72F8200B57222 /* CurrentOrSearchDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */; };
 		99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */; };
 		99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5C3E6220B4BD700D0574D /* SearchCell.swift */; };
+		99A698DD241ED1AE006D4183 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A698DC241ED1AE006D4183 /* AboutController.swift */; };
 		99AC041B23FC78DA0056971D /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99AC041A23FC78DA0056971D /* pop.wav */; };
 		99AC041D23FC7A380056971D /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC041C23FC7A380056971D /* bubble.mp3 */; };
 		99AC041F23FC7A9B0056971D /* select.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC041E23FC7A9B0056971D /* select.mp3 */; };
@@ -118,6 +119,7 @@
 		999CA51823F72F8200B57222 /* CurrentOrSearchDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrSearchDetailController.swift; sourceTree = "<group>"; };
 		99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		99A5C3E6220B4BD700D0574D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		99A698DC241ED1AE006D4183 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		99AC041A23FC78DA0056971D /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
 		99AC041C23FC7A380056971D /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
 		99AC041E23FC7A9B0056971D /* select.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select.mp3; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		9908613F21F63EAD00494A28 /* NoteStack */ = {
 			isa = PBXGroup;
 			children = (
+				99A698DC241ED1AE006D4183 /* AboutController.swift */,
 				9908614021F63EAD00494A28 /* AppDelegate.swift */,
 				9908614921F63EAE00494A28 /* Assets.xcassets */,
 				99FAF9A92409915700C1E20A /* CategoryOtherPopover.swift */,
@@ -422,6 +425,7 @@
 				99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */,
 				99543FAE21FA31B100DA87EF /* HudView.swift in Sources */,
 				99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */,
+				99A698DD241ED1AE006D4183 /* AboutController.swift in Sources */,
 				995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */,
 				994E174523FB401400152C6C /* CategoryPopoverController.swift in Sources */,
 				99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */,
@@ -522,7 +526,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -577,7 +581,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -596,7 +600,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H5XL2GBF4E;
 				INFOPLIST_FILE = NoteStack/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -617,7 +621,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H5XL2GBF4E;
 				INFOPLIST_FILE = NoteStack/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -54,7 +54,7 @@ class MapViewController: UIViewController {
         if !locations.isEmpty {
             showLocations()
         }
-        loadSoundEffect("Pin.wav")
+        //loadSoundEffect("Pin.wav")
         
         if (singleLocation != nil) {
             showSingleLocation()
@@ -107,8 +107,8 @@ class MapViewController: UIViewController {
     
     
     @IBAction func closeController() {
-        loadSoundEffect("swipe.mp3")
-        playSoundEffect()
+        //loadSoundEffect("swipe.mp3")
+        //playSoundEffect()
         dismiss(animated: true)
     }
     
@@ -120,8 +120,8 @@ class MapViewController: UIViewController {
     
     // perform manual segue
     @objc func showLocationDetails(_ sender: UIButton) {
-        loadSoundEffect("Pin.wav")
-        self.playSoundEffect()
+        //loadSoundEffect("Pin.wav")
+        //self.playSoundEffect()
         //performSegue(withIdentifier: "EditLocation", sender: sender)
         
         let location = locations[sender.tag]
@@ -141,8 +141,8 @@ class MapViewController: UIViewController {
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: locPlacemark.location!.coordinate))
         //let mapItem = MKMapItem(placemark: locPlacemark as! MKPlacemark)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        loadSoundEffect("tap.mp3")
-        playSoundEffect()
+        //loadSoundEffect("tap.mp3")
+        //playSoundEffect()
         mapItem.openInMaps(launchOptions: launchOptions)
     }
     

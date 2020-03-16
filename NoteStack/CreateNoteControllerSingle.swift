@@ -86,8 +86,8 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
     
     @IBAction func createNote() {
         handleCreateNote()
-        loadSoundEffect("bubble.mp3")
-        playSoundEffect()
+        //loadSoundEffect("bubble.mp3")
+        //playSoundEffect()
     }
     
     @objc func handleCreateNote() {
@@ -200,6 +200,24 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
         AudioServicesPlaySystemSound(soundID)
     }
     
+    func handleConfirmPressed(indexPath:IndexPath) -> (_ alertAction:UIAlertAction) -> () {
+        return { alertAction in
+            print("Delete Location")
+            let note = self.currentNotes?[indexPath.row] as? Notes
+
+            note!.removePhotoFile()
+            self.managedObjectContext.delete(note!)
+            do {
+                try self.managedObjectContext.save()
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.fetchGroup()
+                //self.tableView.reloadData()
+            } catch {
+                fatalCoreDataError(error)
+            }
+        }
+    }
+    
     
     // MARK: - Table View Delegates
     
@@ -231,29 +249,40 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let alert = UIAlertController(title: "Delete Note", message: "Are you sure you want to delete this note?", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: handleConfirmPressed(indexPath: indexPath)))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             // get location object from row index selected
             //let note = fetchedResultsController1.object(at: indexPath)
-            guard let note = currentNotes?[indexPath.row] as? Notes, editingStyle == .delete else {
-                return
-            }
-            // call remove photo file to remove the photo for this location object. removePhotoFile() uses the ID of this specific location object (selected index in row, then we found this object). Then the removePhotoFile() uses the id and finds corresponding location object url. The url is then pointed to and removed
-            // tell context to delete that object
-            //  This will trigger the NSFetchedResultsController to send a notification to the delegate, which then removes the corresponding row from the table
-              note.removePhotoFile()
-              managedObjectContext.delete(note)
-            do {
-              try managedObjectContext.save()
-                
-              tableView.deleteRows(at: [indexPath], with: .automatic)
-            } catch {
-                fatalCoreDataError(error)
-            }
+            
+            
+//            guard let note = currentNotes?[indexPath.row] as? Notes, editingStyle == .delete else {
+//                return
+//            }
+//            // call remove photo file to remove the photo for this location object. removePhotoFile() uses the ID of this specific location object (selected index in row, then we found this object). Then the removePhotoFile() uses the id and finds corresponding location object url. The url is then pointed to and removed
+//            // tell context to delete that object
+//            //  This will trigger the NSFetchedResultsController to send a notification to the delegate, which then removes the corresponding row from the table
+//
+//            note.removePhotoFile()
+//              managedObjectContext.delete(note)
+//            do {
+//              try managedObjectContext.save()
+//
+//              tableView.deleteRows(at: [indexPath], with: .automatic)
+//              self.fetchGroup()
+//              self.tableView.reloadData()
+//            } catch {
+//                fatalCoreDataError(error)
+//            }
+            
+            
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           loadSoundEffect("navtap.mp3")
-           playSoundEffect()
+           //loadSoundEffect("navtap.mp3")
+           //playSoundEffect()
            notesPassedArray = []
            notesLocationPassedArray = []
            //let noteTextToEdit = fetchedResultsController.object(at: indexPath).noteText

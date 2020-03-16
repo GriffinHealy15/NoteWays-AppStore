@@ -41,6 +41,10 @@ class GroupNameController: LBTAFormController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
        super.viewDidLoad()
         view.backgroundColor = .rgb(red: 242, green: 242, blue: 242)
+        enterfolderLabel.textColor = .black
+        groupNameTextField.textColor = .black
+        groupNameTextField.attributedPlaceholder = NSAttributedString(string: "Group Name",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         groupNameTextField.delegate = self
         self.scrollView.isScrollEnabled = false
         saveGroupButton.layer.cornerRadius = 10

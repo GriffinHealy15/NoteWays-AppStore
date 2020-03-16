@@ -73,6 +73,11 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     var date = Date()
         
+    var red: CGFloat = 0
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    var rgbColorArray: [CGFloat] = []
+        
     {
         didSet
         {
@@ -88,9 +93,27 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
-        view.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
-        //view.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
+        
+        for i in 0...2 {
+        let randomNumber = Int.random(in: 0 ... 255)
+            if i == 0 {
+                red = CGFloat(randomNumber)
+                rgbColorArray.append(red)
+            }
+            else if i == 1 {
+                green = CGFloat(randomNumber)
+                rgbColorArray.append(green)
+            }
+            else if i == 2 {
+                blue = CGFloat(randomNumber)
+                rgbColorArray.append(blue)
+            }
+        }
+        
+        view.backgroundColor = .rgb(red: red, green: green, blue: blue)
+        noteTextField.backgroundColor = .rgb(red: red, green: green, blue: blue)
+        //view.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+        //noteTextField.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
         fill_view.withHeight(50)
         fill_view1.withHeight(100)
         addPhotoButton.layer.cornerRadius = 25
@@ -104,8 +127,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
         noteTextField.autocapitalizationType = .none
         //noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
-        noteTextField.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
-        //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
+        //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "temp")!)
         noteTextField.delegate = self
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         noteTextField.tintColor = .orange
@@ -118,7 +140,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         title = "Create Note"
         let formView = UIView()
         
-        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 480)
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height/1.7))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
         noteTextField1!.isActive = false
         noteTextField2!.isActive = true
@@ -152,8 +174,8 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         
         //print(noteTextField.selectedRange.location)
         //print(noteText.count)
-        loadSoundEffect("swipe.mp3")
-        playSoundEffect()
+        //loadSoundEffect("swipe.mp3")
+        //playSoundEffect()
         
         //let dateFound = format(date: date)
         
@@ -162,6 +184,15 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
          note.noteText = noteText
          note.notePhotoId = nil
          note.date = date
+        
+        // Add each color (red, green, blue) to the note object attribute
+        for i in 0...rgbColorArray.count - 1 {
+            print(i)
+            let colorAtEachIndex: CGFloat = rgbColorArray[i]
+            let color: NSNumber = colorAtEachIndex as NSNumber
+            note.noteColorArray.append(color)
+        }
+        
          // Save image
          if noteImage != nil && noteImagesArray.count > 0 {
              if !note.hasPhoto {
@@ -285,7 +316,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.selectedRange.location = noteTextField.selectedRange.location  + 1
         noteTextField.becomeFirstResponder()
     noteTextField.scrollRangeToVisible(NSRange(location:noteTextField.selectedRange.location, length:0))
-        noteTextField.textColor = .white
+        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+        noteTextField.textColor = .black
+        noteTextField.tintColor = .black
+        }
+        else {
+            noteTextField.textColor = .white
+            noteTextField.tintColor = .white
+        }
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
     }
 
@@ -301,7 +339,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     func textViewDidBeginEditing(_ textView: UITextView) {
 //        navigationItem.rightBarButtonItem?.isEnabled = true
 //        navigationItem.rightBarButtonItem?.tintColor = .black
-        noteTextField.textColor = .white
+        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+        noteTextField.textColor = .black
+        noteTextField.tintColor = .black
+        }
+        else {
+            noteTextField.textColor = .white
+            noteTextField.tintColor = .white
+        }
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         noteTextField1!.isActive = true
         noteTextField2!.isActive = false

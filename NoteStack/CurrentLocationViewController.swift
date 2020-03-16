@@ -226,12 +226,17 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         if updatingLocation {
             getButton.setTitle("Stop", for: .normal)
             if view.viewWithTag(spinnerTag) == nil {
-                let spinner = UIActivityIndicatorView(style: .medium)
-                spinner.center = messageLabel.center
-                spinner.center.y += spinner.bounds.size.height/2 + 25
-                spinner.startAnimating()
-                spinner.tag = spinnerTag
-                containerView.addSubview(spinner)
+                //let spinner = UIActivityIndicatorView(style: .medium)
+                if #available(iOS 13.0, *) {
+                    let spinner = UIActivityIndicatorView(style: .medium)
+                    spinner.center = messageLabel.center
+                    spinner.center.y += spinner.bounds.size.height/2 + 25
+                    spinner.startAnimating()
+                    spinner.tag = spinnerTag
+                    containerView.addSubview(spinner)
+                } else {
+                    // Fallback on earlier versions
+                }
             }
         } else {
             getButton.setTitle("Get My Location", for: .normal)

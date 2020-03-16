@@ -61,96 +61,143 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
         otherCategoryButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         otherCategoryButton.contentHorizontalAlignment = .left
         otherCategoryButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        otherCategoryButton.layer.cornerRadius = 20
+        otherCategoryButton.clipsToBounds = true
         
         noCategoryButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         noCategoryButton.contentHorizontalAlignment = .left
         noCategoryButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noCategoryButton.layer.cornerRadius = 20
+        noCategoryButton.clipsToBounds = true
         
         bankButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         bankButton.contentHorizontalAlignment = .left
         bankButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        bankButton.layer.cornerRadius = 20
+        bankButton.clipsToBounds = true
         
         barButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         barButton.contentHorizontalAlignment = .left
         barButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        barButton.layer.cornerRadius = 20
+        barButton.clipsToBounds = true
         
         bookstoreButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         bookstoreButton.contentHorizontalAlignment = .left
         bookstoreButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        bookstoreButton.layer.cornerRadius = 20
+        bookstoreButton.clipsToBounds = true
         
         clubButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         clubButton.contentHorizontalAlignment = .left
         clubButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        clubButton.layer.cornerRadius = 20
+        clubButton.clipsToBounds = true
         
         coffeeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         coffeeButton.contentHorizontalAlignment = .left
         coffeeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        coffeeButton.layer.cornerRadius = 20
+        coffeeButton.clipsToBounds = true
         
         gasstationButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         gasstationButton.contentHorizontalAlignment = .left
         gasstationButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        gasstationButton.layer.cornerRadius = 20
+        gasstationButton.clipsToBounds = true
         
         groceriesButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         groceriesButton.contentHorizontalAlignment = .left
         groceriesButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        groceriesButton.layer.cornerRadius = 20
+        groceriesButton.clipsToBounds = true
         
         foodButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         foodButton.contentHorizontalAlignment = .left
         foodButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        foodButton.layer.cornerRadius = 20
+        foodButton.clipsToBounds = true
         
         historicButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         historicButton.contentHorizontalAlignment = .left
         historicButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        historicButton.layer.cornerRadius = 20
+        historicButton.clipsToBounds = true
         
         hospitalButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         hospitalButton.contentHorizontalAlignment = .left
         hospitalButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        hospitalButton.layer.cornerRadius = 20
+        hospitalButton.clipsToBounds = true
         
         houseButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         houseButton.contentHorizontalAlignment = .left
         houseButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        houseButton.layer.cornerRadius = 20
+        houseButton.clipsToBounds = true
         
         landmarkButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         landmarkButton.contentHorizontalAlignment = .left
         landmarkButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        landmarkButton.layer.cornerRadius = 20
+        landmarkButton.clipsToBounds = true
         
         mallButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         mallButton.contentHorizontalAlignment = .left
         mallButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        mallButton.layer.cornerRadius = 20
+        mallButton.clipsToBounds = true
         
         museumButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         museumButton.contentHorizontalAlignment = .left
         museumButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        museumButton.layer.cornerRadius = 20
+        museumButton.clipsToBounds = true
         
         parkinglotButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         parkinglotButton.contentHorizontalAlignment = .left
         parkinglotButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        parkinglotButton.layer.cornerRadius = 20
+        parkinglotButton.clipsToBounds = true
         
         parkButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         parkButton.contentHorizontalAlignment = .left
         parkButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        parkButton.layer.cornerRadius = 20
+        parkButton.clipsToBounds = true
         
         postofficeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         postofficeButton.contentHorizontalAlignment = .left
         postofficeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        postofficeButton.layer.cornerRadius = 20
+        postofficeButton.clipsToBounds = true
         
         restaurantButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         restaurantButton.contentHorizontalAlignment = .left
         restaurantButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        restaurantButton.layer.cornerRadius = 20
+        restaurantButton.clipsToBounds = true
         
         stadiumButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         stadiumButton.contentHorizontalAlignment = .left
         stadiumButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        stadiumButton.layer.cornerRadius = 20
+        stadiumButton.clipsToBounds = true
         
         storeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         storeButton.contentHorizontalAlignment = .left
         storeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        storeButton.layer.cornerRadius = 20
+        storeButton.clipsToBounds = true
         
         workButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         workButton.contentHorizontalAlignment = .left
         workButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        workButton.layer.cornerRadius = 20
+        workButton.clipsToBounds = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelController))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelController))
+        navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 0, green: 197, blue: 255)
     
         let formView = UIView()
         formView.stack(UIView().withHeight(30),
@@ -173,8 +220,8 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
     }
     
     @objc func otherCategory() {
-        loadSoundEffect("bubble.mp3")
-        playSoundEffect()
+        //loadSoundEffect("pin_low2.mp3")
+        //playSoundEffect()
         
         let vc = CategoryOtherPopover()
         vc.managedObjectContext = managedObjectContext
@@ -205,8 +252,8 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
     }
     
     @objc func theCategory(_ sender: UIButton) {
-        loadSoundEffect("pin_low2.mp3")
-        playSoundEffect()
+        //loadSoundEffect("pin_low2.mp3")
+        //playSoundEffect()
         if let buttonTitle = sender.title(for: .normal) {
             pickedCategory(category: buttonTitle)
         }

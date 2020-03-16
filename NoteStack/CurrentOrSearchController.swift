@@ -32,9 +32,15 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
    var locationName: String = ""
    // -- END OF LOCATION VARS -- 
     
-    var latitudeLabel = UILabel(text: "  Latitude:", font: .boldSystemFont(ofSize: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var latitudeLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var longitudeLabel = UILabel(text: "  Longitude:", font: .boldSystemFont(ofSize: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var longitudeLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    
+    var detailsLabel = UILabel(text: "Geolocation Details", font: .boldSystemFont(ofSize: 17), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    
+    var theAddressLabel = UILabel(text: "Address", font: .boldSystemFont(ofSize: 17), textColor: .rgb(red: 240, green: 240, blue: 240), textAlignment: .center, numberOfLines: 0)
+    
+    var theLocationLabel = UILabel(text: "Location", font: .boldSystemFont(ofSize: 17), textColor: .rgb(red: 240, green: 240, blue: 240), textAlignment: .center, numberOfLines: 0)
 
     var latitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .black, textAlignment: .left, numberOfLines: 0)
 
@@ -47,10 +53,9 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
     
     var orText = UILabel(text: "or find my current location", font: UIFont(name: "PingFangHK-Regular", size: 13.5), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
-    var addressLabel = UILabel(text: "Address & Location", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
+    var addressLabel = UILabel(text: "Address & Location", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
     var locationLabel = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
-    
     
     var soundID: SystemSoundID = 0
     
@@ -61,13 +66,21 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Tag", style: .plain, target: self, action: #selector(saveLocation))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Continue", style: .done, target: self, action: #selector(saveLocation))
         navigationItem.rightBarButtonItem?.isEnabled = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelController))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelController))
+        navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 197, blue: 255)
+        navigationItem.rightBarButtonItem?.tintColor = .black
         view.backgroundColor = .white
         title = "Tag Location"
         let formView = UIView()
         let formView2 = UIView()
+        detailsLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        detailsLabel.backgroundColor = .rgb(red: 2, green: 227, blue: 141)
+        theAddressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        theAddressLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
+        theLocationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        theLocationLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
         latitudeLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
         latitudeLabel.layer.cornerRadius = 25
         longitudeLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
@@ -84,10 +97,13 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         searchLocationButton.isUserInteractionEnabled = false
         searchLocationText.textContainerInset = UIEdgeInsets(top: 10,left: 20,bottom: 5,right: 5)
         tagMyLocationButton.layer.cornerRadius = 20
-        formView2.stack(formView.hstack(latitudeLabel.withHeight(50).withWidth(100),latitudeText), formView.hstack(longitudeLabel.withHeight(50).withWidth(100),longitudeText),
-                        addressLabel.withHeight(90).withWidth(150),
-        UIView(backgroundColor: .rgb(red: 240, green: 240, blue: 240)).withHeight(5),
-            locationLabel.withHeight(100).withWidth(100))
+        formView2.stack(detailsLabel.withHeight(35),formView.hstack(latitudeLabel.withHeight(50).withWidth(100),latitudeText), formView.hstack(longitudeLabel.withHeight(50).withWidth(100),longitudeText), theAddressLabel.withHeight(25),
+                        addressLabel.withHeight(60).withWidth(150),
+        UIView(backgroundColor: .rgb(red: 240, green: 240, blue: 240)).withHeight(5),theLocationLabel.withHeight(25),
+            locationLabel.withHeight(70).withWidth(100))
+        
+        formView2.layer.cornerRadius = 20
+        formView2.clipsToBounds = true
         
         //let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
         let navContrl = storyboard_1.instantiateViewController(withIdentifier: "NavControllerSearch") as! UINavigationController
@@ -100,7 +116,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
 //           UIView(backgroundColor: .white).withHeight(120),
            orText.withHeight(20),
            tagMyLocationButton.withHeight(40),
-           UIView(backgroundColor: .white).withHeight(50),formView2,
+           UIView(backgroundColor: .white).withHeight(35),formView2,
             UIView(backgroundColor: .white).withHeight(45),
         UIView().withHeight(30),spacing: 16).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
         
@@ -120,6 +136,13 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                 self.addressLabel.textColor = .black
                 self.addressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
                 //self.locationLabel.font = .boldSystemFont(ofSize: 20)
+                self.latitudeLabel.text = "  Latitude:"
+                self.longitudeLabel.text = "  Longitude:"
+                self.theAddressLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+                self.theLocationLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+                self.theAddressLabel.textColor = .white
+                self.theLocationLabel.textColor = .white
+                    
                 self.locationName = selectedName
                 self.locationLabel.text = self.locationName
                 self.locationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
@@ -166,8 +189,8 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
     
     @objc func getMyLocation() {
         print("Get my location...")
-        loadSoundEffect("pin_high.mp3")
-        playSoundEffect()
+        //loadSoundEffect("pin_high.mp3")
+        //playSoundEffect()
         // request authorization
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .notDetermined {
@@ -196,6 +219,12 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
             startLocationManager()
         }
         // update labels for possible locations found (or other possible scenarios)
+        latitudeLabel.text = "  Latitude:"
+        longitudeLabel.text = "  Longitude:"
+        theAddressLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        theLocationLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        theAddressLabel.textColor = .white
+        theLocationLabel.textColor = .white
         locationLabel.text = "My Current Location"
         locationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
         locationName = "My Current Location"
@@ -203,8 +232,8 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
     }
     
     @objc func searchLocation() {
-        loadSoundEffect("pin_high.mp3")
-        playSoundEffect()
+        //loadSoundEffect("pin_high.mp3")
+        //playSoundEffect()
         print("Search a location...")
         searchLocationText.resignFirstResponder()
         // GeoCode your address, so it turns the address into coordinates
@@ -219,6 +248,12 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                   //self.addressLabel.font = .boldSystemFont(ofSize: 20)
                   self.addressLabel.text = self.string(from: placemark)
                   self.addressLabel.textColor = .black
+                  self.latitudeLabel.text = "  Latitude:"
+                  self.longitudeLabel.text = "  Longitude:"
+                  self.theAddressLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+                  self.theLocationLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+                  self.theAddressLabel.textColor = .white
+                  self.theLocationLabel.textColor = .white
                   let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                   self.finalCoords = coordinates
                   //print("Latitude: \(self.finalCoords!.latitude) -- Longitude: \(self.finalCoords!.longitude)")
@@ -277,6 +312,8 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
             if let placemark = placemark {
                 addressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
                 addressLabel.text = string(from: placemark)
+                latitudeLabel.text = "  Latitude:"
+                longitudeLabel.text = "  Longitude:"
                 locationLabel.text = "My Current Location"
                 self.addressLabel.textColor = .black
                 addressLabel.adjustsFontSizeToFitWidth = false

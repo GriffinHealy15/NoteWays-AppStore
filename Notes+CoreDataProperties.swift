@@ -18,6 +18,7 @@ extension Notes {
     }
 
     @NSManaged public var noteText: String
+    @NSManaged public var noteColorArray: [NSNumber]
     @NSManaged public var notePhotoId: NSNumber? // int 32, but NSNUmber is how objc handles numbers
     @NSManaged public var notePhotoIdArray: [NSNumber]
     @NSManaged public var notePhotoLocation: [NSNumber]

@@ -33,13 +33,24 @@ class SearchBarTableController: UITableViewController {
     var currentOrSearchController:CurrentOrSearchController?
     
     var soundID: SystemSoundID = 0
+    var keyBoardHeightGlobal: CGFloat = 0
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
+        //self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
+        self.tableView.frame = CGRect(x: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/1.12) , y: 130, width: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/6.5), height: (self.currentOrSearchController?.view.frame.height)! - (self.keyBoardHeightGlobal + 130))
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(keyboardWillShow),
+        name: UIResponder.keyboardWillShowNotification,
+        object: nil)
+        
         print("In search bar/tableview")
         view.backgroundColor = .clear
         locationManager.delegate = self
@@ -105,6 +116,14 @@ class SearchBarTableController: UITableViewController {
         AudioServicesPlaySystemSound(soundID)
     }
     
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            keyBoardHeightGlobal = keyboardHeight
+        }
+    }
+    
 }
 
 extension SearchBarTableController : CLLocationManagerDelegate {
@@ -144,7 +163,9 @@ extension SearchBarTableController : UISearchResultsUpdating {
             }
             self.matchingItems = response.mapItems
             //self.tableView.frame = CGRect(x: 20, y: self.view.frame.size.height / 2.0, width: 334, height: 300)
-            self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
+            //self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
+            self.tableView.frame = CGRect(x: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/1.12) , y: 130, width: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/6.5), height: (self.currentOrSearchController?.view.frame.height)! - (self.keyBoardHeightGlobal + 130))
+            
             self.tableView.reloadData()
 //            var frame = self.tableView.frame
 //            frame.size.height = self.tableView.contentSize.height - 100
@@ -179,8 +200,8 @@ extension SearchBarTableController {
         let currentSearchController = currentOrSearchController
         self.delegate = currentSearchController
         let parsedAddress = parseAddress(selectedItem: selectedItem)
-        loadSoundEffect("navtap.mp3")
-        playSoundEffect()
+        //loadSoundEffect("navtap.mp3")
+        //playSoundEffect()
         delegate?.handleAddress(address: parsedAddress, selectedName: selectedItem.name ?? "No Name")
         dismiss(animated: true)
     }

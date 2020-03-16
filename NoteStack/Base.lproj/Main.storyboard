@@ -10,14 +10,15 @@
         <!--Locations-->
         <scene sceneID="6th-2d-yfy">
             <objects>
-                <tableViewController id="hx4-WO-Vqp" customClass="LocationsViewController" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="hx4-WO-Vqp" customClass="LocationsViewController" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="a24-Nf-LtK">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="58" id="MgY-kD-mga" customClass="LocationCell" customModule="NotePlace" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="58" id="MgY-kD-mga" customClass="LocationCell" customModule="NoteWays" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="834" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MgY-kD-mga" id="mjM-Ol-A8Y">
@@ -80,7 +81,7 @@
         <!--Map-->
         <scene sceneID="HbN-hY-v9s">
             <objects>
-                <viewController storyboardIdentifier="MapViewController" title="Map" id="aqS-kM-LRJ" customClass="MapViewController" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" title="Map" id="aqS-kM-LRJ" customClass="MapViewController" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hZi-K9-2c2">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,13 +142,13 @@
         <!--Your Notes-->
         <scene sceneID="yDW-dM-rIW">
             <objects>
-                <tableViewController storyboardIdentifier="CreateNoteController" id="qPK-qO-JHu" customClass="CreateNoteController" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateNoteController" id="qPK-qO-JHu" customClass="CreateNoteController" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hFT-2L-zkB">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="QR1-Dv-LPO" customClass="NoteCell" customModule="NotePlace" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="QR1-Dv-LPO" customClass="NoteCell" customModule="NoteWays" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="834" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QR1-Dv-LPO" id="sYa-wf-M59">
@@ -193,13 +194,13 @@
         <!--Note Groups-->
         <scene sceneID="Sbm-Ko-JUk">
             <objects>
-                <tableViewController id="1yk-6U-7As" customClass="CreateNoteGroupController" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="1yk-6U-7As" customClass="CreateNoteGroupController" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o6z-4o-bhC">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteGroupCell" id="Lm9-d6-Zvd" customClass="NoteGroupCell" customModule="NotePlace" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteGroupCell" id="Lm9-d6-Zvd" customClass="NoteGroupCell" customModule="NoteWays" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="834" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lm9-d6-Zvd" id="t9c-td-trn">
@@ -209,7 +210,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBk-Tm-hrk" userLabel="Note Group Label">
                                             <rect key="frame" x="20" y="8" width="642" height="27.5"/>
                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="18"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mju-dd-pqe">
@@ -218,7 +219,7 @@
                                                 <constraint firstAttribute="width" constant="101" id="G5t-2R-7jA"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -232,6 +233,7 @@
                                         <constraint firstItem="Mju-dd-pqe" firstAttribute="top" secondItem="t9c-td-trn" secondAttribute="topMargin" id="yXd-h3-zGx"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="noteCountLabel" destination="Mju-dd-pqe" id="g4N-5C-OCf"/>
                                     <outlet property="noteGroupLabel" destination="EBk-Tm-hrk" id="PfX-Wq-7II"/>
@@ -244,7 +246,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Note Groups" id="Bxk-oG-CAn" userLabel="Note Groups">
-                        <barButtonItem key="rightBarButtonItem" image="folder" id="czd-Tm-Lhm">
+                        <barButtonItem key="rightBarButtonItem" title="New Group" image="folder" style="done" id="czd-Tm-Lhm">
                             <connections>
                                 <action selector="createNoteGroup" destination="1yk-6U-7As" id="dDY-PZ-fzv"/>
                             </connections>
@@ -259,7 +261,7 @@
         <scene sceneID="0pE-Pz-wXl">
             <objects>
                 <navigationController id="yOp-at-2vJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Note" id="ljx-WA-Z74">
+                    <tabBarItem key="tabBarItem" title="" image="note_filled1" id="ljx-WA-Z74">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tUC-9w-dKC">
@@ -308,12 +310,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vGF-4f-dgh">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -327,7 +330,7 @@
         <!--My Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="MyTabBarController" id="49e-Tb-3d3" customClass="MyTabBarController" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MyTabBarController" id="49e-Tb-3d3" customClass="MyTabBarController" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -375,7 +378,7 @@
         <!--Search Bar Table Controller-->
         <scene sceneID="QFy-3f-np5">
             <objects>
-                <tableViewController storyboardIdentifier="LocationSearchTable_1" id="jg6-1O-1fy" customClass="SearchBarTableController" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationSearchTable_1" id="jg6-1O-1fy" customClass="SearchBarTableController" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5nw-As-R6Z">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -445,13 +448,13 @@
         <!--Your Notes-->
         <scene sceneID="SMn-v5-5fq">
             <objects>
-                <tableViewController storyboardIdentifier="CreateNoteControllerSingle" id="J3f-H9-qHQ" customClass="CreateNoteControllerSingle" customModule="NotePlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateNoteControllerSingle" id="J3f-H9-qHQ" customClass="CreateNoteControllerSingle" customModule="NoteWays" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Axh-3d-5yx">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell_ForGroup" id="lOw-bn-jFv" customClass="NoteCell_ForGroup" customModule="NotePlace" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell_ForGroup" id="lOw-bn-jFv" customClass="NoteCell_ForGroup" customModule="NoteWays" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="834" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lOw-bn-jFv" id="N9G-e3-NQ5">
@@ -461,7 +464,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu3-UA-qRM" userLabel="NoteLabel">
                                             <rect key="frame" x="25" y="11" width="660" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2VD-3R-0U9" userLabel="photoImageView">
@@ -486,6 +489,7 @@
                                         <constraint firstAttribute="trailing" secondItem="eml-jH-9Ey" secondAttribute="trailing" constant="34" id="wRu-fD-RLx"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="arrowImage" destination="eml-jH-9Ey" id="kqA-Ly-cvJ"/>
                                     <outlet property="noteLabel_1" destination="yu3-UA-qRM" id="bu3-JM-G6Y"/>
@@ -523,6 +527,7 @@
         <image name="mapmark" width="25" height="25"/>
         <image name="mapmarker" width="30" height="30"/>
         <image name="mylocation" width="30" height="30"/>
+        <image name="note_filled1" width="37.5" height="37.5"/>
         <image name="notefilledstroke" width="30" height="30"/>
     </resources>
     <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

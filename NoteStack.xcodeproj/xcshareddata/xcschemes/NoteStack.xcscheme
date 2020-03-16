@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9908613C21F63EAD00494A28"
-               BuildableName = "NotePlace.app"
+               BuildableName = "NoteWays.app"
                BlueprintName = "NoteStack"
                ReferencedContainer = "container:NoteStack.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9908613C21F63EAD00494A28"
-            BuildableName = "NotePlace.app"
+            BuildableName = "NoteWays.app"
             BlueprintName = "NoteStack"
             ReferencedContainer = "container:NoteStack.xcodeproj">
          </BuildableReference>
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9908613C21F63EAD00494A28"
-            BuildableName = "NotePlace.app"
+            BuildableName = "NoteWays.app"
             BlueprintName = "NoteStack"
             ReferencedContainer = "container:NoteStack.xcodeproj">
          </BuildableReference>
@@ -81,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9908613C21F63EAD00494A28"
-            BuildableName = "NotePlace.app"
+            BuildableName = "NoteWays.app"
             BlueprintName = "NoteStack"
             ReferencedContainer = "container:NoteStack.xcodeproj">
          </BuildableReference>

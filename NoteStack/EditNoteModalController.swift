@@ -63,22 +63,46 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     var attString2: NSAttributedString?
     var attString1: NSAttributedString?
     
+    var rgbColorArray: [NSNumber] = []
+    var rgbColorArrayFloat: [CGFloat] = []
+    var red: CGFloat = 0
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    
     override func viewDidLoad() {
        super.viewDidLoad()
-       //print(noteText.count)
+
+        let noteColorArray =  noteToEdit?.noteColorArray
+        for i in 0...noteColorArray!.count - 1 {
+            rgbColorArrayFloat.append(noteColorArray![i] as! CGFloat)
+        }
+        print(rgbColorArrayFloat)
+        for _ in 0...rgbColorArrayFloat.count - 1 {
+            red = rgbColorArrayFloat[0]
+            green = rgbColorArrayFloat[1]
+            blue = rgbColorArrayFloat[2]
+        }
+       view.backgroundColor = .rgb(red: red, green: green, blue: blue)
+       noteTextField.backgroundColor = .rgb(red: red, green: green, blue: blue)
        noteTextField.delegate = self
        noteTextField.text = noteText
-       noteTextField.textColor = .white
+       if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+       noteTextField.textColor = .black
+       noteTextField.tintColor = .black
+       }
+       else {
+           noteTextField.textColor = .white
+           noteTextField.tintColor = .white
+       }
        noteTextField.tintColor = .orange
        //view.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
-       view.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+       
        //view.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
        saveButton.layer.cornerRadius = 25
        saveButton.layer.borderColor = UIColor.black.cgColor
        saveButton.layer.borderWidth = 1.0
        noteTextField.autocapitalizationType = .none
        //noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
-       noteTextField.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
        //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
        navigationController?.navigationBar.isHidden = false
        title = "Edit Note"
@@ -88,8 +112,8 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
        navigationItem.leftBarButtonItems![1].tintColor = .black
        navigationItem.leftBarButtonItems![0].tintColor = .rgb(red: 0, green: 197, blue: 255)
         
-       noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 480)
-       noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 130)
+       noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height/1.83))
+       noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
        noteTextField1!.isActive = false
        noteTextField2!.isActive = true
         
@@ -144,7 +168,14 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
         noteTextField.selectedRange.location = noteTextField.selectedRange.location  + 1
         noteTextField.becomeFirstResponder()
     noteTextField.scrollRangeToVisible(NSRange(location:noteTextField.selectedRange.location, length:0))
-        noteTextField.textColor = .white
+        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+        noteTextField.textColor = .black
+        noteTextField.tintColor = .black
+        }
+        else {
+            noteTextField.textColor = .white
+            noteTextField.tintColor = .white
+        }
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         print(noteTextField.selectedRange.location)
     }
@@ -161,8 +192,8 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     }
     
     @objc func saveNote() {
-        loadSoundEffect("swipe.mp3")
-        playSoundEffect()
+        //loadSoundEffect("swipe.mp3")
+        //playSoundEffect()
         let tempNoteIdArray = noteToEdit?.notePhotoIdArray
         //print("Deleting all images before re-saving new images...")
         print("Saving note...")
@@ -315,14 +346,21 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     
         func textViewDidBeginEditing(_ textView: UITextView) {
     //        noteTextField.text = ""
-            noteTextField.textColor = .white
+            if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+            noteTextField.textColor = .black
+            noteTextField.tintColor = .black
+            }
+            else {
+                noteTextField.textColor = .white
+                noteTextField.tintColor = .white
+            }
             noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
             noteTextField1!.isActive = true
             noteTextField2!.isActive = false
         }
 
         func textViewDidChange(_ textView: UITextView) {
-            print(noteTextField.selectedRange.location)
+            //print(noteTextField.selectedRange.location)
             noteTextField1!.isActive = true
             noteTextField2!.isActive = false
             noteText = noteTextField.text

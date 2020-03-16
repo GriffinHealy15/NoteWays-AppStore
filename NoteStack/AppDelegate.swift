@@ -154,9 +154,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // changes appearance of UINavigationBar
     func customizeAppearance() {
 //        UINavigationBar.appearance().barTintColor = UIColor.black
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor:
-                UIColor.black ]
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSAttributedString.Key.foregroundColor:
+//                UIColor.white]
         UITabBar.appearance().barTintColor = UIColor.rgb(red: 0, green: 197, blue: 255)
        // let tintColor = UIColor(red: 255/255.0, green: 238/255.0,
          //                       blue: 136/255.0, alpha: 1.0)
@@ -200,8 +200,7 @@ Press OK to terminate the app. Sorry for the inconvenience.
                 // show the alert through the tabController which is always open
                 let tabController = self.window!.rootViewController!
                 tabController.present(alert, animated: true, completion: nil)
-        }) }
-
-
+        })
+    }
 }
 

@@ -27,7 +27,7 @@ class CategoryPickerViewController: UITableViewController {
     var selectedIndexPath = IndexPath()
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSoundEffect("Click.wav")
+        //loadSoundEffect("Click.wav")
         for i in 0..<categories.count {
             if categories[i] == selectedCategoryName {
                 // if passed selectedCategoryName equals that array [i] index, then set an indexpath  for that row: i,  for section: 0
@@ -61,7 +61,7 @@ class CategoryPickerViewController: UITableViewController {
             return cell }
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
-        playSoundEffect()
+        //playSoundEffect()
         // was the row selected index.row == to choosen, passed selectedIndexPath.row. If so, this object is what should be set with .none accessoryType
         if indexPath.row != selectedIndexPath.row {
             if let newCell = tableView.cellForRow(at: indexPath) {

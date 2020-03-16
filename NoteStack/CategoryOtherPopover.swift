@@ -40,6 +40,10 @@ class CategoryOtherPopover: LBTAFormController, UINavigationControllerDelegate, 
     override func viewDidLoad() {
        super.viewDidLoad()
         view.backgroundColor = .rgb(red: 221, green: 230, blue: 223)
+        enterfolderLabel.textColor = .black
+        groupNameTextField.textColor = .black
+        groupNameTextField.attributedPlaceholder = NSAttributedString(string: "Category Name",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         groupNameTextField.delegate = self
         self.scrollView.isScrollEnabled = false
         saveGroupButton.layer.cornerRadius = 10

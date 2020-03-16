@@ -45,24 +45,37 @@ class LocationsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         performFetch()
+        view.backgroundColor = .white
         //navigationItem.rightBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation))]
-        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "about"), style: .plain, target: self, action: #selector(aboutPage)), editButtonItem]
         navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
-        navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 3, green: 254, blue: 147)
-        loadSoundEffect("Click.wav")
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.leftBarButtonItems![0].tintColor = .black
+        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 151, blue: 248)
+        //loadSoundEffect("Click.wav")
         UINavigationBar.appearance().barTintColor = UIColor.white
     }
     
     @objc func findLocation() {
-        loadSoundEffect("map.mp3")
-        playSoundEffect()
+        //loadSoundEffect("map.mp3")
+        //playSoundEffect()
         print("Creating location nav...")
         let currentLocationController = CurrentOrSearchController()
         currentLocationController.managedObjectContext = managedObjectContext
         currentLocationController.storyboard_1 = storyboard_1
         let navController = UINavigationController(rootViewController: currentLocationController)
         present(navController, animated: true)
+    }
+    
+    @objc func aboutPage() {
+     //loadSoundEffect("tap.mp3")
+     //playSoundEffect()
+     print("Loading About Page...")
+     let aboutController = AboutController()
+     aboutController.managedObjectContext = managedObjectContext
+     let navController = UINavigationController(rootViewController: aboutController)
+     present(navController, animated: true)
     }
     
     func handleConfirmPressed(indexPath:IndexPath) -> (_ alertAction:UIAlertAction) -> () {
@@ -143,8 +156,8 @@ class LocationsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadSoundEffect("navtap.mp3")
-        playSoundEffect()
+        //loadSoundEffect("tap.mp3")
+        //playSoundEffect()
         let location = fetchedResultsController.object(at: indexPath)
         // give controller the location object (contains that location from an index in array, and it contains its properties)
         let locationsDetailsContrl = CurrentOrSearchDetailController()
@@ -190,7 +203,7 @@ class LocationsViewController: UITableViewController {
             x: 15, y: tableView.sectionHeaderHeight - 0.5,
             width: tableView.bounds.size.width - 15, height: 0.5)
         let separator = UIView(frame: separatorRect)
-        separator.backgroundColor = .white
+        separator.backgroundColor = .lightGray
         let viewRect = CGRect(x: 0, y: 0,
                               width: tableView.bounds.size.width,
                               height: tableView.sectionHeaderHeight)

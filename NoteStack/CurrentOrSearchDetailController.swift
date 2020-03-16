@@ -66,44 +66,63 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     var image: UIImage?
     var finalLocationCategory: String = ""
     
-    var latitudeLabel = UILabel(text: "Latitude:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var latitudeLabel = UILabel(text: "Latitude", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var longitudeLabel = UILabel(text: "Longitude:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var longitudeLabel = UILabel(text: "Longitude", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var addressLabel = UILabel(text: "Address:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var addressLabel = UILabel(text: "Address", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var dateLabel = UILabel(text: "Date:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var dateLabel = UILabel(text: "Date", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var dateText = UILabel(text: "Date", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var dateText = UILabel(text: "Date", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var latitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var latitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
 
-    var longitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var longitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var addressText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var addressText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 19), textColor: .black, textAlignment: .left)
+    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 18), textColor: .black, textAlignment: .left)
     
     var descriptionLabel = UILabel(text: "Description", font: UIFont(name: "PingFangTC-Semibold", size: 18), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    lazy var categoryButton = UIButton(title: "Category:", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
+    lazy var categoryButton = UIButton(title: "Category (Tap to Change)", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
     
-    var categoryText = UILabel(text: "No Category", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var categoryText = UILabel(text: "No Category", font: .boldSystemFont(ofSize: 22), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var locationNameLabel = UILabel(text: "Name:", font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var locationNameLabel = UILabel(text: "Location", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var locationNameText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var locationNameText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var openInMapView = UIButton(title: "Open in Mapview", titleColor: .black, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .rgb(red: 15, green: 243, blue: 148), target: self, action: #selector(openMapView))
+    var openInMapView = UIButton(title: "Open Destination in Map", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 16)!, backgroundColor: .rgb(red: 6, green: 101, blue: 209), target: self, action: #selector(openMapView))
     
-    var openGetDirections = UIButton(title: "Get Directions", titleColor: .black, font: UIFont(name: "PingFangTC-Semibold", size: 20)!, backgroundColor: .rgb(red: 15, green: 243, blue: 148), target: self, action: #selector(getDirections))
+    var openGetDirections = UIButton(title: "Get Directions", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 16)!, backgroundColor: .rgb(red: 6, green: 101, blue: 209), target: self, action: #selector(getDirections))
+    
+    var detailsLabel = UILabel(text: "Geolocation Details", font: .boldSystemFont(ofSize: 17), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
     var soundID: SystemSoundID = 0
     
-    var addPhotoButton = UIButton(title: "Add Photo", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
+    var addPhotoButton = UIButton(title: "Add Photo (Tap to Change)", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        latitudeLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        longitudeLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        addressLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        locationNameLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        dateLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        latitudeLabel.layer.cornerRadius = 7
+        latitudeLabel.clipsToBounds = true
+        longitudeLabel.layer.cornerRadius = 7
+        longitudeLabel.clipsToBounds = true
+        addressLabel.layer.cornerRadius = 7
+        addressLabel.clipsToBounds = true
+        locationNameLabel.layer.cornerRadius = 7
+        locationNameLabel.clipsToBounds = true
+        dateLabel.layer.cornerRadius = 7
+        dateLabel.clipsToBounds = true
+        
         descriptionTextField.delegate = self
         descriptionTextField.backgroundColor = .white
         descriptionTextField.layer.borderWidth = 0.7
@@ -130,6 +149,9 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         openInMapView.layer.cornerRadius = 10
         openInMapView.isEnabled = false
         openInMapView.isHidden = true
+        
+        detailsLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        detailsLabel.backgroundColor = .rgb(red: 2, green: 227, blue: 141)
         
         openGetDirections.layer.cornerRadius = 10
         openGetDirections.isEnabled = false
@@ -166,28 +188,39 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         navigationItem.rightBarButtonItem?.tintColor = .black
         
         if openInMapView.isEnabled == true {
-            openInMapView.withHeight(40.5).withWidth(60)
+            openInMapView.withHeight(50).withWidth(130)
         }
         else {
              openInMapView.withHeight(0).withWidth(0)
         }
         
         if openGetDirections.isEnabled == true {
-            openGetDirections.withHeight(40.5).withWidth(60)
+            openGetDirections.withHeight(50).withWidth(130)
         }
         else {
             openGetDirections.withHeight(0).withWidth(0)
         }
         
-        let formView = UIView()
-        formView.stack(UIView().withHeight(10),descriptionLabel, UIView().withHeight(5),descriptionTextField.withHeight(100), UIView().withHeight(30),formView.hstack(categoryButton.withWidth(130),UIView().withWidth(50),categoryText),UIView().withHeight(10), addPhotoButton,UIView().withHeight(15),formView.hstack(UIView().withWidth(50),openInMapView,UIView().withWidth(50)), UIView().withHeight(9),
-                       formView.hstack(UIView().withWidth(50),openGetDirections,UIView().withWidth(50)),
-                       UIView().withHeight(35),
-                       formView.hstack(locationNameLabel.withWidth(110), locationNameText), UIView().withHeight(20),
-                       formView.hstack(addressLabel.withWidth(110), addressText),
-                       UIView().withHeight(20), formView.hstack(longitudeLabel.withWidth(110), longitudeText),UIView().withHeight(20), formView.hstack(latitudeLabel.withWidth(110), latitudeText), UIView().withHeight(20), formView.hstack(dateLabel.withWidth(110), dateText)).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
+        let formView = UIView(backgroundColor: .rgb(red: 240, green: 240, blue: 240))
+        let formView2 = UIView(backgroundColor: .white)
+        let formView3 = UIView(backgroundColor: .rgb(red: 240, green: 240, blue: 240))
+        formView.layer.cornerRadius = 30
+        formView.clipsToBounds = true
+        formView2.layer.cornerRadius = 30
+        formView2.clipsToBounds = true
+        
+        formView3.stack(UIView().withHeight(10), formView.hstack(UIView().withWidth(10),openInMapView,UIView().withWidth(10)), UIView().withHeight(9), formView.hstack(UIView().withWidth(10),openGetDirections,UIView().withWidth(10)), UIView().withHeight(10),
+                        descriptionLabel, UIView().withHeight(5),descriptionTextField.withHeight(100), UIView().withHeight(30),categoryButton.withHeight(33),UIView().withHeight(5) ,formView.hstack(categoryText),UIView().withHeight(10), addPhotoButton,
+                        UIView().withHeight(25), locationNameLabel.withHeight(33), UIView().withHeight(5),
+        formView.hstack(locationNameText), UIView().withHeight(10), addressLabel.withHeight(33), UIView().withHeight(5),
+        formView.hstack(addressText),
+        UIView().withHeight(20), latitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(latitudeText),UIView().withHeight(20), longitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(longitudeText), UIView().withHeight(20), dateLabel.withHeight(33), UIView().withHeight(5), formView.hstack( dateText),UIView().withHeight(20)).withMargins(.init(top: 5, left: 20, bottom: 5, right: 20))
+        
+        formView.stack(detailsLabel.withHeight(45),formView3).withMargins(.init(top: 0, left: 0, bottom: 0, right: 0))
+        
+        formView2.stack(UIView().withHeight(15),formView2.hstack(UIView(backgroundColor: .white).withWidth(0),formView, UIView(backgroundColor: .white).withWidth(0))).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
                
-               formContainerStackView.addArrangedSubview(formView)
+               formContainerStackView.addArrangedSubview(formView2)
     }
     
     // MARK:- Sound effects
@@ -232,14 +265,14 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: locPlacemark.location!.coordinate))
         //let mapItem = MKMapItem(placemark: locPlacemark as! MKPlacemark)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        loadSoundEffect("tap.mp3")
-        playSoundEffect()
+        //loadSoundEffect("tap.mp3")
+        //playSoundEffect()
         mapItem.openInMaps(launchOptions: launchOptions)
     }
     
     @objc func openMapView() {
-        loadSoundEffect("tap.mp3")
-        playSoundEffect()
+        //loadSoundEffect("tap.mp3")
+        //playSoundEffect()
         let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mapViewController = storyboard_main.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         mapViewController.managedObjectContext = managedObjectContext
@@ -270,8 +303,8 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     @objc func saveLocation() {
         print("Saving location details...")
-        loadSoundEffect("success.mp3")
-        playSoundEffect()
+        //loadSoundEffect("success.mp3")
+        //playSoundEffect()
         descriptionTextField.resignFirstResponder()
         
         let location: Location
@@ -334,14 +367,14 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     }
     
     @objc func addPhoto() {
-        loadSoundEffect("pin_low2.mp3")
-        playSoundEffect()
+        //loadSoundEffect("pin_low2.mp3")
+        //playSoundEffect()
         pickPhoto()
     }
     
     @objc func addCategory() {
-        loadSoundEffect("pin_low2.mp3")
-        playSoundEffect()
+        //loadSoundEffect("pin_low2.mp3")
+        //playSoundEffect()
         let vc = CategoryPopoverController()
         vc.managedObjectContext = managedObjectContext
         vc.createCategoryController = self
@@ -360,7 +393,8 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         addPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         addPhotoButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         addPhotoButton.layer.borderColor = UIColor.init(displayP3Red: 0, green: 172, blue: 237, alpha: 1).cgColor
-        addPhotoButton.layer.cornerRadius = 0
+        addPhotoButton.clipsToBounds = true
+        addPhotoButton.layer.cornerRadius = 30
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

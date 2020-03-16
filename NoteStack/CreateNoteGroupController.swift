@@ -48,7 +48,7 @@ NoteRefreshProtocol{
         performFetch()
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
-        navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 3, green: 254, blue: 147)
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,8 +90,8 @@ NoteRefreshProtocol{
     // MARK:- Actions
     @IBAction func createNoteGroup() {
         print("Create Notes Group")
-        loadSoundEffect("bubble.mp3")
-        playSoundEffect()
+        //loadSoundEffect("bubble.mp3")
+        //playSoundEffect()
         
         let vc = GroupNameController()
         vc.managedObjectContext = managedObjectContext
@@ -222,8 +222,8 @@ NoteRefreshProtocol{
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadSoundEffect("navtap.mp3")
-        playSoundEffect()
+        //loadSoundEffect("navtap.mp3")
+        //playSoundEffect()
         let noteGroupNotes = fetchedResultsController.object(at: indexPath)
         let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
         let createNoteContrll = storyboard_main.instantiateViewController(withIdentifier: "CreateNoteControllerSingle") as! CreateNoteControllerSingle
