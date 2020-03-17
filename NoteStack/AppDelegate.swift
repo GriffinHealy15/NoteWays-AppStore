@@ -201,6 +201,21 @@ Press OK to terminate the app. Sorry for the inconvenience.
                 let tabController = self.window!.rootViewController!
                 tabController.present(alert, animated: true, completion: nil)
         })
+        
+//        NotificationCenter.default.addObserver(
+//        self,
+//        selector: #selector(keyboardWillShow),
+//        name: UIResponder.keyboardWillShowNotification,
+//        object: nil)
     }
+    
+//        @objc func keyboardWillShow(_ notification: Notification) {
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            print("HEIGHT")
+//            print(keyboardHeight)
+//        }
+//    }
 }
 

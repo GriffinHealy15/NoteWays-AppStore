@@ -15,7 +15,7 @@ protocol EditNoteDelegate {
     func retrievedEditNoteText(NoteGroupNamePassed: String)
 }
 
-class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PhotoOrLocationDelegate2 {
+class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PhotoOrLocationDelegate2 {
     
     init(passednoteText: String, passedImage: UIImage?,
          passedNotesArray: [UIImage?], passedLocationsArray: [Int?]) {
@@ -50,6 +50,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     var tempNotePhotoID: NSNumber?
     
     var soundID: SystemSoundID = 0
+    var keyBoardHeightGlobal: CGFloat = 0
     
     var noteTextField1: NSLayoutConstraint?
     var noteTextField2: NSLayoutConstraint?
@@ -71,12 +72,19 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
     
     override func viewDidLoad() {
        super.viewDidLoad()
+        
+        
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(keyboardWillShow),
+        name: UIResponder.keyboardWillShowNotification,
+        object: nil)
 
         let noteColorArray =  noteToEdit?.noteColorArray
         for i in 0...noteColorArray!.count - 1 {
             rgbColorArrayFloat.append(noteColorArray![i] as! CGFloat)
         }
-        print(rgbColorArrayFloat)
+        //print(rgbColorArrayFloat)
         for _ in 0...rgbColorArrayFloat.count - 1 {
             red = rgbColorArrayFloat[0]
             green = rgbColorArrayFloat[1]
@@ -85,6 +93,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
        view.backgroundColor = .rgb(red: red, green: green, blue: blue)
        noteTextField.backgroundColor = .rgb(red: red, green: green, blue: blue)
        noteTextField.delegate = self
+       scrollView.delegate = self
        noteTextField.text = noteText
        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
        noteTextField.textColor = .black
@@ -112,8 +121,9 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
        navigationItem.leftBarButtonItems![1].tintColor = .black
        navigationItem.leftBarButtonItems![0].tintColor = .rgb(red: 0, green: 197, blue: 255)
         
-       noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height/1.83))
+       noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.445) - ((self.navigationController?.navigationBar.frame.size.height)!) - ((self.tabBarController?.tabBar.frame.size.height)!))
        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
+
        noteTextField1!.isActive = false
        noteTextField2!.isActive = true
         
@@ -177,7 +187,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
             noteTextField.tintColor = .white
         }
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
-        print(noteTextField.selectedRange.location)
+        //print(noteTextField.selectedRange.location)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -198,8 +208,8 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
         //print("Deleting all images before re-saving new images...")
         print("Saving note...")
         noteText = noteTextField.text
-        print(noteText.count)
-        print(noteTextField.selectedRange.location)
+        //print(noteText.count)
+        //print(noteTextField.selectedRange.location)
         noteToEdit?.noteText = noteText
         noteToEdit?.notePhotoId = nil
         noteToEdit?.date = date
@@ -344,6 +354,16 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
         AudioServicesPlaySystemSound(soundID)
     }
     
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            keyBoardHeightGlobal = keyboardHeight
+            //print(keyBoardHeightGlobal)
+            //print(self.view.frame.height)
+        }
+    }
+    
         func textViewDidBeginEditing(_ textView: UITextView) {
     //        noteTextField.text = ""
             if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
@@ -390,4 +410,14 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UINavigat
            noteTextField1!.isActive = false
            noteTextField2!.isActive = true
        }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y < 0) {
+            //print("Reached top")
+            scrollView.keyboardDismissMode = .interactive
+            
+            noteTextField1!.isActive = false
+            noteTextField2!.isActive = true
+        }
+    }
 }

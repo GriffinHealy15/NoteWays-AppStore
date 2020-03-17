@@ -192,13 +192,17 @@ class LocationsViewController: UITableViewController {
         let labelRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 14,
                                width: 300, height: 14)
         let label = UILabel(frame: labelRect)
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.backgroundColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "PingFangTC-Semibold", size: 16)
+        //label.backgroundColor = .white
+        label.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
         // ask the tableView's dataSource (which is this view controller LocationsViewController) for the text for each section, to put in the header were creating
         label.text = tableView.dataSource!.tableView!(
             tableView, titleForHeaderInSection: section)
-        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
-        label.backgroundColor = UIColor.white
+        label.textColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.9)
+        label.layer.cornerRadius = 7
+        label.clipsToBounds = true
+        //label.backgroundColor = UIColor.white
         let separatorRect = CGRect(
             x: 15, y: tableView.sectionHeaderHeight - 0.5,
             width: tableView.bounds.size.width - 15, height: 0.5)

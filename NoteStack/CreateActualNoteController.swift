@@ -28,7 +28,7 @@ protocol CreateNoteDelegate {
                            noteLocationsArray: [Int?])
 }
 
-class CreateActualNoteController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, PhotoOrLocationDelegate {
+class CreateActualNoteController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, PhotoOrLocationDelegate {
     
 
     // MARK: UI Elements
@@ -129,6 +129,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         //noteTextField.backgroundColor = .rgb(red: 0, green: 170, blue: 245)
         //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "temp")!)
         noteTextField.delegate = self
+        scrollView.delegate = self
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         noteTextField.tintColor = .orange
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
@@ -140,8 +141,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         title = "Create Note"
         let formView = UIView()
         
-        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height/1.7))
-        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.56) - ((self.navigationController?.navigationBar.frame.size.height)!))
+
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
         noteTextField1!.isActive = false
         noteTextField2!.isActive = true
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -388,6 +390,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField1!.isActive = false
         noteTextField2!.isActive = true
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y < 0) {
+            //print("Reached top")
+            scrollView.keyboardDismissMode = .interactive
+        }
+    }
+
 }
 
 

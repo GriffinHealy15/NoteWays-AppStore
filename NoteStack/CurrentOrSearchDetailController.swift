@@ -82,11 +82,11 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     var addressText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 18), textColor: .black, textAlignment: .left)
+    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 16), textColor: .black, textAlignment: .left)
     
-    var descriptionLabel = UILabel(text: "Description", font: UIFont(name: "PingFangTC-Semibold", size: 18), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var descriptionLabel = UILabel(text: "Description", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    lazy var categoryButton = UIButton(title: "Category (Tap to Change)", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
+    lazy var categoryButton = UIButton(title: "Category (Tap to Change)", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
     
     var categoryText = UILabel(text: "No Category", font: .boldSystemFont(ofSize: 22), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
@@ -102,16 +102,24 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     
     var soundID: SystemSoundID = 0
     
-    var addPhotoButton = UIButton(title: "Add Photo (Tap to Change)", titleColor: .white, font: UIFont(name: "PingFangHK-Regular", size: 20)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
+    var addPhotoButton = UIButton(title: "Add Photo (Tap to Change)", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
+    
+    var constraintWithNoPhoto: NSLayoutConstraint?
+    var constraintWithPhoto: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        constraintWithNoPhoto = addPhotoButton.heightAnchor.constraint(equalToConstant: 50)
+        
+        constraintWithPhoto = addPhotoButton.heightAnchor.constraint(equalToConstant: 250)
         
         latitudeLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
         longitudeLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
         addressLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
         locationNameLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
         dateLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
+        descriptionLabel.backgroundColor = .rgb(red: 37, green: 199, blue: 255)
         latitudeLabel.layer.cornerRadius = 7
         latitudeLabel.clipsToBounds = true
         longitudeLabel.layer.cornerRadius = 7
@@ -122,6 +130,8 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         locationNameLabel.clipsToBounds = true
         dateLabel.layer.cornerRadius = 7
         dateLabel.clipsToBounds = true
+        descriptionLabel.layer.cornerRadius = 7
+        descriptionLabel.clipsToBounds = true
         
         descriptionTextField.delegate = self
         descriptionTextField.backgroundColor = .white
@@ -165,6 +175,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         dateText.text = format(date: date)
         title = "Create Location"
         
+        // Edit Existing Location
         if let location = locationToEdit {
             title = "Edit Location"
             openInMapView.isEnabled = true
@@ -175,10 +186,27 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
             // everytime we load the details view controller, we want to see if the location object has a photo id. If if does that means there is a photoImage with the name Photo-ID that the location object stores. So a location objects photoID matches the ID of that picture. So ID = 5 for location object 5 has a photo with name Photo-5.jpg.
             if location.hasPhoto {
                 if let theImage = location.photoImage {
+                    constraintWithNoPhoto?.isActive = false
+                    constraintWithPhoto?.isActive = true
                     show(image: theImage)
                 }
+                else {
+                constraintWithNoPhoto?.isActive = true
+                constraintWithPhoto?.isActive = false
+                }
+            }
+                // Location has no photo
+            else {
+                constraintWithNoPhoto?.isActive = true
+                constraintWithPhoto?.isActive = false
             }
             // End of new code
+        }
+            
+        // New Location
+        else {
+            constraintWithNoPhoto?.isActive = true
+            constraintWithPhoto?.isActive = false
         }
         
         view.backgroundColor = .white
@@ -209,12 +237,11 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         formView2.layer.cornerRadius = 30
         formView2.clipsToBounds = true
         
-        formView3.stack(UIView().withHeight(10), formView.hstack(UIView().withWidth(10),openInMapView,UIView().withWidth(10)), UIView().withHeight(9), formView.hstack(UIView().withWidth(10),openGetDirections,UIView().withWidth(10)), UIView().withHeight(10),
-                        descriptionLabel, UIView().withHeight(5),descriptionTextField.withHeight(100), UIView().withHeight(30),categoryButton.withHeight(33),UIView().withHeight(5) ,formView.hstack(categoryText),UIView().withHeight(10), addPhotoButton,
-                        UIView().withHeight(25), locationNameLabel.withHeight(33), UIView().withHeight(5),
+        formView3.stack(UIView().withHeight(10), locationNameLabel.withHeight(33), UIView().withHeight(5),
         formView.hstack(locationNameText), UIView().withHeight(10), addressLabel.withHeight(33), UIView().withHeight(5),
-        formView.hstack(addressText),
-        UIView().withHeight(20), latitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(latitudeText),UIView().withHeight(20), longitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(longitudeText), UIView().withHeight(20), dateLabel.withHeight(33), UIView().withHeight(5), formView.hstack( dateText),UIView().withHeight(20)).withMargins(.init(top: 5, left: 20, bottom: 5, right: 20))
+        formView.hstack(addressText), UIView().withHeight(10), formView.hstack(UIView().withWidth(10),openInMapView,UIView().withWidth(10)), UIView().withHeight(9), formView.hstack(UIView().withWidth(10),openGetDirections,UIView().withWidth(10)), UIView().withHeight(17),
+                        descriptionLabel.withHeight(33), UIView().withHeight(5),descriptionTextField.withHeight(120), UIView().withHeight(30),categoryButton.withHeight(33),UIView().withHeight(5) ,formView.hstack(categoryText),UIView().withHeight(20), addPhotoButton,
+                        UIView().withHeight(30), latitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(latitudeText),UIView().withHeight(20), longitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(longitudeText), UIView().withHeight(20), dateLabel.withHeight(33), UIView().withHeight(5), formView.hstack( dateText),UIView().withHeight(20)).withMargins(.init(top: 5, left: 20, bottom: 5, right: 20))
         
         formView.stack(detailsLabel.withHeight(45),formView3).withMargins(.init(top: 0, left: 0, bottom: 0, right: 0))
         
@@ -388,6 +415,8 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     }
     
     func show(image: UIImage) {
+        constraintWithNoPhoto?.isActive = false
+        constraintWithPhoto?.isActive = true
         addPhotoButton.withHeight(250)
         addPhotoButton.layer.borderWidth = 0.55
         addPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
