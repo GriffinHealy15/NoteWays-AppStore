@@ -12,6 +12,7 @@ import LBTATools
 import AudioToolbox
 
 // -- ABOUT PAGE LISTING LICENSING CREDITS TO ALL 3RD PARTY LIBRARIES USED -- //
+// VERSION 1.0 BUILD 3
 
 class AboutController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
