@@ -134,7 +134,6 @@ class AboutController: LBTAFormController, UIPopoverPresentationControllerDelega
                        noteTextField4.withHeight(530),
                        icons8.withHeight(19),
                        noteTextField6.withHeight(30),
-                       noteTextField5.withHeight(30),
         UIView().withHeight(0),spacing: 10).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
 
         formContainerStackView.padBottom(0)
