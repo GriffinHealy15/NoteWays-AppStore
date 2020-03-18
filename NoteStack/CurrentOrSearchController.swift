@@ -318,12 +318,16 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                 self.addressLabel.textColor = .black
                 addressLabel.adjustsFontSizeToFitWidth = false
             } else if performingReverseGeocoding {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+                print("no place")
                 addressLabel.text = "Searching for Address..."
                 locationLabel.text = "Searching..."
             } else if lastGeocodingError != nil {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
                 addressLabel.text = "Error Finding Address"
                 locationLabel.text = "Error Finding Location"
             } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
                 addressLabel.text = "No Address Found"
                 locationLabel.text = "No Location Found"
             }
@@ -341,14 +345,18 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
             if let error = lastLocationError as NSError? {
                 if error.domain == kCLErrorDomain &&
                     error.code == CLError.denied.rawValue {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
                     statusMessage = "Location Services Disabled"
                 } else {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
                     statusMessage = "Error Getting Location"
                 }
                 // user disabled all location services on iphone
             } else if !CLLocationManager.locationServicesEnabled() {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
                 statusMessage = "Location Services Disabled"
             } else if updatingLocation {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
                 statusMessage = "Searching..."
             } else {
                 statusMessage = ""
