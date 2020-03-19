@@ -107,10 +107,14 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     var constraintWithNoPhoto: NSLayoutConstraint?
     var constraintWithPhoto: NSLayoutConstraint?
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("Appear")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        constraintWithNoPhoto = addPhotoButton.heightAnchor.constraint(equalToConstant: 50)
+        constraintWithNoPhoto = addPhotoButton.heightAnchor.constraint(equalToConstant: 190)
         
         constraintWithPhoto = addPhotoButton.heightAnchor.constraint(equalToConstant: 250)
         
@@ -240,7 +244,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         formView3.stack(UIView().withHeight(10), locationNameLabel.withHeight(33), UIView().withHeight(5),
         formView.hstack(locationNameText), UIView().withHeight(10), addressLabel.withHeight(33), UIView().withHeight(5),
         formView.hstack(addressText), UIView().withHeight(10), formView.hstack(UIView().withWidth(10),openInMapView,UIView().withWidth(10)), UIView().withHeight(9), formView.hstack(UIView().withWidth(10),openGetDirections,UIView().withWidth(10)), UIView().withHeight(17),
-                        descriptionLabel.withHeight(33), UIView().withHeight(5),descriptionTextField.withHeight(120), UIView().withHeight(30),categoryButton.withHeight(33),UIView().withHeight(5) ,formView.hstack(categoryText),UIView().withHeight(20), addPhotoButton,
+                        descriptionLabel.withHeight(33), UIView().withHeight(5),descriptionTextField.withHeight(120), UIView().withHeight(15),categoryButton.withHeight(33),UIView().withHeight(5) ,formView.hstack(categoryText),UIView().withHeight(20), addPhotoButton,
                         UIView().withHeight(30), latitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(latitudeText),UIView().withHeight(20), longitudeLabel.withHeight(33),UIView().withHeight(5), formView.hstack(longitudeText), UIView().withHeight(20), dateLabel.withHeight(33), UIView().withHeight(5), formView.hstack( dateText),UIView().withHeight(20)).withMargins(.init(top: 5, left: 20, bottom: 5, right: 20))
         
         formView.stack(detailsLabel.withHeight(45),formView3).withMargins(.init(top: 0, left: 0, bottom: 0, right: 0))
@@ -417,7 +421,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     func show(image: UIImage) {
         constraintWithNoPhoto?.isActive = false
         constraintWithPhoto?.isActive = true
-        addPhotoButton.withHeight(250)
+        //addPhotoButton.withHeight(250)
         addPhotoButton.layer.borderWidth = 0.55
         addPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         addPhotoButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
