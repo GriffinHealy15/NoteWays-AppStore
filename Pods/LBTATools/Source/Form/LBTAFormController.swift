@@ -45,7 +45,6 @@ open class LBTAFormController: UIViewController {
         view.addSubview(scrollView)
         scrollView.fillSuperview()
         scrollView.addSubview(formContainerStackView)
-        
         if alignment == .top {
             formContainerStackView.anchor(top: scrollView.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor)
         } else {

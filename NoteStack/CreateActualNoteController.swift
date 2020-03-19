@@ -131,7 +131,8 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.delegate = self
         scrollView.delegate = self
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
-        noteTextField.tintColor = .orange
+        //noteTextField.tintColor = .orange
+        navigationController?.navigationBar.isHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.tintColor = .darkGray
@@ -141,23 +142,57 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         title = "Create Note"
         let formView = UIView()
         
-        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.56) - ((self.navigationController?.navigationBar.frame.size.height)!))
-
+        if (view.frame.size.height == 896) {
+        print("iPhone Xr, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max")
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.47) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
+        }
+        else if (view.frame.size.height == 812) {
+        print("iPhone X, iPhone XS, iPhone 11 Pro")
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.50) - ((self.navigationController?.navigationBar.frame.size.height)!))
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
+        }
+        else if (view.frame.size.height == 736) {
+        print("iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus")
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.43) - ((self.navigationController?.navigationBar.frame.size.height)!))
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 110)
+        }
+        else if (view.frame.size.height == 667) {
+        print("iPhone 6,iPhone 6s, iPhone 6 Plus ,iPhone 7, iPhone 8")
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.46) - ((self.navigationController?.navigationBar.frame.size.height)!))
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
+        }
+        else if (view.frame.size.height == 568) {
+        print("iPhone SE")
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.53) - ((self.navigationController?.navigationBar.frame.size.height)!))
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
+        }
+        else {
+        print("Other iPhone Model")
+        print(view.frame.size.height)
+        noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.650) - ((self.navigationController?.navigationBar.frame.size.height)!))
+        noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
+        }
+        
         noteTextField1!.isActive = false
         noteTextField2!.isActive = true
+        
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
         
         formView.stack(UIView().withHeight(5),
-        noteTextField,
-        UIView().withHeight(30),spacing: 16).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
+        noteTextField, spacing: 16).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
         
+        // Disable scroll for the main view
+        scrollView.isScrollEnabled = false
         formContainerStackView.padBottom(-24)
         formContainerStackView.addArrangedSubview(formView)
+
     }
     
     @objc func cancelNote() {
-        dismiss(animated: true)
+        //dismiss(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func saveNote() {
@@ -248,7 +283,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         self.delegate = createNoteController
         delegate?.retrievedNoteText(onlyNoteText: onlyNoteText, NoteGroupNamePassed: NoteGroupNamePassed, noteText: noteText, noteImage: noteImage, noteImagesArray: noteImagesArray, noteLocationsArray: noteLocationsArray)
         
-        self.navigationController?.dismiss(animated: true)
+        //self.navigationController?.dismiss(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.popViewController(animated: true)
         //print("dismissed")
     }
     
@@ -352,6 +389,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         noteTextField1!.isActive = true
         noteTextField2!.isActive = false
+
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -381,7 +419,6 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
                 }else{
                     print("No image attched")
                 }
-                noteTextField.scrollRangeToVisible(NSRange(location:noteTextField.selectedRange.location, length:0))
             }
         }
     }

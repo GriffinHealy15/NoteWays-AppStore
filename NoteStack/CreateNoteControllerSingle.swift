@@ -98,8 +98,10 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
         noteActualController.singleController = self
         //navigationController?.pushViewController(noteActualController, animated: true)
 
-        let navController = UINavigationController(rootViewController: noteActualController)
-        present(navController, animated: true)
+//        let navController = UINavigationController(rootViewController: noteActualController)
+//        present(navController, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(noteActualController, animated: true)
     }
     
     func retrievedEditNoteText(NoteGroupNamePassed: String) {
