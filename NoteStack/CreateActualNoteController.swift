@@ -429,12 +429,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         if (scrollView.contentOffset.y < 0) {
-            //print("Reached top")
-            scrollView.keyboardDismissMode = .interactive
+            scrollView.keyboardDismissMode = .onDrag
+        }
+        if (scrollView.contentOffset.y > 0) {
+                scrollView.keyboardDismissMode = .none
         }
     }
-
 }
 
 

@@ -444,11 +444,12 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y < 0) {
-            //print("Reached top")
-            scrollView.keyboardDismissMode = .interactive
-            
+            scrollView.keyboardDismissMode = .onDrag
             noteTextField1!.isActive = false
             noteTextField2!.isActive = true
+        }
+        if (scrollView.contentOffset.y > 0) {
+            scrollView.keyboardDismissMode = .none
         }
     }
 }
