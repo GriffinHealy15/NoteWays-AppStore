@@ -49,7 +49,9 @@ class MapViewController: UIViewController {
         navigationItem.leftBarButtonItems![0].isEnabled = false
         navigationItem.leftBarButtonItems![0].tintColor = .clear
         if (singleLocation == nil) {
-        navigationItem.leftBarButtonItems![0] = navigationItem.leftBarButtonItems![1]
+            navigationItem.leftBarButtonItem! = UIBarButtonItem(image: #imageLiteral(resourceName: "mapmark"), style: .done, target: self, action: #selector(showLocations))
+            navigationItem.leftBarButtonItems![1].isEnabled = false
+            navigationItem.leftBarButtonItems![1].image = nil
         }
         if !locations.isEmpty {
             showLocations()

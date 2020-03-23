@@ -15,7 +15,7 @@ protocol HandleAddressSelectDelegate {
     func handleAddress(address: String, selectedName: String)
 }
 
-class SearchBarTableController: UITableViewController {
+class SearchBarTableController: UITableViewController, UISearchBarDelegate {
     
     var matchingItems: [MKMapItem] = []
     
@@ -35,16 +35,50 @@ class SearchBarTableController: UITableViewController {
     var soundID: SystemSoundID = 0
     var keyBoardHeightGlobal: CGFloat = 0
     
+    var searchBar: UISearchBar?
+    
+    var extraYHeight: CGFloat = 0.0
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        if (view.frame.size.height == 896) {
+        print("iPhone Xr, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max")
+                }
+        else if (view.frame.size.height == 812) {
+        print("iPhone X, iPhone XS, iPhone 11 Pro")
+        
+        }
+        else if (view.frame.size.height == 736) {
+        print("iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus")
+        
+        }
+        else if (view.frame.size.height == 667) {
+        print("iPhone 6,iPhone 6s, iPhone 6 Plus ,iPhone 7, iPhone 8")
+        extraYHeight = 7
+        }
+        else if (view.frame.size.height == 568) {
+        print("iPhone SE")
+        extraYHeight = 7
+        }
+        else {
+        print("Other iPhone Model")
+        print(view.frame.size.height)
+        }
+        
         //self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
-        self.tableView.frame = CGRect(x: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/1.12) , y: 130, width: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/6.5), height: (self.currentOrSearchController?.view.frame.height)! - (self.keyBoardHeightGlobal + 130))
+        self.tableView.frame = CGRect(x: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/1.05) , y: 105 + extraYHeight, width: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/6.5), height: (self.currentOrSearchController?.view.frame.height)! - (self.keyBoardHeightGlobal + 110))
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        var searchBarFrame = self.searchBar!.frame
+        searchBarFrame.size.width = currentOrSearchController!.view.frame.size.width
+        self.searchBar!.frame = searchBarFrame
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         NotificationCenter.default.addObserver(
         self,
         selector: #selector(keyboardWillShow),
@@ -59,13 +93,22 @@ class SearchBarTableController: UITableViewController {
         locationManager.requestLocation()
         resultSearchController = UISearchController(searchResultsController: self)
         resultSearchController.searchResultsUpdater = self
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places..."
+        searchBar = resultSearchController!.searchBar
+        searchBar!.sizeToFit()
+        searchBar!.placeholder = "Search for places..."
+        
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         navigationItem.titleView = resultSearchController?.searchBar
-        navigationItem.titleView?.backgroundColor = .white
+        navigationItem.titleView?.backgroundColor = .rgb(red: 0, green: 220, blue: 254)
+        navigationItem.titleView?.tintColor = .black
+        
+        if let textFieldInsideSearchBar  = searchBar!.value(forKey: "searchField") as? UITextField {
+            textFieldInsideSearchBar.textColor = .black
+            textFieldInsideSearchBar.backgroundColor = UIColor.white
+        }
         resultSearchController.hidesNavigationBarDuringPresentation = false
     }
+    
     
     func parseAddress(selectedItem:MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
@@ -164,7 +207,7 @@ extension SearchBarTableController : UISearchResultsUpdating {
             self.matchingItems = response.mapItems
             //self.tableView.frame = CGRect(x: 20, y: self.view.frame.size.height / 2.0, width: 334, height: 300)
             //self.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 315)
-            self.tableView.frame = CGRect(x: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/1.12) , y: 130, width: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/6.5), height: (self.currentOrSearchController?.view.frame.height)! - (self.keyBoardHeightGlobal + 130))
+            self.tableView.frame = CGRect(x: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/1.05) , y: 105 + self.extraYHeight, width: (self.currentOrSearchController?.view.frame.width)! - ((self.currentOrSearchController?.view.frame.width)!/6.5), height: (self.currentOrSearchController?.view.frame.height)! - (self.keyBoardHeightGlobal + 110))
             
             self.tableView.reloadData()
 //            var frame = self.tableView.frame

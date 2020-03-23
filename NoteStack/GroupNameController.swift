@@ -54,6 +54,7 @@ class GroupNameController: LBTAFormController, UINavigationControllerDelegate, U
         groupNameTextField.layer.borderColor = UIColor.lightGray.cgColor
         groupNameTextField.layer.cornerRadius = 10
         groupNameTextField.withHeight(30)
+        groupNameTextField.addTarget(self, action: #selector(textFieldDidChangeSelection(_:)), for: UIControl.Event.editingChanged)
         saveGroupButton.isEnabled = false
         saveGroupButton.backgroundColor = .darkGray
         let formView = UIView()
@@ -118,6 +119,7 @@ class GroupNameController: LBTAFormController, UINavigationControllerDelegate, U
     }
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if (groupNameTextField.text != "") {
+            print("EDITING")
             saveGroupButton.backgroundColor = .rgb(red: 0, green: 172, blue: 237)
             saveGroupButton.isEnabled = true
         }

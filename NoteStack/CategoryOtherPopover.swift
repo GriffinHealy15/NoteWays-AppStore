@@ -44,6 +44,7 @@ class CategoryOtherPopover: LBTAFormController, UINavigationControllerDelegate, 
         groupNameTextField.textColor = .black
         groupNameTextField.attributedPlaceholder = NSAttributedString(string: "Category Name",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        groupNameTextField.addTarget(self, action: #selector(textFieldDidChangeSelection(_:)), for: UIControl.Event.editingChanged)
         groupNameTextField.delegate = self
         self.scrollView.isScrollEnabled = false
         saveGroupButton.layer.cornerRadius = 10

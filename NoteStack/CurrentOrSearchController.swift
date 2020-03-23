@@ -75,6 +75,8 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         title = "Tag Location"
         let formView = UIView()
         let formView2 = UIView()
+        let formViewSearch = UIView()
+        let formView3 = UIView()
         detailsLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
         detailsLabel.backgroundColor = .rgb(red: 2, green: 227, blue: 141)
         theAddressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
@@ -110,18 +112,31 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         let searchbarcontrl = navContrl.viewControllers.first as! SearchBarTableController
         searchbarcontrl.storyboard_1 = storyboard_1
         searchbarcontrl.currentOrSearchController = self
+        self.addChild(searchbarcontrl)
+        formViewSearch.backgroundColor = .yellow
+        formViewSearch.addSubview(searchbarcontrl.view)
+        searchbarcontrl.didMove(toParent: self)
 //        searchbarcontrl.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 700)
-           formView.stack(UIView().withHeight(10), navContrl.view.withHeight(50),
-//           formView.hstack(searchLocationText.withHeight(40).withWidth(250), UIView().withWidth(10).withHeight(50), searchLocationButton.withHeight(50)),
-//           UIView(backgroundColor: .white).withHeight(120),
-           orText.withHeight(20),
+        
+        formViewSearch.stack(navContrl.view.withHeight(50))
+        
+        formView3.stack(orText.withHeight(20), UIView().withHeight(10),
            tagMyLocationButton.withHeight(40),
            UIView(backgroundColor: .white).withHeight(35),formView2,
-            UIView(backgroundColor: .white).withHeight(45),
-        UIView().withHeight(30),spacing: 16).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
+        UIView().withHeight(30))
         
+        formView.stack(UIView().withHeight(10),
+//           formView.hstack(searchLocationText.withHeight(40).withWidth(250), UIView().withWidth(10).withHeight(50), searchLocationButton.withHeight(50)),
+//           UIView(backgroundColor: .white).withHeight(120),
+            formView3, spacing: 16).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
+        
+        let fv = UIView(backgroundColor: .purple)
+        fv.stack(formViewSearch, formView)
+        formView.backgroundColor = .white
+        formView3.backgroundColor = .white
+        formView2.backgroundColor = .white
         formContainerStackView.padBottom(-24)
-        formContainerStackView.addArrangedSubview(formView)
+        formContainerStackView.addArrangedSubview(fv)
     }
     
     func handleAddress(address: String, selectedName: String) {
