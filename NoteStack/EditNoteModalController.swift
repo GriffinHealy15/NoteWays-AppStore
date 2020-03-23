@@ -173,7 +173,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
     @objc func addSettings(_ sender: Any) {
         let vc = SettingsPopupController2()
         vc.managedObjectContext = managedObjectContext
-        vc.preferredContentSize = CGSize(width: 85, height: 85)
+        vc.preferredContentSize = CGSize(width: 200, height: 85)
         vc.modalPresentationStyle = .popover
         vc.scrollView.isScrollEnabled = false
         vc.createEditNoteViewController = self
