@@ -58,6 +58,7 @@
 		99AC042723FC7F160056971D /* pin_low2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042623FC7F150056971D /* pin_low2.mp3 */; };
 		99AC042923FC82930056971D /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042823FC82930056971D /* success.mp3 */; };
 		99AC042B23FC83700056971D /* swipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99AC042A23FC83700056971D /* swipe.mp3 */; };
+		99B0718E242C1BE3003EFE60 /* ChangeColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B0718D242C1BE3003EFE60 /* ChangeColorController.swift */; };
 		99B9B9BA2200D82600B7C904 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B9B9B92200D82600B7C904 /* MapKit.framework */; };
 		99BE3E092411964400D1908A /* SettingsPopupController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE3E082411964400D1908A /* SettingsPopupController2.swift */; };
 		99BE3E112411A7FA00D1908A /* Launch ScreenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BE3E102411A7FA00D1908A /* Launch ScreenStoryboard.storyboard */; };
@@ -129,6 +130,7 @@
 		99AC042623FC7F150056971D /* pin_low2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pin_low2.mp3; sourceTree = "<group>"; };
 		99AC042823FC82930056971D /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		99AC042A23FC83700056971D /* swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe.mp3; sourceTree = "<group>"; };
+		99B0718D242C1BE3003EFE60 /* ChangeColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeColorController.swift; sourceTree = "<group>"; };
 		99B9B9B92200D82600B7C904 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		99BE3E082411964400D1908A /* SettingsPopupController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupController2.swift; sourceTree = "<group>"; };
 		99BE3E102411A7FA00D1908A /* Launch ScreenStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch ScreenStoryboard.storyboard"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				99FAF9A92409915700C1E20A /* CategoryOtherPopover.swift */,
 				99543FAB21F926C500DA87EF /* CategoryPickerViewController.swift */,
 				994E174423FB401400152C6C /* CategoryPopoverController.swift */,
+				99B0718D242C1BE3003EFE60 /* ChangeColorController.swift */,
 				99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */,
 				995A970123E5E46A00C7CED4 /* CreateNoteController.swift */,
 				9986B8FC2407007800CF4FE4 /* CreateNoteControllerSingle.swift */,
@@ -446,6 +449,7 @@
 				990983C32406DA41002A614B /* NoteGroupCell.swift in Sources */,
 				9908614121F63EAD00494A28 /* AppDelegate.swift in Sources */,
 				99543FB621FA886E00DA87EF /* Location+CoreDataClass.swift in Sources */,
+				99B0718E242C1BE3003EFE60 /* ChangeColorController.swift in Sources */,
 				99543FAC21F926C500DA87EF /* CategoryPickerViewController.swift in Sources */,
 				99A5C3E7220B4BD700D0574D /* SearchCell.swift in Sources */,
 				997457082405D01A00F36648 /* GroupNameController.swift in Sources */,

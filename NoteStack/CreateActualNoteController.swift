@@ -28,9 +28,8 @@ protocol CreateNoteDelegate {
                            noteLocationsArray: [Int?])
 }
 
-class CreateActualNoteController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, PhotoOrLocationDelegate {
+class CreateActualNoteController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, PhotoOrLocationDelegate, ColorDelegate {
     
-
     // MARK: UI Elements
     
     // Managed object context
@@ -133,12 +132,13 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
         //noteTextField.tintColor = .orange
         navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.barTintColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.tintColor = .darkGray
-        navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote)),UIBarButtonItem(image: #imageLiteral(resourceName: "cameraicon"), style: .plain, target: self, action: #selector(addSettings(_:)))]
-        navigationItem.leftBarButtonItems![1].tintColor = .black
-        navigationItem.leftBarButtonItems![0].tintColor = .rgb(red: 0, green: 197, blue: 255)
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:))), UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote))]
+        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
+        navigationItem.leftBarButtonItems![0].tintColor = .black
         title = "Create Note"
         let formView = UIView()
         
@@ -318,7 +318,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     @objc func addSettings(_ sender: Any) {
            let vc = SettingsPopupController()
            vc.managedObjectContext = managedObjectContext
-           vc.preferredContentSize = CGSize(width: 200, height: 85)
+           vc.preferredContentSize = CGSize(width: 200, height: 170)
            vc.modalPresentationStyle = .popover
            vc.scrollView.isScrollEnabled = false
            vc.createActualNoteViewController = self
@@ -326,7 +326,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
            ppc?.permittedArrowDirections = .any
            ppc?.delegate = self
            ppc!.sourceView = sender as? UIView
-           ppc?.barButtonItem = navigationItem.leftBarButtonItems![1]
+           ppc?.barButtonItem = navigationItem.leftBarButtonItems![0]
            present(vc, animated: true, completion: nil)
        }
     
@@ -365,6 +365,28 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         }
         noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
     }
+    
+    func retrievedColorPick(red: Int, green: Int, blue: Int) {
+        self.view.backgroundColor = .rgb(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
+        noteTextField.backgroundColor = .rgb(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
+        
+        rgbColorArray = []
+        rgbColorArray.append(CGFloat(red))
+        rgbColorArray.append(CGFloat(green))
+        rgbColorArray.append(CGFloat(blue))
+        self.red = CGFloat(red)
+        self.green = CGFloat(green)
+        self.blue = CGFloat(blue)
+        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+            noteTextField.textColor = .black
+            noteTextField.tintColor = .black
+        }
+        else {
+            noteTextField.textColor = .white
+            noteTextField.tintColor = .white
+        }
+    }
+    
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
            return .none

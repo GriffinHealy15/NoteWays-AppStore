@@ -66,7 +66,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Continue", style: .done, target: self, action: #selector(saveLocation))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save Details", style: .done, target: self, action: #selector(saveLocation))
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelController))
         navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 197, blue: 255)
@@ -113,12 +113,14 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         searchbarcontrl.storyboard_1 = storyboard_1
         searchbarcontrl.currentOrSearchController = self
         self.addChild(searchbarcontrl)
-        formViewSearch.backgroundColor = .yellow
+        //formViewSearch.backgroundColor = .yellow
         formViewSearch.addSubview(searchbarcontrl.view)
         searchbarcontrl.didMove(toParent: self)
 //        searchbarcontrl.tableView.frame = CGRect(x: 20, y: 150, width: 334, height: 700)
+    
+        let lightBlueFill = UIView(backgroundColor: .rgb(red: 0, green: 220, blue: 254)).withHeight(10)
         
-        formViewSearch.stack(navContrl.view.withHeight(50))
+        formViewSearch.stack(navContrl.view.withHeight(50),lightBlueFill)
         
         formView3.stack(orText.withHeight(20), UIView().withHeight(10),
            tagMyLocationButton.withHeight(40),
@@ -130,7 +132,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
 //           UIView(backgroundColor: .white).withHeight(120),
             formView3, spacing: 16).withMargins(.init(top: 0, left: 20, bottom: 0, right: 20))
         
-        let fv = UIView(backgroundColor: .purple)
+        let fv = UIView(backgroundColor: .white)
         fv.stack(formViewSearch, formView)
         formView.backgroundColor = .white
         formView3.backgroundColor = .white

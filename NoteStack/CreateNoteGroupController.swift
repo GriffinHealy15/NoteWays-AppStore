@@ -13,7 +13,7 @@ import AudioToolbox
 
 class CreateNoteGroupController: UITableViewController, UIPopoverPresentationControllerDelegate, CreateNoteGroupDelegate,
 NoteRefreshProtocol{
-
+    
     var managedObjectContext: NSManagedObjectContext!
     var notesGroupArray = [String]()
     var notesgroup: NotesGroup?

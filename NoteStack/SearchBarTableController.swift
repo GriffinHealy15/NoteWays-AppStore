@@ -61,7 +61,7 @@ class SearchBarTableController: UITableViewController, UISearchBarDelegate {
         extraYHeight = 7
         }
         else {
-        print("Other iPhone Model")
+        print("Another iPhone Model")
         print(view.frame.size.height)
         }
         
@@ -93,10 +93,11 @@ class SearchBarTableController: UITableViewController, UISearchBarDelegate {
         locationManager.requestLocation()
         resultSearchController = UISearchController(searchResultsController: self)
         resultSearchController.searchResultsUpdater = self
+        resultSearchController.obscuresBackgroundDuringPresentation = false
         searchBar = resultSearchController!.searchBar
+        searchBar!.delegate = self
         searchBar!.sizeToFit()
         searchBar!.placeholder = "Search for places..."
-        
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         navigationItem.titleView = resultSearchController?.searchBar
         navigationItem.titleView?.backgroundColor = .rgb(red: 0, green: 220, blue: 254)
@@ -186,6 +187,10 @@ extension SearchBarTableController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: \(error)")
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("Searching...")
     }
 
 }

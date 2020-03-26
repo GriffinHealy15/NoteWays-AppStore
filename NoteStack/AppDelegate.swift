@@ -162,7 +162,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          //                       blue: 136/255.0, alpha: 1.0)
 //        let tintColor1 = UIColor(red: 74/255.0, green: 255/255.0,
 //                                blue: 255/255.0, alpha: 1.0)
-        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().tintColor = .black
+        UITabBar.appearance().unselectedItemTintColor = .rgb(red: 220, green: 220, blue: 220)
+        
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "DevanagariSangamMN-Bold", size: 21)!]
     }
     

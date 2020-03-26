@@ -15,7 +15,7 @@ protocol EditNoteDelegate {
     func retrievedEditNoteText(NoteGroupNamePassed: String)
 }
 
-class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PhotoOrLocationDelegate2 {
+class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PhotoOrLocationDelegate2, ColorDelegate2 {
     
     init(passednoteText: String, passedImage: UIImage?,
          passedNotesArray: [UIImage?], passedLocationsArray: [Int?]) {
@@ -117,9 +117,9 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
        title = "Edit Note"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
        navigationItem.rightBarButtonItem?.tintColor = .black
-       navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote)), UIBarButtonItem(image: #imageLiteral(resourceName: "cameraicon"), style: .plain, target: self, action: #selector(addSettings(_:)))]
-       navigationItem.leftBarButtonItems![1].tintColor = .black
-       navigationItem.leftBarButtonItems![0].tintColor = .rgb(red: 0, green: 197, blue: 255)
+       navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:))), UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote))]
+        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
+        navigationItem.leftBarButtonItems![0].tintColor = .black
         
        if (view.frame.size.height == 896) {
        print("iPhone Xr, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max")
@@ -173,15 +173,15 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
     @objc func addSettings(_ sender: Any) {
         let vc = SettingsPopupController2()
         vc.managedObjectContext = managedObjectContext
-        vc.preferredContentSize = CGSize(width: 200, height: 85)
+        vc.preferredContentSize = CGSize(width: 200, height: 170)
         vc.modalPresentationStyle = .popover
         vc.scrollView.isScrollEnabled = false
-        vc.createEditNoteViewController = self
+        vc.editNoteViewController = self
         let ppc = vc.popoverPresentationController
         ppc?.permittedArrowDirections = .any
         ppc?.delegate = self
         ppc!.sourceView = sender as? UIView
-        ppc?.barButtonItem = navigationItem.leftBarButtonItems![1]
+        ppc?.barButtonItem = navigationItem.leftBarButtonItems![0]
         present(vc, animated: true, completion: nil)
     }
     
@@ -221,6 +221,30 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
         //print(noteTextField.selectedRange.location)
     }
     
+    func retrievedColorPick(red: Int, green: Int, blue: Int) {
+        self.view.backgroundColor = .rgb(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
+        noteTextField.backgroundColor = .rgb(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
+        
+        rgbColorArray = []
+        rgbColorArrayFloat = []
+        noteToEdit?.noteColorArray = []
+        rgbColorArrayFloat.append(CGFloat(red))
+        rgbColorArrayFloat.append(CGFloat(green))
+        rgbColorArrayFloat.append(CGFloat(blue))
+        self.red = CGFloat(red)
+        self.green = CGFloat(green)
+        self.blue = CGFloat(blue)
+        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+        noteTextField.textColor = .black
+        noteTextField.tintColor = .black
+        }
+        else {
+            noteTextField.textColor = .white
+            noteTextField.tintColor = .white
+        }
+    }
+    
+    
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
            return .none
        }
@@ -249,7 +273,6 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
         noteToEdit?.notePhotoLocation = []
         
         
-        
         //--- Start --- EDITED PHOTO - REMOVE SECTION IF ERRORS OCCUR --- START
         noteText = noteTextField.text
         noteTextField.font = .boldSystemFont(ofSize: 18)
@@ -274,6 +297,13 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
         }
         
         //--- END --- EDITED PHOTO - REMOVE SECTION IF ERRORS OCCUR  --- END
+        
+        // Add each color (red, green, blue) to the note object attribute
+        for i in 0...rgbColorArrayFloat.count - 1 {
+            let colorAtEachIndex: CGFloat = rgbColorArrayFloat[i]
+            let color: NSNumber = colorAtEachIndex as NSNumber
+            noteToEdit!.noteColorArray.append(color)
+        }
         
         // Save image
         if noteArray != [] {

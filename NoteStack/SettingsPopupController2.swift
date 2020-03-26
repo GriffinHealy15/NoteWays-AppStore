@@ -14,15 +14,20 @@ protocol PhotoOrLocationDelegate2 {
     func retrievedPhoto(image: UIImage)
 }
 
+protocol ColorDelegate2 {
+    func retrievedColorPick(red: Int, green: Int, blue: Int)
+}
 
-class SettingsPopupController2: LBTAFormController {
-    
+class SettingsPopupController2: LBTAFormController, PickColorDelegate, UIPopoverPresentationControllerDelegate {
     
     // CreateActualNoteController
-    var createEditNoteViewController:EditNoteModalController?
+    var editNoteViewController:EditNoteModalController?
     
     // delegate var for the protocol above
     var delegate: PhotoOrLocationDelegate2?
+    
+    // delegate var for the protocol above
+    var delegateColor: ColorDelegate2?
     
     var image: UIImage?
     
@@ -35,7 +40,7 @@ class SettingsPopupController2: LBTAFormController {
     
     lazy var addPhotoButton = UIButton(image: #imageLiteral(resourceName: "cameraicon"), tintColor: .black, target: self, action: #selector(addPhoto))
     
-    lazy var addLocationButton = UIButton(image: #imageLiteral(resourceName: "location"), tintColor: .black, target: self, action: #selector(addLocation))
+    lazy var changeColorButton = UIButton(image: #imageLiteral(resourceName: "colorWheel").withRenderingMode(.alwaysOriginal), tintColor: .none, target: self, action: #selector(changeColor))
     
     let imageView = UIImageView(frame: CGRect(x: 42.5, y: 42.5, width: 20, height: 20))
 
@@ -46,13 +51,13 @@ class SettingsPopupController2: LBTAFormController {
        addPhotoButton.layer.borderColor = UIColor.black.cgColor
        addPhotoButton.layer.borderWidth = 0.3
        addPhotoButton.withHeight(85)
-       addLocationButton.layer.borderColor = UIColor.black.cgColor
-       addLocationButton.layer.borderWidth = 0.3
-       addLocationButton.withHeight(100)
+       changeColorButton.layer.borderColor = UIColor.black.cgColor
+       changeColorButton.layer.borderWidth = 0.3
+       changeColorButton.withHeight(85)
         self.scrollView.isScrollEnabled = false
         
-        let formView = UIView().withHeight(85)
-       formView.stack(addPhotoButton)
+        let formView = UIView().withHeight(170)
+       formView.stack(addPhotoButton, changeColorButton)
        
        formContainerStackView.padBottom(0)
        formContainerStackView.addArrangedSubview(formView)
@@ -62,19 +67,45 @@ class SettingsPopupController2: LBTAFormController {
         pickPhoto()
     }
     
-    @objc func addLocation() {
-        print("Add location here...")
+    @objc func changeColor() {
+        let vc = ChangeColorController()
+        vc.managedObjectContext = managedObjectContext
+        vc.preferredContentSize = CGSize(width: 300, height: 300)
+        vc.modalPresentationStyle = .popover
+        vc.scrollView.isScrollEnabled = false
+        vc.settingsViewController2 = self
+        let ppc = vc.popoverPresentationController
+        ppc?.permittedArrowDirections = .init(rawValue: 0)
+        ppc?.delegate = self
+        ppc!.sourceView = editNoteViewController!.view
+        ppc?.passthroughViews = nil
+        print(self.view.bounds.midX)
+        ppc?.sourceRect =  CGRect(x: editNoteViewController!.view.bounds.midX, y: editNoteViewController!.view.bounds.midY - 80, width: 0, height: 0)
+        present(vc, animated: true, completion: nil)
     }
+    
+    func retrievedColor(red: Int, green: Int, blue: Int) {
+        let editNoteController = editNoteViewController
+        editNoteController?.managedObjectContext = managedObjectContext
+        self.delegateColor = editNoteController
+        delegateColor?.retrievedColorPick(red: red, green: green, blue: blue)
+        dismiss(animated: true)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+             return .none
+         }
     
     func show(image: UIImage) {
         imageView.image = image
-        let createNoteController = createEditNoteViewController
-        createNoteController?.managedObjectContext = managedObjectContext
-        self.delegate = createNoteController
+        let editNoteController = editNoteViewController
+        editNoteController?.managedObjectContext = managedObjectContext
+        self.delegate = editNoteController
         delegate?.retrievedPhoto(image: image)
         dismiss(animated: true)
     }
 }
+
 
 extension SettingsPopupController2:
     UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -157,3 +188,4 @@ extension SettingsPopupController2:
         dismiss(animated: true, completion: nil)
     }
 }
+
