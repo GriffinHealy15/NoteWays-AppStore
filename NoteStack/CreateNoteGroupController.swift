@@ -198,7 +198,48 @@ NoteRefreshProtocol{
             // print("Location: \(location)\n")
             // configure cell for the location object
             cell.configure(for: notegroup, count: totalNotes)
-            //cell.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+            
+            // the following code increases cell border only on specified borders
+            let bottom_border = CALayer()
+            let bottom_padding = CGFloat(5.0)
+            bottom_border.borderColor = UIColor.white.cgColor
+            bottom_border.frame = CGRect(x: 0, y: cell.frame.size.height - bottom_padding, width:  cell.frame.size.width, height: cell.frame.size.height)
+            bottom_border.borderWidth = bottom_padding
+
+            let right_border = CALayer()
+            let right_padding = CGFloat(15.0)
+            right_border.borderColor = UIColor.white.cgColor
+            right_border.frame = CGRect(x: cell.frame.size.width - right_padding, y: 0, width: right_padding, height: cell.frame.size.height)
+            right_border.borderWidth = right_padding
+
+            let left_border = CALayer()
+            let left_padding = CGFloat(15.0)
+            left_border.borderColor = UIColor.white.cgColor
+            left_border.frame = CGRect(x: 0, y: 0, width: left_padding, height: cell.frame.size.height)
+            left_border.borderWidth = left_padding
+
+            let top_border = CALayer()
+            let top_padding = CGFloat(3.0)
+            top_border.borderColor = UIColor.white.cgColor
+            top_border.frame = CGRect(x: 0, y: 0, width: cell.frame.size.width, height: top_padding)
+            top_border.borderWidth = top_padding
+            
+            let border_Around_Bordered_Cell = CALayer()
+            border_Around_Bordered_Cell.frame = CGRect(x: 15, y: 3, width: cell.frame.size.width - 30, height: cell.frame.size.height - 8)
+            border_Around_Bordered_Cell.borderWidth = 0.7
+            border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+            border_Around_Bordered_Cell.cornerRadius = 15
+            
+            cell.layer.addSublayer(border_Around_Bordered_Cell)
+            cell.layer.addSublayer(bottom_border)
+            cell.layer.addSublayer(right_border)
+            cell.layer.addSublayer(left_border)
+            cell.layer.addSublayer(top_border)
+            
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor.clear
+            cell.selectedBackgroundView = bgColorView
+            
             return cell }
 
     // enable swipe to delete, delete rows of objects that are no longer in the data store

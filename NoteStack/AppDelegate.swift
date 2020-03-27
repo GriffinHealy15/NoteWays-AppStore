@@ -81,14 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // find the first view controller of tab bar which is navigation controller
 
         if let tabViewControllers = tabController.viewControllers {
-            // First tab
-//            var navController = tabViewControllers[0]
-//                as! UINavigationController
-//            let controller1 = navController.viewControllers.first
-//                as! CurrentLocationViewController
-//            controller1.managedObjectContext = managedObjectContext
 
-            // Second tab
+            // First tab
             var navController = tabViewControllers[0]
                 as! UINavigationController
             let controller2 = navController.viewControllers.first
@@ -97,25 +91,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             controller2.storyboard_1 = storyboard_1
             let _ = controller2.view
             
-            // Third tab
+            // Second tab
             navController = tabViewControllers[1] as! UINavigationController
             let controller3 = navController.viewControllers.first
                 as! MapViewController
             controller3.managedObjectContext = managedObjectContext
-
-            // Fourth tab
-//            navController = tabViewControllers[3] as! UINavigationController
-//            let controller4 = navController.viewControllers.first
-//                as! SearchViewController
-//            controller4.managedObjectContext = managedObjectContext
             
-            // Fifth tab
-//            navController = tabViewControllers[3] as! UINavigationController
-//            let controller6 = navController.viewControllers.first
-//                as! CreateNoteController
-//            controller6.managedObjectContext = managedObjectContextNote
-            
-            // Fifth tab
+            // Third tab
             navController = tabViewControllers[2] as! UINavigationController
             let controller7 = navController.viewControllers.first
                 as! CreateNoteGroupController

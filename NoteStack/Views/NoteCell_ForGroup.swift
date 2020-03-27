@@ -19,6 +19,11 @@ class NoteCell_ForGroup: UITableViewCell {
     
     @IBOutlet weak var arrowImage: UIImageView!
     
+    var rgbColorArrayFloat: [CGFloat] = []
+    var red: CGFloat = 0
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let selection = UIView(frame: CGRect.zero)
@@ -84,6 +89,28 @@ class NoteCell_ForGroup: UITableViewCell {
             }
         }
         }
+//        rgbColorArrayFloat = []
+//        let noteColorArray =  note.noteColorArray
+//        for i in 0...noteColorArray.count - 1 {
+//            rgbColorArrayFloat.append(noteColorArray[i] as! CGFloat)
+//        }
+//        for _ in 0...rgbColorArrayFloat.count - 1 {
+//            red = rgbColorArrayFloat[0]
+//            green = rgbColorArrayFloat[1]
+//            blue = rgbColorArrayFloat[2]
+//        }
+//        
+//        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+//        noteLabel_1.textColor = .black
+//        noteLabel_1.tintColor = .black
+//        }
+//        else {
+//            noteLabel_1.textColor = .white
+//            noteLabel_1.tintColor = .white
+//        }
+        //backgroundColor = .rgb(red: red, green: green, blue: blue)
+        
+        backgroundColor = .white
         photoImage.image = thumbnail(for: note)
         arrowImage.image = UIImage(imageLiteralResourceName: "forward.png")
     }
@@ -108,8 +135,8 @@ class NoteCell_ForGroup: UITableViewCell {
         var _: Int = 5
           // if location oject hasPhoto (photo id has value of not nil), then we find the image for this location object by looking up the url using photo - id . jpg
         if note.hasPhoto, let image = note.photoImage {
-            return image.resized(withBounds: CGSize(width: 52,
-                                                    height: 52), aspectFit: false)
+            return image.resized(withBounds: CGSize(width: 50,
+                                                    height: 50), aspectFit: false)
         }
         else {
             let image = UIImage(imageLiteralResourceName: "placeholder.png")

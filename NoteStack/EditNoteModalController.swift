@@ -115,10 +115,10 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
        //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "whitebackground")!)
        navigationController?.navigationBar.isHidden = false
        title = "Edit Note"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(saveNote))
        navigationItem.rightBarButtonItem?.tintColor = .black
-       navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:))), UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote))]
-        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
+       navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:)))]
+        // UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote))
         navigationItem.leftBarButtonItems![0].tintColor = .black
         
        if (view.frame.size.height == 896) {

@@ -12,7 +12,7 @@ import LBTATools
 import AudioToolbox
 
 class CreateNoteController: UITableViewController, CreateNoteDelegate {
-
+    
     var managedObjectContext: NSManagedObjectContext!
     var NoteGroupNamePassed: String = ""
     var noteTextFieldSet = ""
@@ -67,7 +67,7 @@ class CreateNoteController: UITableViewController, CreateNoteDelegate {
         present(navController, animated: true)
     }
     
-    func retrievedNoteText(onlyNoteText: String, NoteGroupNamePassed: String, noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?], noteLocationsArray: [Int?]) {
+    func retrievedNoteText(onlyNoteText: String, NoteGroupNamePassed: String, noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?], noteLocationsArray: [Int?], noteColorsArray: [CGFloat?]) {
         let note: Notes
         note = Notes(context: managedObjectContext)
         note.noteText = noteText

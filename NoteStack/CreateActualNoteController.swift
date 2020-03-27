@@ -25,7 +25,7 @@ private let dateFormatter: DateFormatter = {
 
 protocol CreateNoteDelegate {
     func retrievedNoteText(onlyNoteText: String, NoteGroupNamePassed: String, noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?],
-                           noteLocationsArray: [Int?])
+                           noteLocationsArray: [Int?], noteColorsArray: [CGFloat?])
 }
 
 class CreateActualNoteController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, PhotoOrLocationDelegate, ColorDelegate {
@@ -76,6 +76,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     var green: CGFloat = 0
     var blue: CGFloat = 0
     var rgbColorArray: [CGFloat] = []
+    var hasAPhoto: Bool = false
         
     {
         didSet
@@ -133,43 +134,44 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         //noteTextField.tintColor = .orange
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        navigationItem.rightBarButtonItem?.tintColor = .darkGray
-        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:))), UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote))]
-        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(saveNote))
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        //navigationItem.rightBarButtonItem?.tintColor = .darkGray
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "threedots"), style: .plain, target: self, action: #selector(addSettings(_:)))]
+        //UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelNote))
+        //navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
         navigationItem.leftBarButtonItems![0].tintColor = .black
         title = "Create Note"
         let formView = UIView()
         
         if (view.frame.size.height == 896) {
-        print("iPhone Xr, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max")
+        //print("iPhone Xr, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max")
         noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.47) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
         }
         else if (view.frame.size.height == 812) {
-        print("iPhone X, iPhone XS, iPhone 11 Pro")
+        //print("iPhone X, iPhone XS, iPhone 11 Pro")
         noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.50) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
         }
         else if (view.frame.size.height == 736) {
-        print("iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus")
+        //print("iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus")
         noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.43) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 110)
         }
         else if (view.frame.size.height == 667) {
-        print("iPhone 6,iPhone 6s, iPhone 6 Plus ,iPhone 7, iPhone 8")
+        //print("iPhone 6,iPhone 6s, iPhone 6 Plus ,iPhone 7, iPhone 8")
         noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.46) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
         }
         else if (view.frame.size.height == 568) {
-        print("iPhone SE")
+        //print("iPhone SE")
         noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.53) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 100)
         }
         else {
-        print("Other iPhone Model")
-        print(view.frame.size.height)
+        //print("Other iPhone Model")
+        //print(view.frame.size.height)
         noteTextField1 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - (view.frame.size.height * 0.650) - ((self.navigationController?.navigationBar.frame.size.height)!))
         noteTextField2 = noteTextField.heightAnchor.constraint(equalToConstant: view.frame.size.height - 140)
         }
@@ -197,6 +199,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     @objc func saveNote() {
         print("Saving note...")
+        // Note has no text or photo(s)
+        if ((noteTextField.text == "") && (hasAPhoto == false)) {
+           self.tabBarController?.tabBar.isHidden = false
+           self.navigationController?.popViewController(animated: true)
+        }
+        // Note has text and/or photo(s)
+        else {
+        
         if noteText.count == 0 {
             noteText = noteTextField.text
             //print(noteText)
@@ -281,12 +291,14 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         let createNoteController = singleController
         createNoteController.managedObjectContext = managedObjectContext
         self.delegate = createNoteController
-        delegate?.retrievedNoteText(onlyNoteText: onlyNoteText, NoteGroupNamePassed: NoteGroupNamePassed, noteText: noteText, noteImage: noteImage, noteImagesArray: noteImagesArray, noteLocationsArray: noteLocationsArray)
+        delegate?.retrievedNoteText(onlyNoteText: onlyNoteText, NoteGroupNamePassed: NoteGroupNamePassed, noteText: noteText, noteImage: noteImage, noteImagesArray: noteImagesArray, noteLocationsArray: noteLocationsArray, noteColorsArray: rgbColorArray)
         
         //self.navigationController?.dismiss(animated: true)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
         //print("dismissed")
+    }
+
     }
     
     // MARK:- Help Methods
@@ -331,6 +343,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
        }
     
     func retrievedPhoto(image: UIImage) {
+        self.hasAPhoto = true
         navigationItem.rightBarButtonItem?.isEnabled = true
         navigationItem.rightBarButtonItem?.tintColor = .black
         noteImage = image
@@ -398,8 +411,6 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-//        navigationItem.rightBarButtonItem?.isEnabled = true
-//        navigationItem.rightBarButtonItem?.tintColor = .black
         if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
         noteTextField.textColor = .black
         noteTextField.tintColor = .black
@@ -420,8 +431,8 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         navigationItem.rightBarButtonItem?.tintColor = .black
         }
         if noteTextField.text == "" {
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            navigationItem.rightBarButtonItem?.tintColor = .darkGray
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            //navigationItem.rightBarButtonItem?.tintColor = .darkGray
         }
         noteTextField1!.isActive = true
         noteTextField2!.isActive = false

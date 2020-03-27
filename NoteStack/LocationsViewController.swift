@@ -39,12 +39,15 @@ class LocationsViewController: UITableViewController {
     }()
     
     var soundID: SystemSoundID = 0
-    
     var storyboard_1 = UIStoryboard()
+    var original_widthMult: CGFloat = 0.0
+    var original_CellHeight: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         performFetch()
+        original_widthMult = view.frame.size.width * 2
+        original_CellHeight = 58.0
         view.backgroundColor = .white
         //navigationItem.rightBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation))]
@@ -129,6 +132,43 @@ class LocationsViewController: UITableViewController {
             // print("Location: \(location)\n")
             // configure cell for the location object
             cell.configure(for: location)
+
+            // the following code increases cell border only on specified borders
+            let bottom_border = CALayer()
+            let bottom_padding = CGFloat(0.0)
+            bottom_border.borderColor = UIColor.white.cgColor
+            bottom_border.frame = CGRect(x: 0, y: original_CellHeight - bottom_padding, width:  cell.frame.size.width, height: original_CellHeight)
+            bottom_border.borderWidth = bottom_padding
+
+            let right_border = CALayer()
+            let right_padding = CGFloat(15.0)
+            right_border.borderColor = UIColor.white.cgColor
+            right_border.frame = CGRect(x: cell.frame.size.width - right_padding, y: 0, width: right_padding, height: original_CellHeight)
+            right_border.borderWidth = right_padding
+
+            let left_border = CALayer()
+            let left_padding = CGFloat(15.0)
+            left_border.borderColor = UIColor.white.cgColor
+            left_border.frame = CGRect(x: 0, y: 0, width: left_padding, height: original_CellHeight)
+            left_border.borderWidth = left_padding
+
+            let top_border = CALayer()
+            let top_padding = CGFloat(1.0)
+            top_border.borderColor = UIColor.white.cgColor
+            top_border.frame = CGRect(x: 0, y: 0, width: cell.frame.size.width, height: top_padding)
+            top_border.borderWidth = top_padding
+            
+            let border_Around_Bordered_Cell = CALayer()
+            border_Around_Bordered_Cell.frame = CGRect(x: 15, y: 1, width: (original_widthMult/2) - 30, height: original_CellHeight - 1)
+            border_Around_Bordered_Cell.borderWidth = 0.7
+            border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+            border_Around_Bordered_Cell.cornerRadius = 15
+            
+            cell.layer.addSublayer(border_Around_Bordered_Cell)
+            cell.layer.addSublayer(bottom_border)
+            cell.layer.addSublayer(right_border)
+            cell.layer.addSublayer(left_border)
+            cell.layer.addSublayer(top_border)
             return cell }
     
     // enable swipe to delete, delete rows of objects that are no longer in the data store
@@ -193,9 +233,9 @@ class LocationsViewController: UITableViewController {
                                width: 300, height: 14)
         let label = UILabel(frame: labelRect)
         label.textAlignment = .center
-        label.font = UIFont(name: "PingFangTC-Semibold", size: 16)
+        label.font = UIFont(name: "PingFangTC-Semibold", size: 17)
         //label.backgroundColor = .white
-        label.backgroundColor = .rgb(red: 0, green: 197, blue: 255)
+        label.backgroundColor = .rgb(red: 0, green: 197, blue: 204)
         // ask the tableView's dataSource (which is this view controller LocationsViewController) for the text for each section, to put in the header were creating
         label.text = tableView.dataSource!.tableView!(
             tableView, titleForHeaderInSection: section)
@@ -207,7 +247,7 @@ class LocationsViewController: UITableViewController {
             x: 15, y: tableView.sectionHeaderHeight - 0.5,
             width: tableView.bounds.size.width - 15, height: 0.5)
         let separator = UIView(frame: separatorRect)
-        separator.backgroundColor = .lightGray
+        separator.backgroundColor = .clear
         let viewRect = CGRect(x: 0, y: 0,
                               width: tableView.bounds.size.width,
                               height: tableView.sectionHeaderHeight)
