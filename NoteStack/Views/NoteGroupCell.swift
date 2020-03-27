@@ -24,6 +24,7 @@ class NoteGroupCell: UITableViewCell {
     // MARK:- Helper Method
     // passed note group object from array of note groups, will put note group oject into table view cell
     func configure(for notegroup: NotesGroup, count: Int) {
+        noteCountLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         noteCountLabel.text = "\(count) Notes"
         if notegroup.groupName.isEmpty {
             noteGroupLabel.text = "(No Group)"
@@ -31,7 +32,7 @@ class NoteGroupCell: UITableViewCell {
             noteGroupLabel.text = notegroup.groupName
 //            let trimmedString = noteGroupLabel.text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
 //            noteGroupLabel.text = trimmedString
-            noteGroupLabel.font = UIFont(name: "PingFangHK-Regular", size: 17)
+            noteGroupLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
         }
     }
 }

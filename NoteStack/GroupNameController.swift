@@ -26,15 +26,15 @@ class GroupNameController: LBTAFormController, UINavigationControllerDelegate, U
     // delegate var for the protocol above
     var delegate: CreateNoteGroupDelegate?
     
-    var newfolderLabel = UILabel(text: "New Folder", font: UIFont(name: "PingFangTC-Semibold", size: 18)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var newfolderLabel = UILabel(text: "New Folder", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var enterfolderLabel = UILabel(text: "Enter a name for this folder", font: UIFont(name: "PingFangTC-Semibold", size: 14)!, textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
+    var enterfolderLabel = UILabel(text: "Enter a name for this folder", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)!, textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
     var groupNameTextField = IndentedTextField(placeholder: "Group Name", padding: 24, cornerRadius: 25)
     
-    lazy var saveGroupButton = UIButton(title: "Save", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 16)!, backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(saveGroup))
+    lazy var saveGroupButton = UIButton(title: "Save", titleColor: .white, font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 18)!, backgroundColor: .rgb(red: 0, green: 172, blue: 237), target: self, action: #selector(saveGroup))
     
-    lazy var cancelGroupButton = UIButton(title: "Cancel", titleColor: .yellow, font: UIFont(name: "PingFangTC-Semibold", size: 16)!, backgroundColor: .lightGray, target: self, action: #selector(cancelGroup))
+    lazy var cancelGroupButton = UIButton(title: "Cancel", titleColor: .yellow, font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 18)!, backgroundColor: .lightGray, target: self, action: #selector(cancelGroup))
     
     var notesGroupArray = [String]()
     

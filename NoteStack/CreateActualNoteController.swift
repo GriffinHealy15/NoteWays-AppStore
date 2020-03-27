@@ -44,7 +44,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     // delegate var for the protocol above
     var delegate: CreateNoteDelegate?
        
-    var noteTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .lightGray, textAlignment: .left)
+    var noteTextField = UITextView(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 22), textColor: .lightGray, textAlignment: .left)
     var noteText = ""
     var onlyNoteText = ""
     lazy var addPhotoButton = UIButton(image: #imageLiteral(resourceName: "photo"), tintColor: .black, target: self, action: #selector(addPhoto))
@@ -130,7 +130,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         //noteTextField.backgroundColor = UIColor(patternImage: UIImage(named: "temp")!)
         noteTextField.delegate = self
         scrollView.delegate = self
-        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
         //noteTextField.tintColor = .orange
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = .white
@@ -376,7 +376,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
             noteTextField.textColor = .white
             noteTextField.tintColor = .white
         }
-        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
     }
     
     func retrievedColorPick(red: Int, green: Int, blue: Int) {
@@ -419,7 +419,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
             noteTextField.textColor = .white
             noteTextField.tintColor = .white
         }
-        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
         noteTextField1!.isActive = true
         noteTextField2!.isActive = false
 
@@ -439,7 +439,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         noteImagesArray = []
         noteLocationsArray = []
         noteText = noteTextField.text
-        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
         noteTextField.attributedText.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: noteTextField.attributedText.length), options: []) { (value, range, stop) in
 
             if (value is NSTextAttachment){

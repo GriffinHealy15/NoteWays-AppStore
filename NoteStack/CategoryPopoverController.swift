@@ -60,139 +60,139 @@ class CategoryPopoverController: LBTAFormController, UINavigationControllerDeleg
         
         otherCategoryButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         otherCategoryButton.contentHorizontalAlignment = .left
-        otherCategoryButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        otherCategoryButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         otherCategoryButton.layer.cornerRadius = 20
         otherCategoryButton.clipsToBounds = true
         
         noCategoryButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         noCategoryButton.contentHorizontalAlignment = .left
-        noCategoryButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noCategoryButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         noCategoryButton.layer.cornerRadius = 20
         noCategoryButton.clipsToBounds = true
         
         bankButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         bankButton.contentHorizontalAlignment = .left
-        bankButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        bankButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         bankButton.layer.cornerRadius = 20
         bankButton.clipsToBounds = true
         
         barButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         barButton.contentHorizontalAlignment = .left
-        barButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        barButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         barButton.layer.cornerRadius = 20
         barButton.clipsToBounds = true
         
         bookstoreButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         bookstoreButton.contentHorizontalAlignment = .left
-        bookstoreButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        bookstoreButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         bookstoreButton.layer.cornerRadius = 20
         bookstoreButton.clipsToBounds = true
         
         clubButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         clubButton.contentHorizontalAlignment = .left
-        clubButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        clubButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         clubButton.layer.cornerRadius = 20
         clubButton.clipsToBounds = true
         
         coffeeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         coffeeButton.contentHorizontalAlignment = .left
-        coffeeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        coffeeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         coffeeButton.layer.cornerRadius = 20
         coffeeButton.clipsToBounds = true
         
         gasstationButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         gasstationButton.contentHorizontalAlignment = .left
-        gasstationButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        gasstationButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         gasstationButton.layer.cornerRadius = 20
         gasstationButton.clipsToBounds = true
         
         groceriesButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         groceriesButton.contentHorizontalAlignment = .left
-        groceriesButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        groceriesButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         groceriesButton.layer.cornerRadius = 20
         groceriesButton.clipsToBounds = true
         
         foodButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         foodButton.contentHorizontalAlignment = .left
-        foodButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        foodButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         foodButton.layer.cornerRadius = 20
         foodButton.clipsToBounds = true
         
         historicButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         historicButton.contentHorizontalAlignment = .left
-        historicButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        historicButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         historicButton.layer.cornerRadius = 20
         historicButton.clipsToBounds = true
         
         hospitalButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         hospitalButton.contentHorizontalAlignment = .left
-        hospitalButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        hospitalButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         hospitalButton.layer.cornerRadius = 20
         hospitalButton.clipsToBounds = true
         
         houseButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         houseButton.contentHorizontalAlignment = .left
-        houseButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        houseButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         houseButton.layer.cornerRadius = 20
         houseButton.clipsToBounds = true
         
         landmarkButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         landmarkButton.contentHorizontalAlignment = .left
-        landmarkButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        landmarkButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         landmarkButton.layer.cornerRadius = 20
         landmarkButton.clipsToBounds = true
         
         mallButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         mallButton.contentHorizontalAlignment = .left
-        mallButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        mallButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         mallButton.layer.cornerRadius = 20
         mallButton.clipsToBounds = true
         
         museumButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         museumButton.contentHorizontalAlignment = .left
-        museumButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        museumButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         museumButton.layer.cornerRadius = 20
         museumButton.clipsToBounds = true
         
         parkinglotButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         parkinglotButton.contentHorizontalAlignment = .left
-        parkinglotButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        parkinglotButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         parkinglotButton.layer.cornerRadius = 20
         parkinglotButton.clipsToBounds = true
         
         parkButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         parkButton.contentHorizontalAlignment = .left
-        parkButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        parkButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         parkButton.layer.cornerRadius = 20
         parkButton.clipsToBounds = true
         
         postofficeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         postofficeButton.contentHorizontalAlignment = .left
-        postofficeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        postofficeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         postofficeButton.layer.cornerRadius = 20
         postofficeButton.clipsToBounds = true
         
         restaurantButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         restaurantButton.contentHorizontalAlignment = .left
-        restaurantButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        restaurantButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         restaurantButton.layer.cornerRadius = 20
         restaurantButton.clipsToBounds = true
         
         stadiumButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         stadiumButton.contentHorizontalAlignment = .left
-        stadiumButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        stadiumButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         stadiumButton.layer.cornerRadius = 20
         stadiumButton.clipsToBounds = true
         
         storeButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         storeButton.contentHorizontalAlignment = .left
-        storeButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        storeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         storeButton.layer.cornerRadius = 20
         storeButton.clipsToBounds = true
         
         workButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 7)
         workButton.contentHorizontalAlignment = .left
-        workButton.titleLabel?.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        workButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
         workButton.layer.cornerRadius = 20
         workButton.clipsToBounds = true
         

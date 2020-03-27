@@ -66,43 +66,43 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
     var image: UIImage?
     var finalLocationCategory: String = ""
     
-    var latitudeLabel = UILabel(text: "Latitude", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var latitudeLabel = UILabel(text: "Latitude", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var longitudeLabel = UILabel(text: "Longitude", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var longitudeLabel = UILabel(text: "Longitude", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var addressLabel = UILabel(text: "Address", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var addressLabel = UILabel(text: "Address", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var dateLabel = UILabel(text: "Date", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var dateLabel = UILabel(text: "Date", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var dateText = UILabel(text: "Date", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var dateText = UILabel(text: "Date", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var latitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var latitudeText = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
 
-    var longitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var longitudeText = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var addressText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var addressText = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var descriptionTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 16), textColor: .black, textAlignment: .left)
+    var descriptionTextField = UITextView(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18), textColor: .black, textAlignment: .left)
     
-    var descriptionLabel = UILabel(text: "Description", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var descriptionLabel = UILabel(text: "Description", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    lazy var categoryButton = UIButton(title: "Category (Tap to Change)", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
+    lazy var categoryButton = UIButton(title: "Category (Tap to Change)", titleColor: .white, font: UIFont(name: "AppleSDGothicNeo-Bold", size: 18)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addCategory))
     
-    var categoryText = UILabel(text: "No Category", font: .boldSystemFont(ofSize: 22), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var categoryText = UILabel(text: "No Category", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 22), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var locationNameLabel = UILabel(text: "Location", font: .boldSystemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var locationNameLabel = UILabel(text: "Location", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var locationNameText = UILabel(text: "", font: UIFont(name: "PingFangTC-Semibold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var locationNameText = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var openInMapView = UIButton(title: "Open Destination in Map", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 16)!, backgroundColor: .rgb(red: 6, green: 101, blue: 209), target: self, action: #selector(openMapView))
+    var openInMapView = UIButton(title: "Open Destination in Map", titleColor: .white, font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)!, backgroundColor: .rgb(red: 6, green: 101, blue: 209), target: self, action: #selector(openMapView))
     
-    var openGetDirections = UIButton(title: "Get Directions", titleColor: .white, font: UIFont(name: "PingFangTC-Semibold", size: 16)!, backgroundColor: .rgb(red: 6, green: 101, blue: 209), target: self, action: #selector(getDirections))
+    var openGetDirections = UIButton(title: "Get Directions", titleColor: .white, font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)!, backgroundColor: .rgb(red: 6, green: 101, blue: 209), target: self, action: #selector(getDirections))
     
-    var detailsLabel = UILabel(text: "Geolocation Details", font: .boldSystemFont(ofSize: 17), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var detailsLabel = UILabel(text: "Geolocation Details", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 18), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
     var soundID: SystemSoundID = 0
     
-    var addPhotoButton = UIButton(title: "Add Photo (Tap to Change)", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
+    var addPhotoButton = UIButton(title: "Add Photo (Tap to Change)", titleColor: .white, font: UIFont(name: "AppleSDGothicNeo-Bold", size: 18)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(addPhoto))
     
     var constraintWithNoPhoto: NSLayoutConstraint?
     var constraintWithPhoto: NSLayoutConstraint?
@@ -151,7 +151,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         addPhotoButton.contentHorizontalAlignment = .left
 //        addPhotoButton.layer.borderWidth = 0.7
 //        addPhotoButton.layer.borderColor = UIColor.black.cgColor
-        addPhotoButton.layer.cornerRadius = 10
+        addPhotoButton.layer.cornerRadius = 6
         addPhotoButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         latitudeText.text = String(format: "%.8f",
         coordinate.latitude)
@@ -164,7 +164,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         openInMapView.isEnabled = false
         openInMapView.isHidden = true
         
-        detailsLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        detailsLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
         detailsLabel.backgroundColor = .rgb(red: 2, green: 227, blue: 141)
         
         openGetDirections.layer.cornerRadius = 10
@@ -425,7 +425,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         addPhotoButton.layer.borderWidth = 0.55
         addPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         addPhotoButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        addPhotoButton.layer.borderColor = UIColor.init(displayP3Red: 0, green: 172, blue: 237, alpha: 1).cgColor
+        addPhotoButton.layer.borderColor = UIColor.init(displayP3Red: 255, green: 255, blue: 255, alpha: 1).cgColor
         addPhotoButton.clipsToBounds = true
         addPhotoButton.layer.cornerRadius = 30
     }

@@ -135,19 +135,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK:- UI Apperance Changes
     // changes appearance of UINavigationBar
     func customizeAppearance() {
-//        UINavigationBar.appearance().barTintColor = UIColor.black
-//        UINavigationBar.appearance().titleTextAttributes = [
-//            NSAttributedString.Key.foregroundColor:
-//                UIColor.white]
-        UITabBar.appearance().barTintColor = UIColor.rgb(red: 0, green: 197, blue: 255)
-       // let tintColor = UIColor(red: 255/255.0, green: 238/255.0,
-         //                       blue: 136/255.0, alpha: 1.0)
-//        let tintColor1 = UIColor(red: 74/255.0, green: 255/255.0,
-//                                blue: 255/255.0, alpha: 1.0)
-        UITabBar.appearance().tintColor = .black
-        UITabBar.appearance().unselectedItemTintColor = .rgb(red: 220, green: 220, blue: 220)
-        
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "DevanagariSangamMN-Bold", size: 21)!]
+
+        // Tab Bar Color
+        UITabBar.appearance().barTintColor = UIColor.white
+        // Tab Bar Items Color
+        UITabBar.appearance().tintColor = .rgb(red: 0, green: 224, blue: 255)
+        // Tab Bar Items Unselected Color
+        UITabBar.appearance().unselectedItemTintColor = .rgb(red: 125, green: 150, blue: 150)
+   
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Bold", size: 21)!]
     }
     
     // MARK:- Helper methods
@@ -202,4 +198,5 @@ Press OK to terminate the app. Sorry for the inconvenience.
 //        }
 //    }
 }
+
 

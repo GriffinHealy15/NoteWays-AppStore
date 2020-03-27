@@ -44,7 +44,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
     var noteImageFromArray: UIImage?
     var noteArray: [UIImage?] = []
     var notesLocationArray: [Int?] = []
-    var noteTextField = UITextView(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .lightGray, textAlignment: .left)
+    var noteTextField = UITextView(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 22), textColor: .lightGray, textAlignment: .left)
     var attString: NSAttributedString?
     lazy var saveButton = UIButton(title: "Save Note", titleColor: .black, font: .boldSystemFont(ofSize: 18), backgroundColor: .white, target: self, action: #selector(saveNote))
     var tempNotePhotoID: NSNumber?
@@ -217,7 +217,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
             noteTextField.textColor = .white
             noteTextField.tintColor = .white
         }
-        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
         //print(noteTextField.selectedRange.location)
     }
     
@@ -275,12 +275,12 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
         
         //--- Start --- EDITED PHOTO - REMOVE SECTION IF ERRORS OCCUR --- START
         noteText = noteTextField.text
-        noteTextField.font = .boldSystemFont(ofSize: 18)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
         
         noteArray = []
         notesLocationArray = []
         noteText = noteTextField.text
-        noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+        noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
         noteTextField.attributedText.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: noteTextField.attributedText.length), options: []) { (value, range, stop) in
 
             if (value is NSTextAttachment){
@@ -435,7 +435,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
                 noteTextField.textColor = .white
                 noteTextField.tintColor = .white
             }
-            noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+            noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
             noteTextField1!.isActive = true
             noteTextField2!.isActive = false
         }
@@ -445,12 +445,11 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
             noteTextField1!.isActive = true
             noteTextField2!.isActive = false
             noteText = noteTextField.text
-            noteTextField.font = .boldSystemFont(ofSize: 18)
             
             noteArray = []
             notesLocationArray = []
             noteText = noteTextField.text
-            noteTextField.font = UIFont(name: "PingFangHK-Regular", size: 20)
+            noteTextField.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 22)
             noteTextField.attributedText.enumerateAttribute(NSAttributedString.Key.attachment, in: NSRange(location: 0, length: noteTextField.attributedText.length), options: []) { (value, range, stop) in
 
                 if (value is NSTextAttachment){

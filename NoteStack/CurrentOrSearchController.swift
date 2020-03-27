@@ -32,30 +32,30 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
    var locationName: String = ""
    // -- END OF LOCATION VARS -- 
     
-    var latitudeLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var latitudeLabel = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var longitudeLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var longitudeLabel = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var detailsLabel = UILabel(text: "Geolocation Details", font: .boldSystemFont(ofSize: 17), textColor: .white, textAlignment: .center, numberOfLines: 0)
+    var detailsLabel = UILabel(text: "Geolocation Details", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 17), textColor: .white, textAlignment: .center, numberOfLines: 0)
     
-    var theAddressLabel = UILabel(text: "Address", font: .boldSystemFont(ofSize: 17), textColor: .rgb(red: 240, green: 240, blue: 240), textAlignment: .center, numberOfLines: 0)
+    var theAddressLabel = UILabel(text: "Address", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 17), textColor: .rgb(red: 240, green: 240, blue: 240), textAlignment: .center, numberOfLines: 0)
     
-    var theLocationLabel = UILabel(text: "Location", font: .boldSystemFont(ofSize: 17), textColor: .rgb(red: 240, green: 240, blue: 240), textAlignment: .center, numberOfLines: 0)
+    var theLocationLabel = UILabel(text: "Location", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 17), textColor: .rgb(red: 240, green: 240, blue: 240), textAlignment: .center, numberOfLines: 0)
 
-    var latitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var latitudeText = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Light", size: 15), textColor: .black, textAlignment: .left, numberOfLines: 0)
 
-    var longitudeText = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    var longitudeText = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Light", size: 15), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var tagMyLocationButton = UIButton(title: "Get My Location", titleColor: .white, font: .boldSystemFont(ofSize: 18), backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(getMyLocation))
+    var tagMyLocationButton = UIButton(title: "Get My Location", titleColor: .white, font: UIFont(name: "AppleSDGothicNeo-Bold", size: 18)!, backgroundColor: .rgb(red: 0, green: 197, blue: 255), target: self, action: #selector(getMyLocation))
     
     var searchLocationText = UITextView(text: "Search for locations", font: UIFont(name: "PingFangHK-Regular", size: 15), textColor: .lightGray, textAlignment: .left)
     var searchLocationButton = UIButton(title: "Search", titleColor: .white, font: .boldSystemFont(ofSize: 17), backgroundColor: .darkGray, target: self, action: #selector(searchLocation))
     
-    var orText = UILabel(text: "or find my current location", font: UIFont(name: "PingFangHK-Regular", size: 13.5), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
+    var orText = UILabel(text: "or find my current location", font: UIFont(name: "AppleSDGothicNeo-Light", size: 15), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
-    var addressLabel = UILabel(text: "Address & Location", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
+    var addressLabel = UILabel(text: "Address & Location", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 20), textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
     
-    var locationLabel = UILabel(text: "", font: UIFont(name: "PingFangHK-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var locationLabel = UILabel(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 20), textColor: .black, textAlignment: .center, numberOfLines: 0)
     
     var soundID: SystemSoundID = 0
     
@@ -77,11 +77,11 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         let formView2 = UIView()
         let formViewSearch = UIView()
         let formView3 = UIView()
-        detailsLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        detailsLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
         detailsLabel.backgroundColor = .rgb(red: 2, green: 227, blue: 141)
-        theAddressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        theAddressLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
         theAddressLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
-        theLocationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        theLocationLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
         theLocationLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
         latitudeLabel.backgroundColor = .rgb(red: 240, green: 240, blue: 240)
         latitudeLabel.layer.cornerRadius = 25
@@ -151,7 +151,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                 //self.addressLabel.font = .boldSystemFont(ofSize: 20)
                 self.addressLabel.text = self.string(from: placemark)
                 self.addressLabel.textColor = .black
-                self.addressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
+                self.addressLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 17)
                 //self.locationLabel.font = .boldSystemFont(ofSize: 20)
                 self.latitudeLabel.text = "  Latitude:"
                 self.longitudeLabel.text = "  Longitude:"
@@ -162,7 +162,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
                     
                 self.locationName = selectedName
                 self.locationLabel.text = self.locationName
-                self.locationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+                self.locationLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
                   let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                   self.finalCoords = coordinates
                   let stringCoordsLat: String!  = ("\(String(describing: self.finalCoords!.latitude))")
@@ -243,7 +243,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
         theAddressLabel.textColor = .white
         theLocationLabel.textColor = .white
         locationLabel.text = "My Current Location"
-        locationLabel.font = UIFont(name: "PingFangTC-Semibold", size: 20)
+        locationLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
         locationName = "My Current Location"
         updateLabels()
     }
@@ -327,7 +327,7 @@ class CurrentOrSearchController: LBTAFormController ,UITextViewDelegate, UINavig
             latitudeText.isHidden = false
             longitudeText.isHidden = false
             if let placemark = placemark {
-                addressLabel.font = UIFont(name: "PingFangTC-Semibold", size: 17)
+                addressLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 17)
                 addressLabel.text = string(from: placemark)
                 latitudeLabel.text = "  Latitude:"
                 longitudeLabel.text = "  Longitude:"

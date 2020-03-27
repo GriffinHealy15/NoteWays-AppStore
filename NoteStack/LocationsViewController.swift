@@ -230,12 +230,12 @@ class LocationsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
         let labelRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 14,
-                               width: 300, height: 14)
+                               width: (original_widthMult/2) - 30, height: 16)
         let label = UILabel(frame: labelRect)
         label.textAlignment = .center
-        label.font = UIFont(name: "PingFangTC-Semibold", size: 17)
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         //label.backgroundColor = .white
-        label.backgroundColor = .rgb(red: 0, green: 197, blue: 204)
+        label.backgroundColor = .rgb(red: 0, green: 224, blue: 255)
         // ask the tableView's dataSource (which is this view controller LocationsViewController) for the text for each section, to put in the header were creating
         label.text = tableView.dataSource!.tableView!(
             tableView, titleForHeaderInSection: section)

@@ -30,6 +30,7 @@ class LocationCell: UITableViewCell {
                                       right: 0)
         //descriptionLabel.backgroundColor = UIColor.purple
         //addressLabel.backgroundColor = UIColor.purple
+        descriptionLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

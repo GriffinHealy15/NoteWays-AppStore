@@ -58,7 +58,7 @@ class NoteCell_ForGroup: UITableViewCell {
                 // note doesn't start with image
                 onlyNoteText = onlyNoteText + myStringArr[0] + " " + myStringArr[1]
                 noteLabel_1.text = onlyNoteText
-                noteLabel_1.font = UIFont(name: "PingFangHK-Regular", size: 17)
+                noteLabel_1.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
             }
             else {
                 // note starts with image
@@ -68,11 +68,11 @@ class NoteCell_ForGroup: UITableViewCell {
                 let range = trimmedString3.rangeOfCharacter(from: CharacterSet.alphanumerics)
                 if (range == nil) {
                     noteLabel_1.text = "(No Text)"
-                    noteLabel_1.font = UIFont(name: "PingFangHK-Regular", size: 17)
+                    noteLabel_1.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
                 }
                 else {
                 noteLabel_1.text = trimmedString3
-                noteLabel_1.font = UIFont(name: "PingFangHK-Regular", size: 17)
+                noteLabel_1.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
                 }
             }
         }
@@ -81,11 +81,11 @@ class NoteCell_ForGroup: UITableViewCell {
             let range = note.noteText.rangeOfCharacter(from: CharacterSet.alphanumerics)
             if (range == nil) {
                 noteLabel_1.text = "(No Text)"
-                noteLabel_1.font = UIFont(name: "PingFangHK-Regular", size: 17)
+                noteLabel_1.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
             }
             else {
             noteLabel_1.text = trimmedString
-            noteLabel_1.font = UIFont(name: "PingFangHK-Regular", size: 17)
+            noteLabel_1.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
             }
         }
         }
