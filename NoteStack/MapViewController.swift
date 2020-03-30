@@ -14,8 +14,6 @@ import AudioToolbox
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
-    
-    
     var managedObjectContext: NSManagedObjectContext! {
         //  didSet block tells the NotificationCenter to add an observer for the NSManagedObjectContextObjectsDidChange notification
         didSet {    NotificationCenter.default.addObserver(forName:
@@ -37,9 +35,12 @@ class MapViewController: UIViewController {
     var locations = [Location]()
     var soundID: SystemSoundID = 0
     var singleLocation: Location?
+    var fromLocationsContrl: Bool = false
+    var fromDetailsLocationsContrl: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // first fetches locations context object (from datastore), then add locations objects as annotations objects
         updateLocations()
         mapView.tintColor = UIColor(red: 0.0, green: 0.57, blue: 1.0, alpha: 1)
@@ -48,10 +49,17 @@ class MapViewController: UIViewController {
         navigationItem.rightBarButtonItems![1].tintColor = .clear
         navigationItem.leftBarButtonItems![0].isEnabled = false
         navigationItem.leftBarButtonItems![0].tintColor = .clear
+        
+        if fromLocationsContrl == true {
+            print("From the Locations View Controller")
+            navigationItem.leftBarButtonItems![0].isEnabled = true
+            navigationItem.leftBarButtonItems![0].tintColor = .black
+        }
+        
         if (singleLocation == nil) {
-            navigationItem.leftBarButtonItem! = UIBarButtonItem(image: #imageLiteral(resourceName: "mapmark"), style: .done, target: self, action: #selector(showLocations))
-            navigationItem.leftBarButtonItems![1].isEnabled = false
-            navigationItem.leftBarButtonItems![1].image = nil
+//            navigationItem.leftBarButtonItem! = UIBarButtonItem(image: #imageLiteral(resourceName: "mapmark"), style: .done, target: self, action: #selector(showLocations))
+//            navigationItem.leftBarButtonItems![1].isEnabled = false
+//            navigationItem.leftBarButtonItems![1].image = nil
         }
         if !locations.isEmpty {
             showLocations()
@@ -66,6 +74,12 @@ class MapViewController: UIViewController {
             navigationItem.rightBarButtonItems![1].tintColor = .rgb(red: 0, green: 197, blue: 255)
             navigationItem.leftBarButtonItems![0].isEnabled = true
             navigationItem.leftBarButtonItems![0].tintColor =  .black
+        }
+        
+        if (fromDetailsLocationsContrl == true)
+        {
+            navigationItem.rightBarButtonItems![1].isEnabled = false
+            navigationItem.rightBarButtonItems![1].tintColor = .clear
         }
     }
     
@@ -112,6 +126,7 @@ class MapViewController: UIViewController {
         //loadSoundEffect("swipe.mp3")
         //playSoundEffect()
         dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     
@@ -131,6 +146,9 @@ class MapViewController: UIViewController {
         let locationsDetailsContrl = CurrentOrSearchDetailController()
         locationsDetailsContrl.locationToEdit = location
         locationsDetailsContrl.managedObjectContext = managedObjectContext
+        if (fromLocationsContrl == true) {
+            locationsDetailsContrl.fromMapContrl = true
+        }
         //let locDetailsController = UINavigationController(rootViewController: locationsDetailsContrl)
         navigationController?.pushViewController(locationsDetailsContrl, animated: true)
         //present(locDetailsController, animated: true)

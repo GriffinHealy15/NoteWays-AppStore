@@ -43,6 +43,11 @@ NoteRefreshProtocol{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Note Groups"
+        if #available(iOS 11, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+        }
         view.backgroundColor = .rgb(red: 242, green: 242, blue: 242)
         tableView.backgroundColor = .white
         performFetch()

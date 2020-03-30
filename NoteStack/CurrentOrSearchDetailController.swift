@@ -41,6 +41,7 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
 //    }
 
     var currentOrSearchCntrl = CurrentOrSearchController()
+    var fromMapContrl: Bool = false
     // delegate var for the protocol above
     var delegate: SavedDetailsDelegate?
     var window: UIWindow?
@@ -308,6 +309,11 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
         let mapViewController = storyboard_main.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         mapViewController.managedObjectContext = managedObjectContext
         mapViewController.singleLocation = locationToEdit
+        
+        if (fromMapContrl == true) {
+            mapViewController.fromDetailsLocationsContrl = true
+        }
+        
         navigationController?.pushViewController(mapViewController, animated: true)
 
 //                // access root view contoller, which is tab bar view controller

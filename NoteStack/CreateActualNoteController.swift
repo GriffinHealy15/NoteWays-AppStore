@@ -233,6 +233,7 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
          note.date = date
         
         // Add each color (red, green, blue) to the note object attribute
+        note.noteColorArray = []
         for i in 0...rgbColorArray.count - 1 {
             print(i)
             let colorAtEachIndex: CGFloat = rgbColorArray[i]

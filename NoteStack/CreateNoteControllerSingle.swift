@@ -31,6 +31,11 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
     var noteGroupPassedAgain: String = ""
     var onlyNoteTextPassToNoteCell = ""
     var singleGroupController = CreateNoteGroupController()
+    var rgbColorArrayFloat: [CGFloat?] = []
+    var red: CGFloat = 0
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    var count: Int = 0
     
     lazy var fetchedResultsController1:
         NSFetchedResultsController<NotesGroup> = {
@@ -269,12 +274,27 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
             top_border.frame = CGRect(x: 0, y: 0, width: cell.frame.size.width, height: top_padding)
             top_border.borderWidth = top_padding
             
+            rgbColorArrayFloat = []
+            let noteColorArray =  note?.noteColorArray
+            //print(note?.noteColorArray)
+            for i in 0...noteColorArray!.count - 1 {
+                rgbColorArrayFloat.append(noteColorArray![i] as? CGFloat)
+            }
+            for _ in 0...rgbColorArrayFloat.count - 1 {
+                red = rgbColorArrayFloat[0]!
+                green = rgbColorArrayFloat[1]!
+                blue = rgbColorArrayFloat[2]!
+            }
+    
             let border_Around_Bordered_Cell = CALayer()
+            border_Around_Bordered_Cell.zPosition = -1.0
             border_Around_Bordered_Cell.frame = CGRect(x: 15, y: 3, width: cell.frame.size.width - 30, height: cell.frame.size.height - 8)
             border_Around_Bordered_Cell.borderWidth = 0.7
-            border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
-            border_Around_Bordered_Cell.cornerRadius = 15
             
+            border_Around_Bordered_Cell.cornerRadius = 15
+            border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
+            border_Around_Bordered_Cell.backgroundColor = UIColor.rgb(red: red, green: green, blue: blue).cgColor
+            //cell.backgroundColor = UIColor.rgb(red: red, green: green, blue: blue)
             cell.layer.addSublayer(border_Around_Bordered_Cell)
             cell.layer.addSublayer(bottom_border)
             cell.layer.addSublayer(right_border)

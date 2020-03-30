@@ -89,26 +89,25 @@ class NoteCell_ForGroup: UITableViewCell {
             }
         }
         }
-//        rgbColorArrayFloat = []
-//        let noteColorArray =  note.noteColorArray
-//        for i in 0...noteColorArray.count - 1 {
-//            rgbColorArrayFloat.append(noteColorArray[i] as! CGFloat)
-//        }
-//        for _ in 0...rgbColorArrayFloat.count - 1 {
-//            red = rgbColorArrayFloat[0]
-//            green = rgbColorArrayFloat[1]
-//            blue = rgbColorArrayFloat[2]
-//        }
-//        
-//        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
-//        noteLabel_1.textColor = .black
-//        noteLabel_1.tintColor = .black
-//        }
-//        else {
-//            noteLabel_1.textColor = .white
-//            noteLabel_1.tintColor = .white
-//        }
-        //backgroundColor = .rgb(red: red, green: green, blue: blue)
+        rgbColorArrayFloat = []
+        let noteColorArray =  note.noteColorArray
+        for i in 0...noteColorArray.count - 1 {
+            rgbColorArrayFloat.append(noteColorArray[i] as! CGFloat)
+        }
+        for _ in 0...rgbColorArrayFloat.count - 1 {
+            red = rgbColorArrayFloat[0]
+            green = rgbColorArrayFloat[1]
+            blue = rgbColorArrayFloat[2]
+        }
+        
+        if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
+        noteLabel_1.textColor = .black
+        noteLabel_1.tintColor = .black
+        }
+        else {
+            noteLabel_1.textColor = .white
+            noteLabel_1.tintColor = .white
+        }
         
         backgroundColor = .white
         photoImage.image = thumbnail(for: note)

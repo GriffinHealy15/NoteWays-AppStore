@@ -45,17 +45,24 @@ class LocationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Locations"
+         if #available(iOS 11, *) {
+        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+        }
         performFetch()
         original_widthMult = view.frame.size.width * 2
         original_CellHeight = 58.0
         view.backgroundColor = .white
         //navigationItem.rightBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation))]
-        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "about"), style: .plain, target: self, action: #selector(aboutPage)), editButtonItem]
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "about"), style: .plain, target: self, action: #selector(aboutPage)), UIBarButtonItem(image: #imageLiteral(resourceName: "mapgeography"), style: .plain, target: self, action: #selector(mapView))]
+//        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "about"), style: .plain, target: self, action: #selector(aboutPage)), editButtonItem]
         navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
         navigationItem.rightBarButtonItem?.tintColor = .black
         navigationItem.leftBarButtonItems![0].tintColor = .black
-        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 151, blue: 248)
+        navigationItem.leftBarButtonItems![1].tintColor = .black
         //loadSoundEffect("Click.wav")
         UINavigationBar.appearance().barTintColor = UIColor.white
     }
@@ -79,6 +86,15 @@ class LocationsViewController: UITableViewController {
      aboutController.managedObjectContext = managedObjectContext
      let navController = UINavigationController(rootViewController: aboutController)
      present(navController, animated: true)
+    }
+    
+    @objc func mapView() {
+        let storyboard_main = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let mapViewController = storyboard_main.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        mapViewController.managedObjectContext = managedObjectContext
+        mapViewController.singleLocation = nil
+        mapViewController.fromLocationsContrl = true
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
     
     func handleConfirmPressed(indexPath:IndexPath) -> (_ alertAction:UIAlertAction) -> () {
@@ -230,7 +246,7 @@ class LocationsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
         let labelRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 14,
-                               width: (original_widthMult/2) - 30, height: 16)
+                               width: (original_widthMult/2) - 30, height: 22)
         let label = UILabel(frame: labelRect)
         label.textAlignment = .center
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
@@ -257,6 +273,10 @@ class LocationsViewController: UITableViewController {
         view.addSubview(label)
         view.addSubview(separator)
         return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
     }
     
     // MARK:- Sound effects

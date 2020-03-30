@@ -19,6 +19,7 @@
 		9922D21B220CD9AA005445EC /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D21A220CD9AA005445EC /* Success.wav */; };
 		9922D21F220CDF1F005445EC /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9922D21E220CDF1F005445EC /* Click.wav */; };
 		99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */; };
+		9934364D243263BA00A5A50C /* ChecklistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934364C243263BA00A5A50C /* ChecklistsViewController.swift */; };
 		994E174523FB401400152C6C /* CategoryPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994E174423FB401400152C6C /* CategoryPopoverController.swift */; };
 		994FE63F23FDCC3E007EDA09 /* SearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */; };
 		994FE64123FDCDDC007EDA09 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */; };
@@ -91,6 +92,7 @@
 		9922D21A220CD9AA005445EC /* Success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success.wav; sourceTree = "<group>"; };
 		9922D21E220CDF1F005445EC /* Click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Click.wav; sourceTree = "<group>"; };
 		99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomClassViewController.swift; sourceTree = "<group>"; };
+		9934364C243263BA00A5A50C /* ChecklistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsViewController.swift; sourceTree = "<group>"; };
 		994E174423FB401400152C6C /* CategoryPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopoverController.swift; sourceTree = "<group>"; };
 		994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarController.swift; sourceTree = "<group>"; };
 		994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				99543FAB21F926C500DA87EF /* CategoryPickerViewController.swift */,
 				994E174423FB401400152C6C /* CategoryPopoverController.swift */,
 				99B0718D242C1BE3003EFE60 /* ChangeColorController.swift */,
+				9934364C243263BA00A5A50C /* ChecklistsViewController.swift */,
 				99BFE6E723E8C1C8008967CD /* CreateActualNoteController.swift */,
 				995A970123E5E46A00C7CED4 /* CreateNoteController.swift */,
 				9986B8FC2407007800CF4FE4 /* CreateNoteControllerSingle.swift */,
@@ -428,6 +431,7 @@
 				99C3FCE823EA191700DEE562 /* Notes+CoreDataClass.swift in Sources */,
 				99543FAE21FA31B100DA87EF /* HudView.swift in Sources */,
 				99A5C3E5220B3D3D00D0574D /* SearchViewController.swift in Sources */,
+				9934364D243263BA00A5A50C /* ChecklistsViewController.swift in Sources */,
 				99A698DD241ED1AE006D4183 /* AboutController.swift in Sources */,
 				995A970223E5E46A00C7CED4 /* CreateNoteController.swift in Sources */,
 				994E174523FB401400152C6C /* CategoryPopoverController.swift in Sources */,

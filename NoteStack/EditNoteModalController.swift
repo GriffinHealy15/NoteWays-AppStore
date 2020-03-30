@@ -299,6 +299,7 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
         //--- END --- EDITED PHOTO - REMOVE SECTION IF ERRORS OCCUR  --- END
         
         // Add each color (red, green, blue) to the note object attribute
+        noteToEdit!.noteColorArray = []
         for i in 0...rgbColorArrayFloat.count - 1 {
             let colorAtEachIndex: CGFloat = rgbColorArrayFloat[i]
             let color: NSNumber = colorAtEachIndex as NSNumber
