@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let storyboard_1 = UIStoryboard(name: "Main", bundle: Bundle.main)
+    
+    //--------------------------------------------------------------------------------
+    
     // this is a closure, so it is done with lazy loading, not performed right away
     lazy var persistentContainer: NSPersistentContainer = {
         // closure
@@ -32,10 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-    
+
     // persistent data put into the managedObjectContext lazy var
     lazy var managedObjectContext: NSManagedObjectContext =
         persistentContainer.viewContext
+    
+    //--------------------------------------------------------------------------------
     
     // this is a closure, so it is done with lazy loading, not performed right away
     lazy var persistentContainerNote: NSPersistentContainer = {
@@ -57,7 +62,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // persistent data put into the managedObjectContext lazy var
     lazy var managedObjectContextNote: NSManagedObjectContext =
         persistentContainerNote.viewContext
-
+    
+    //--------------------------------------------------------------------------------
+     
+    // this is a closure, so it is done with lazy loading, not performed right away
+    lazy var persistentContainerChecklist: NSPersistentContainer = {
+        // closure
+        // Instantiate a new NSPersistentContainer object with the name of the data model you created earlier, DataModel.
+        // says, look for data model "DataModel" and put into container
+        let container = NSPersistentContainer(name: "TheChecklistDataModel")
+        // Tell it to loadPersistentStores(), which loads the data from the database into memory and sets up the Core Data stack.
+        container.loadPersistentStores(completionHandler: { // loads persistent data into memory
+            // closure executed after loading persistent data into memory, looks for error basically
+            storeDescription, error in
+            if let error = error {
+                fatalError("Could load data store: \(error)")
+            }
+        })
+        return container
+    }()
+    
+    // persistent data put into the managedObjectContext lazy var
+    lazy var managedObjectContextChecklist: NSManagedObjectContext =
+        persistentContainerChecklist.viewContext
+    
+    //--------------------------------------------------------------------------------
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions:
@@ -73,8 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        mainTabBarController.managedObjectContext = self.managedObjectContext
 //        let homeController = HomeController()
 //        homeController.managedObjectContext = managedObjectContext
-//
-//        
+
         // access root view contoller, which is tab bar view controller
         let tabController = window!.rootViewController
             as! UITabBarController
@@ -85,17 +113,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // First tab
             var navController = tabViewControllers[0]
                 as! UINavigationController
-            let controller2 = navController.viewControllers.first
+            let controller0 = navController.viewControllers.first
                 as! LocationsViewController
-            controller2.managedObjectContext = managedObjectContext
-            controller2.storyboard_1 = storyboard_1
-            let _ = controller2.view
+            controller0.managedObjectContext = managedObjectContext
+            controller0.storyboard_1 = storyboard_1
+            let _ = controller0.view
             
             // Second tab
             navController = tabViewControllers[1] as! UINavigationController
-            let controller7 = navController.viewControllers.first
+            let controller1 = navController.viewControllers.first
                 as! CreateNoteGroupController
-            controller7.managedObjectContext = managedObjectContextNote
+            controller1.managedObjectContext = managedObjectContextNote
+            
+            // Third tab
+            navController = tabViewControllers[2] as! UINavigationController
+            let controller2 = navController.viewControllers.first
+                as! ChecklistsViewController
+            controller2.managedObjectContext = managedObjectContextChecklist
             
             // Third tab
 //            navController = tabViewControllers[2] as! UINavigationController

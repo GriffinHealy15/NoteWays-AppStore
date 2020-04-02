@@ -73,7 +73,12 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
     override func viewDidLoad() {
        super.viewDidLoad()
         
-        
+        if #available(iOS 11, *) {
+        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+          self.navigationController?.navigationBar.prefersLargeTitles = false
+          self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+        }
+            
         NotificationCenter.default.addObserver(
         self,
         selector: #selector(keyboardWillShow),
@@ -249,6 +254,10 @@ class EditNoteModalController: LBTAFormController, UITextViewDelegate, UIScrollV
            return .none
        }
     
+    override func willMove(toParent parent: UIViewController?) {
+      self.navigationItem.largeTitleDisplayMode = .always
+      self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
     @objc func cancelNote() {
         //dismiss(animated: true)

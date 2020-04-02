@@ -397,7 +397,6 @@ class CurrentOrSearchDetailController: LBTAFormController, UITextViewDelegate, U
                }
         dismiss(animated: true)
         self.delegate = currentOrSearchCntrl
-        print("current")
         print(currentOrSearchCntrl)
         delegate?.savedDetails()
         navigationController?.popViewController(animated: true)

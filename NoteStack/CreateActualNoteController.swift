@@ -28,6 +28,10 @@ protocol CreateNoteDelegate {
                            noteLocationsArray: [Int?], noteColorsArray: [CGFloat?])
 }
 
+protocol CancelNoteDelegate {
+    func cancelNote()
+}
+
 class CreateActualNoteController: LBTAFormController, UIPopoverPresentationControllerDelegate, UITextViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, PhotoOrLocationDelegate, ColorDelegate {
     
     // MARK: UI Elements
@@ -43,6 +47,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     
     // delegate var for the protocol above
     var delegate: CreateNoteDelegate?
+    
+    // delegate var for the protocol above
+    var delegateCancel: CancelNoteDelegate?
        
     var noteTextField = UITextView(text: "", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 22), textColor: .lightGray, textAlignment: .left)
     var noteText = ""
@@ -94,6 +101,12 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 11, *) {
+        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+          self.navigationController?.navigationBar.prefersLargeTitles = false
+          self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+        }
+            
         for i in 0...2 {
         let randomNumber = Int.random(in: 0 ... 255)
             if i == 0 {
@@ -191,8 +204,18 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
 
     }
     
+    override func willMove(toParent parent: UIViewController?) {
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+      }
+      
+    
     @objc func cancelNote() {
         //dismiss(animated: true)
+        let createNoteController = singleController
+        createNoteController.managedObjectContext = managedObjectContext
+        self.delegateCancel = createNoteController
+        delegateCancel?.cancelNote()
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
@@ -201,8 +224,9 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
         print("Saving note...")
         // Note has no text or photo(s)
         if ((noteTextField.text == "") && (hasAPhoto == false)) {
-           self.tabBarController?.tabBar.isHidden = false
-           self.navigationController?.popViewController(animated: true)
+           self.cancelNote()
+           //self.tabBarController?.tabBar.isHidden = false
+           //self.navigationController?.popViewController(animated: true)
         }
         // Note has text and/or photo(s)
         else {
@@ -271,7 +295,6 @@ class CreateActualNoteController: LBTAFormController, UIPopoverPresentationContr
          } catch let error as NSError {
            print("Fetch error: \(error) description: \(error.userInfo)")
          }
-         
          if let group = currentNotesGroup,
              let notes = group.groupnotes?.mutableCopy()
              as? NSMutableOrderedSet {

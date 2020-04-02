@@ -1,8 +1,8 @@
 //
-//  CreateNoteControllerSingle.swift
+//  ChecklistItemController.swift
 //  NoteStack
 //
-//  Created by Griffin Healy on 2/26/20.
+//  Created by Griffin Healy on 4/1/20.
 //  Copyright © 2020 Griffin Healy. All rights reserved.
 //
 
@@ -11,26 +11,26 @@ import CoreData
 import LBTATools
 import AudioToolbox
 
-protocol NoteRefreshProtocol {
-    func refreshGroupCount()
+
+protocol ItemsRefreshProtocol {
+    func refreshItemsRemainingCount()
 }
 
-
-class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, EditNoteDelegate, CancelNoteDelegate {
+class ChecklistItemController: UITableViewController, CancelNoteDelegate, CreateChecklistItemDelegate {
  
     var managedObjectContext: NSManagedObjectContext!
-    var NoteGroupNamePassed: String = ""
+    var InitialChecklistGroupNamePassed: String = ""
     var noteTextFieldSet = ""
-    var notesArray = [String]()
+    var itemsArray = [String]()
     var notesPassedArray: [UIImage] = []
     var notesLocationPassedArray: [Int] = []
     let notebox = UIView(backgroundColor: .yellow)
     var noteImage: UIImage? = nil
-    var currentNotesGroup: NotesGroup?
-    var currentNotes: [Any]?
+    var currentItemsGroup: ChecklistsGroup?
+    var currentItems: [Any]?
     var noteGroupPassedAgain: String = ""
     var onlyNoteTextPassToNoteCell = ""
-    var singleGroupController = CreateNoteGroupController()
+    var singleGroupController = ChecklistsViewController()
     var rgbColorArrayFloat: [CGFloat?] = []
     var red: CGFloat = 0
     var green: CGFloat = 0
@@ -38,50 +38,56 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
     var count: Int = 0
     var timer = Timer()
     var counter: Int = 0
+    var onlyItemTextPassToNoteCell = ""
+    
+    
+    @IBOutlet weak var tableViewMySource: UITableView!
     
     lazy var fetchedResultsController1:
-        NSFetchedResultsController<NotesGroup> = {
+        NSFetchedResultsController<ChecklistsGroup> = {
             // set up ns fetch results to tell it that were going to fetch locations object
-            let fetchRequest = NSFetchRequest<NotesGroup>()
-            fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(NotesGroup.groupName),
-            NoteGroupNamePassed)
-            let entity = NotesGroup.entity()
+            let fetchRequest = NSFetchRequest<ChecklistsGroup>()
+            let entity = ChecklistsGroup.entity()
             // the fetchRequest entity is  Location
             fetchRequest.entity = entity
-            let sort1 = NSSortDescriptor(key: "groupName", ascending: false)
-            fetchRequest.sortDescriptors = [sort1]
+            let sort1 = NSSortDescriptor(key: "checklistName", ascending: true)
+            let sort2 = NSSortDescriptor(key: "date", ascending: true)
+            fetchRequest.sortDescriptors = [sort1, sort2]
             fetchRequest.fetchBatchSize = 5
-            let fetchedResultsController1 = NSFetchedResultsController(
+            let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,
                 managedObjectContext: self.managedObjectContext,
-                sectionNameKeyPath: "groupName", cacheName: "NotesGroup")
-            //fetchedResultsController1.delegate = self
-            return fetchedResultsController1
+                sectionNameKeyPath: "checklistName", cacheName: "ChecklistsGroup")
+            //fetchedResultsController.delegate = self
+            return fetchedResultsController
     }()
     
     var soundID: SystemSoundID = 0
     
     // delegate var for the protocol above
-    var delegate: NoteRefreshProtocol?
+    var delegate: ItemsRefreshProtocol?
     
-   
-    @IBOutlet weak var tableViewSource: UITableView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checklistAdd"), style: .plain, target: self, action:  #selector(createChecklistItem))
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 0, green: 150, blue: 255)
         view.backgroundColor = .rgb(red: 242, green: 242, blue: 242)
         tableView.backgroundColor = .white
         
-        if #available(iOS 11, *) {
-            self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-            self.navigationController?.navigationItem.largeTitleDisplayMode = .always
-        }
+//        if #available(iOS 11, *) {
+//            self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//            self.navigationController?.navigationBar.prefersLargeTitles = true
+//            self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+//        }
         
         performFetch()
         //fetchAndPrintEachNote()
         fetchGroup()
-        title = ("\(NoteGroupNamePassed) Notes")
+        title = ("\(InitialChecklistGroupNamePassed) Items")
         navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "backbutton"), style: .plain, target: self, action: #selector(backToGroup)), editButtonItem]
         navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 151, blue: 248)
         tableView.delegate = self
@@ -94,78 +100,39 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
         let createNoteGroupController = singleGroupController
         createNoteGroupController.managedObjectContext = managedObjectContext
         self.delegate = createNoteGroupController
-        delegate?.refreshGroupCount()
+        delegate?.refreshItemsRemainingCount()
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func createNote() {
-        handleCreateNote()
-        //loadSoundEffect("bubble.mp3")
-        //playSoundEffect()
-    }
-    
-    @objc func handleCreateNote() {
-        let noteActualController = CreateActualNoteController()
-        noteActualController.managedObjectContext = managedObjectContext
-        noteActualController.NoteGroupNamePassed = NoteGroupNamePassed
-        noteActualController.singleController = self
+    @objc func createChecklistItem() {
+        let itemActualController = ChecklistActualItemController()
+        itemActualController.managedObjectContext = managedObjectContext
+        itemActualController.ChecklistGroupNamePassed = InitialChecklistGroupNamePassed
+        itemActualController.createChecklistsContrll = self
 
 //        let navController = UINavigationController(rootViewController: noteActualController)
 //        present(navController, animated: true)
-        self.tabBarController?.tabBar.isHidden = true
+  //      self.tabBarController?.tabBar.isHidden = true
         if #available(iOS 11, *) {
             self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
         }
        let delayInSeconds = 0.05
        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-        self.navigationController?.pushViewController(noteActualController, animated: true)
+        self.navigationController?.pushViewController(itemActualController, animated: true)
        }
     }
     
-    func retrievedEditNoteText(NoteGroupNamePassed: String) {
-        if #available(iOS 11, *) {
-            self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-              self.navigationController?.navigationBar.prefersLargeTitles = true
-              self.navigationController?.navigationItem.largeTitleDisplayMode = .always
-            }
-                
-        let fetchGroupRequest = NSFetchRequest<NotesGroup>(entityName: "NotesGroup")
-        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(NotesGroup.groupName),
-        NoteGroupNamePassed)
+    func retrievedChecklistItemName(checklistItemText: String, ChecklistGroupPassed: String) {
+        onlyItemTextPassToNoteCell = checklistItemText
+        let fetchGroupRequest = NSFetchRequest<ChecklistsGroup>(entityName: "ChecklistsGroup")
+        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(ChecklistsGroup.checklistName),
+        ChecklistGroupPassed)
         do {
           let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
           if results.count > 0 {
-            currentNotesGroup = results.first
+            currentItemsGroup = results.first
             let sortByDate = NSSortDescriptor(key: "date", ascending: false)
-            currentNotes = currentNotesGroup?.groupnotes?.sortedArray(using: [sortByDate])
-            //print(currentNotes)
-          }
-        } catch let error as NSError {
-          print("Fetch error: \(error) description: \(error.userInfo)")
-        }
-        // reload the tableView
-        self.tableView.reloadData()
-    }
-    
-    func retrievedNoteText(onlyNoteText: String, NoteGroupNamePassed: String, noteText: String, noteImage: UIImage?, noteImagesArray: [UIImage?], noteLocationsArray: [Int?], noteColorsArray: [CGFloat?]) {
-        
-      if #available(iOS 11, *) {
-        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-            self.navigationController?.navigationItem.largeTitleDisplayMode = .always
-          }
-              
-        onlyNoteTextPassToNoteCell = onlyNoteText
-        let fetchGroupRequest = NSFetchRequest<NotesGroup>(entityName: "NotesGroup")
-        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(NotesGroup.groupName),
-        NoteGroupNamePassed)
-        do {
-          let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
-          if results.count > 0 {
-            currentNotesGroup = results.first
-            let sortByDate = NSSortDescriptor(key: "date", ascending: false)
-            currentNotes = currentNotesGroup?.groupnotes?.sortedArray(using: [sortByDate])
-            //print(currentNotes)
+            currentItems = currentItemsGroup?.checklistitems?.sortedArray(using: [sortByDate])
           }
         } catch let error as NSError {
           print("Fetch error: \(error) description: \(error.userInfo)")
@@ -175,6 +142,33 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
         // reload the tableView
         self.tableView.reloadData()
     }
+    
+    
+    func retrievedEditNoteText(NoteGroupNamePassed: String) {
+        if #available(iOS 11, *) {
+            self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+              self.navigationController?.navigationBar.prefersLargeTitles = true
+              self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+            }
+                
+        let fetchGroupRequest = NSFetchRequest<ChecklistsGroup>(entityName: "ChecklistsGroup")
+        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(ChecklistsGroup.checklistName),
+        NoteGroupNamePassed)
+        do {
+          let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
+          if results.count > 0 {
+            currentItemsGroup = results.first
+            let sortByDate = NSSortDescriptor(key: "date", ascending: false)
+            currentItems = currentItemsGroup?.checklistitems?.sortedArray(using: [sortByDate])
+            //print(currentItems)
+          }
+        } catch let error as NSError {
+          print("Fetch error: \(error) description: \(error.userInfo)")
+        }
+        // reload the tableView
+        self.tableView.reloadData()
+    }
+    
     
     func cancelNote() {
         if #available(iOS 11, *) {
@@ -193,15 +187,15 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
     }
     
     func fetchGroup() {
-        let fetchGroupRequest = NSFetchRequest<NotesGroup>(entityName: "NotesGroup")
-        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(NotesGroup.groupName),
-        NoteGroupNamePassed)
+        let fetchGroupRequest = NSFetchRequest<ChecklistsGroup>(entityName: "ChecklistsGroup")
+        fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(ChecklistsGroup.checklistName),
+        InitialChecklistGroupNamePassed)
         do {
           let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
           if results.count > 0 {
-            currentNotesGroup = results.first
+            currentItemsGroup = results.first
             let sortByDate = NSSortDescriptor(key: "date", ascending: false)
-            currentNotes = currentNotesGroup?.groupnotes?.sortedArray(using: [sortByDate])
+            currentItems = currentItemsGroup?.checklistitems?.sortedArray(using: [sortByDate])
           }
         } catch let error as NSError {
           print("Fetch error: \(error) description: \(error.userInfo)")
@@ -209,17 +203,17 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
     }
     
     func fetchAndPrintEachNote() {
-        let fetchRequest = NSFetchRequest<Notes>(entityName: "Notes")
+        let fetchRequest = NSFetchRequest<Items>(entityName: "Items")
         do {
             let fetchedResults = try managedObjectContext!.fetch(fetchRequest)
             for item in fetchedResults {
-                notesArray.append(item.value(forKey: "noteText")! as! String)
+                itemsArray.append(item.value(forKey: "itemName")! as! String)
             }
         } catch let error as NSError {
             // something went wrong, print the error.
             print(error.description)
         }
-//        print(notesArray)
+//        print(itemsArray)
     }
     
     // MARK:- Sound effects
@@ -243,9 +237,8 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
     func handleConfirmPressed(indexPath:IndexPath) -> (_ alertAction:UIAlertAction) -> () {
         return { alertAction in
             print("Delete Location")
-            let note = self.currentNotes?[indexPath.row] as? Notes
+            let note = self.currentItems?[indexPath.row] as? Items
 
-            note!.removePhotoFile()
             self.managedObjectContext.delete(note!)
             do {
                 try self.managedObjectContext.save()
@@ -265,7 +258,7 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
                             numberOfRowsInSection section: Int) -> Int {
         //let sectionInfo = fetchedResultsController1.sections![section]
         //fetchGroup()
-        return currentNotesGroup?.groupnotes?.count ?? 0
+        return currentItemsGroup?.checklistitems?.count ?? 0
     }
 
     // tableView asks controller for a cell for each of the rows
@@ -274,13 +267,12 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
         UITableViewCell {
             //fetchGroup()
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: "NoteCell_ForGroup",
-                for: indexPath) as! NoteCell_ForGroup
-            //let note = currentNotesGroup?.groupnotes?[indexPath.row] as? Notes
-            let note = currentNotes?[indexPath.row] as? Notes
+                withIdentifier: "ChecklistItemCell",
+                for: indexPath) as! ChecklistItemCell
+            let item = currentItems?[indexPath.row] as? Items
             // configure cell for the location object
             //cell.onlyNoteText = onlyNoteTextPassToNoteCell
-            cell.configure(for: note!)
+            cell.configure(for: item!)
             
             // the following code increases cell border only on specified borders
             let bottom_border = CALayer()
@@ -306,18 +298,6 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
             top_border.borderColor = UIColor.white.cgColor
             top_border.frame = CGRect(x: 0, y: 0, width: cell.frame.size.width, height: top_padding)
             top_border.borderWidth = top_padding
-            
-            rgbColorArrayFloat = []
-            let noteColorArray =  note?.noteColorArray
-            //print(note?.noteColorArray)
-            for i in 0...noteColorArray!.count - 1 {
-                rgbColorArrayFloat.append(noteColorArray![i] as? CGFloat)
-            }
-            for _ in 0...rgbColorArrayFloat.count - 1 {
-                red = rgbColorArrayFloat[0]!
-                green = rgbColorArrayFloat[1]!
-                blue = rgbColorArrayFloat[2]!
-            }
     
             let border_Around_Bordered_Cell = CALayer()
             border_Around_Bordered_Cell.zPosition = -1.0
@@ -326,7 +306,7 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
             
             border_Around_Bordered_Cell.cornerRadius = 15
             border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
-            border_Around_Bordered_Cell.backgroundColor = UIColor.rgb(red: red, green: green, blue: blue).cgColor
+            border_Around_Bordered_Cell.backgroundColor = UIColor.white.cgColor
             //cell.backgroundColor = UIColor.rgb(red: red, green: green, blue: blue)
             cell.layer.addSublayer(border_Around_Bordered_Cell)
             cell.layer.addSublayer(bottom_border)
@@ -350,84 +330,70 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
             alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: handleConfirmPressed(indexPath: indexPath)))
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            // get location object from row index selected
-            //let note = fetchedResultsController1.object(at: indexPath)
-            
-            
-//            guard let note = currentNotes?[indexPath.row] as? Notes, editingStyle == .delete else {
-//                return
-//            }
-//            // call remove photo file to remove the photo for this location object. removePhotoFile() uses the ID of this specific location object (selected index in row, then we found this object). Then the removePhotoFile() uses the id and finds corresponding location object url. The url is then pointed to and removed
-//            // tell context to delete that object
-//            //  This will trigger the NSFetchedResultsController to send a notification to the delegate, which then removes the corresponding row from the table
-//
-//            note.removePhotoFile()
-//              managedObjectContext.delete(note)
-//            do {
-//              try managedObjectContext.save()
-//
-//              tableView.deleteRows(at: [indexPath], with: .automatic)
-//              self.fetchGroup()
-//              self.tableView.reloadData()
-//            } catch {
-//                fatalCoreDataError(error)
-//            }
-            
-            
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           //loadSoundEffect("navtap.mp3")
-           //playSoundEffect()
-           notesPassedArray = []
-           notesLocationPassedArray = []
-           //let noteTextToEdit = fetchedResultsController.object(at: indexPath).noteText
-
-           //let note = fetchedResultsController.object(at: indexPath)
-        
-            let note = currentNotes?[indexPath.row] as? Notes
-            let noteTextToEdit = note?.noteText
-        
-        if note!.hasPhoto {
-            if let theNoteImage = note?.photoImage {
-                   noteImage = theNoteImage
-                let noteIdArray = note?.notePhotoIdArray
-                let noteLocationArray = note?.notePhotoLocation
-                for i in 0...noteIdArray!.count - 1 {
-                    note!.notePhotoId = noteIdArray![i]
-                    notesPassedArray.append((note?.photoImage!)!)
-                    notesLocationPassedArray.append(noteLocationArray![i] as! Int)
+    
+            if let cell = tableView.cellForRow(at: indexPath) {
+              let item = currentItems?[indexPath.row] as? Items
+                configureCheckmark(for: cell as! ChecklistItemCell, with: item!)
+                
+                 item?.itemChecked = !item!.itemChecked
+                 let fetchGroupRequest = NSFetchRequest<ChecklistsGroup>(entityName: "ChecklistsGroup")
+                fetchGroupRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(ChecklistsGroup.checklistName),
+                 InitialChecklistGroupNamePassed)
+                 do {
+                   let results = try managedObjectContext.fetch(fetchGroupRequest) // do the actual fetch
+                   if results.count > 0 {
+                     currentItemsGroup = results.first
                    }
-               }
-           }
-           else {
-                   noteImage = nil
-           }
-        let editNoteModal = EditNoteModalController(passednoteText: noteTextToEdit!, passedImage: noteImage, passedNotesArray: notesPassedArray, passedLocationsArray: notesLocationPassedArray)
-           editNoteModal.noteToEdit = note
-           editNoteModal.NoteGroupNamePassed = NoteGroupNamePassed
-           editNoteModal.managedObjectContext = managedObjectContext
-           editNoteModal.singleController = self
-//           let navEditNoteController = UINavigationController(rootViewController: editNoteModal)
-//           present(navEditNoteController, animated: true)
-//
-        // hide tab bar
-        self.tabBarController?.tabBar.isHidden = true
-                if #available(iOS 11, *) {
-             self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
-         }
+                 } catch let error as NSError {
+                   print("Fetch error: \(error) description: \(error.userInfo)")
+                 }
+                 
+                 if let checklistgroup = currentItemsGroup,
+                    let items = checklistgroup.checklistitems?.mutableCopy()
+                     as? NSMutableOrderedSet {
+                    items.add(item!) 
+                     checklistgroup.checklistitems = items
+                 }
+
+                 do {
+                    try managedObjectContext.save()
+                     print("Saved Successfully")
+                    // error handling for save()
+                } catch {
+                    // 4
+                    // if save fails call below function with error message
+                     print("Error saving")
+                }
+            }
+
         let delayInSeconds = 0.05
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-        self.navigationController?.pushViewController(editNoteModal, animated: true)
         }
         fetchGroup()
+        
         //print("reloaded")
        }
        
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
+    
+    func configureCheckmark(for cell: ChecklistItemCell, with item: Items) {
+        let label = cell.checklistChecked
+        if item.itemChecked {
+            print("Checked")
+            label?.image = nil
+      } else {
+            print("Note Checked")
+            label?.image = #imageLiteral(resourceName: "checkmark-1")
+      }
+    }
+
 }
+
 
 
