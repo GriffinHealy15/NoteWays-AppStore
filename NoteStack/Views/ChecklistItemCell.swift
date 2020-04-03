@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol OptionItemButtonsDelegate{
+    func detailChecklistItemEdit(at index:IndexPath)
+}
+
 // our custom subclass for table view cells
 class ChecklistItemCell: UITableViewCell {
     
@@ -15,6 +19,13 @@ class ChecklistItemCell: UITableViewCell {
     @IBOutlet weak var checklistItemLabel: UILabel!
     
     @IBOutlet weak var checklistChecked: UIImageView!
+    
+    var delegateItemEdit:OptionItemButtonsDelegate!
+    @IBOutlet weak var checklistItemEditButton: UIButton!
+    var indexPath:IndexPath!
+    @IBAction func detailChecklistItemEditAction(_ sender: UIButton) {
+        self.delegateItemEdit?.detailChecklistItemEdit(at: indexPath)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +45,6 @@ class ChecklistItemCell: UITableViewCell {
             //noteCountLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
             //noteCountLabel.text = "\(count) Notes"
         if checklistitems.itemName.isEmpty {
-                print("true")
                 checklistItemLabel.text = "(No Item)"
             } else {
             if (checklistitems.itemChecked == false) {

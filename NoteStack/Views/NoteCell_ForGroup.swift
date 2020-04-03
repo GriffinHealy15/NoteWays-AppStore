@@ -19,6 +19,8 @@ class NoteCell_ForGroup: UITableViewCell {
     
     @IBOutlet weak var arrowImage: UIImageView!
     
+    @IBOutlet weak var placeholderNoteImage: UIImageView!
+    
     var rgbColorArrayFloat: [CGFloat] = []
     var red: CGFloat = 0
     var green: CGFloat = 0
@@ -103,15 +105,33 @@ class NoteCell_ForGroup: UITableViewCell {
         if ((red + green > 415) || (red + blue > 415) || (blue + green > 415)) {
         noteLabel_1.textColor = .black
         noteLabel_1.tintColor = .black
+        if (note.hasPhoto == false) {
+            placeholderNoteImage.image = UIImage(imageLiteralResourceName: "notedark.png")
+            photoImage.image = nil
+        }
+        else if (note.hasPhoto == true) {
+            photoImage.image = thumbnail(for: note)
+            placeholderNoteImage.image = nil
+        }
+        arrowImage.image = UIImage(imageLiteralResourceName: "forward2.png")
+        arrowImage.tintColor = .black
         }
         else {
             noteLabel_1.textColor = .white
             noteLabel_1.tintColor = .white
+            if (note.hasPhoto == false) {
+                placeholderNoteImage.image = UIImage(imageLiteralResourceName: "notelight.png")
+                photoImage.image = nil
+            }
+            else if (note.hasPhoto == true) {
+                photoImage.image = thumbnail(for: note)
+                placeholderNoteImage.image = nil
+            }
+            arrowImage.image = UIImage(imageLiteralResourceName: "forwardwhite.png")
+            arrowImage.tintColor = .white
         }
         
-        backgroundColor = .white
-        photoImage.image = thumbnail(for: note)
-        arrowImage.image = UIImage(imageLiteralResourceName: "forward.png")
+        //backgroundColor = .white
     }
     
     // recursive function to parse string from texts with multiple images before text
@@ -138,11 +158,8 @@ class NoteCell_ForGroup: UITableViewCell {
                                                     height: 50), aspectFit: false)
         }
         else {
-            let image = UIImage(imageLiteralResourceName: "placeholder.png")
+            let image = UIImage(imageLiteralResourceName: "Shopping.png")
             return image
-//            let image = self.resizeImage(image: UIImage(named: "placeholder")!, targetSize: CGSize(width: 24, height: 24))
-//            return image
-            
         }
         // if location object has no image, we give the object a placeholder image
         //return UIImage(named: "No Photo")!

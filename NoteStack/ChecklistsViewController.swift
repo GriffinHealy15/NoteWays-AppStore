@@ -34,7 +34,7 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
                let fetchedResultsController = NSFetchedResultsController(
                    fetchRequest: fetchRequest,
                    managedObjectContext: self.managedObjectContext,
-                   sectionNameKeyPath: "checklistIcon", cacheName: "ChecklistsGroup")
+                   sectionNameKeyPath: "checklistIcon", cacheName: "ChecklistsGrouping")
                fetchedResultsController.delegate = self
                return fetchedResultsController
        }()
@@ -57,6 +57,10 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checklistAdd"), style: .plain, target: self, action:  #selector(createChecklistsGroup))
         navigationItem.rightBarButtonItem?.isEnabled = true
         navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 0, green: 150, blue: 255)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     
     @objc func createChecklistsGroup() {
@@ -93,7 +97,7 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
     func retrievedChecklistName2(checklistNameText: String, checklistIconName: String, checklist: ChecklistsGroup) {
         checklist.checklistName = checklistNameText
         checklist.checklistIcon = checklistIconName
-        checklist.date = date
+        //checklist.date = date
         do {
             try managedObjectContext.save()
             // error handling for save()
@@ -106,7 +110,6 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
          tableView.reloadData()
      }
      
-    
     func retrievedChecklistName(checklistNameText: String, checklistIconName: String) {
         checklistgroup = ChecklistsGroup(context: managedObjectContext)
         checklistgroup!.checklistName = checklistNameText
@@ -182,6 +185,13 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
             self.managedObjectContext.delete(notegroup)
             do {
                 try self.managedObjectContext.save()
+                //self.fetchGroup(ChecklistGroupNamePassed: <#String#>)
+                self.view.isUserInteractionEnabled = false
+                let delayInSeconds = 0.5
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                    self.tableView.reloadData()
+                    self.view.isUserInteractionEnabled = true
+                }
             } catch {
                 fatalCoreDataError(error)
             }
@@ -244,7 +254,7 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
             cell.delegate = self
             cell.indexPath = indexPath
             // configure cell for the location object
-            cell.configure(for: checklistgroup, remainingItems: remainingItems ?? 0, totalItems: totalItems ?? 0)
+            cell.configure(for: checklistgroup, remainingItems: remainingItems ?? 0, totalItems: totalItems)
             
             // the following code increases cell border only on specified borders
             let bottom_border = CALayer()

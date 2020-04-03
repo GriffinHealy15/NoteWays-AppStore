@@ -41,7 +41,7 @@ class ChecklistNameController: LBTAFormController, UINavigationControllerDelegat
     
     var newfolderLabel = UILabel(text: "New Checklist", font: UIFont(name: "AppleSDGothicNeo-Bold", size: 20)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
     
-    var enterfolderLabel = UILabel(text: "Enter a name for this checklist", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)!, textColor: .darkGray, textAlignment: .center, numberOfLines: 0)
+    var enterfolderLabel = UILabel(text: "Enter a name for this checklist", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
     
     var chooseIconLabel = UILabel(text: "Choose an icon for this checklist", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
     
@@ -64,6 +64,7 @@ class ChecklistNameController: LBTAFormController, UINavigationControllerDelegat
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         if (fromOptionsDisclosure == true) {
+            newfolderLabel.text = "Edit Checklist"
             groupNameTextField.text = checklistName
             iconButton.setImage(UIImage.init(named: checklistIconName!), for: .normal)
             navigationItem.rightBarButtonItem?.isEnabled = true
@@ -162,17 +163,16 @@ class ChecklistNameController: LBTAFormController, UINavigationControllerDelegat
             }
 
             if (fromOptionsDisclosure == false) {
-                print("hereee")
-                let createChecklistViewController = ChecklistsViewController()
-                createChecklistViewController.managedObjectContext = managedObjectContext
+                let createChecklistViewController = createChecklistsContrll
+                createChecklistViewController!.managedObjectContext = managedObjectContext
                 self.delegate = createChecklistViewController
                 delegate?.retrievedChecklistName(checklistNameText: groupText!, checklistIconName: checklistIcon)
                 self.dismiss(animated: true)
                 self.navigationController?.popViewController(animated: true)
             }
             else if (fromOptionsDisclosure == true) {
-                let createChecklistViewController = ChecklistsViewController()
-                createChecklistViewController.managedObjectContext = managedObjectContext
+                let createChecklistViewController = createChecklistsContrll
+                createChecklistViewController!.managedObjectContext = managedObjectContext
                 self.delegateEdit = createChecklistViewController
                 delegateEdit?.retrievedChecklistName2(checklistNameText: groupText!, checklistIconName: checklistIcon, checklist: checklistToEdit!)
                 self.dismiss(animated: true)

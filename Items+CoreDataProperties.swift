@@ -18,6 +18,7 @@ extension Items {
 
     @NSManaged public var date: Date?
     @NSManaged public var itemName: String
+    @NSManaged public var itemNumber: NSNumber?
     @NSManaged public var remindMe: Bool
     @NSManaged public var dueDate: Date?
     @NSManaged public var itemChecked: Bool

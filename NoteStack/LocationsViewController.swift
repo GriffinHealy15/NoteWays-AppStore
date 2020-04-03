@@ -53,7 +53,7 @@ class LocationsViewController: UITableViewController {
         }
         performFetch()
         original_widthMult = view.frame.size.width * 2
-        original_CellHeight = 58.0
+        original_CellHeight = 67.0
         view.backgroundColor = .white
         //navigationItem.rightBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "findlocation"), style: .plain, target: self, action: #selector(findLocation))]
@@ -133,7 +133,7 @@ class LocationsViewController: UITableViewController {
                             numberOfRowsInSection section: Int) -> Int {
         // ask fetchResultsController for number of sections, and for all sections, we find the number of objects in the section
         let sectionInfo = fetchedResultsController.sections![section]
-        print("Number of objects \(sectionInfo.numberOfObjects)")
+        //print("Number of objects \(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
     // tableView asks controller for a cell for each of the rows
@@ -148,18 +148,17 @@ class LocationsViewController: UITableViewController {
             // print("Location: \(location)\n")
             // configure cell for the location object
             cell.configure(for: location)
-
             // the following code increases cell border only on specified borders
             let bottom_border = CALayer()
             let bottom_padding = CGFloat(0.0)
             bottom_border.borderColor = UIColor.white.cgColor
             bottom_border.frame = CGRect(x: 0, y: original_CellHeight - bottom_padding, width:  cell.frame.size.width, height: original_CellHeight)
             bottom_border.borderWidth = bottom_padding
-
+            
             let right_border = CALayer()
             let right_padding = CGFloat(15.0)
             right_border.borderColor = UIColor.white.cgColor
-            right_border.frame = CGRect(x: cell.frame.size.width - right_padding, y: 0, width: right_padding, height: original_CellHeight)
+            right_border.frame = CGRect(x: (original_widthMult/2) - right_padding, y: 0, width: right_padding, height: original_CellHeight)
             right_border.borderWidth = right_padding
 
             let left_border = CALayer()
@@ -175,10 +174,11 @@ class LocationsViewController: UITableViewController {
             top_border.borderWidth = top_padding
             
             let border_Around_Bordered_Cell = CALayer()
-            border_Around_Bordered_Cell.frame = CGRect(x: 15, y: 1, width: (original_widthMult/2) - 30, height: original_CellHeight - 1)
+            border_Around_Bordered_Cell.frame = CGRect(x: 15, y: 1, width: (original_widthMult/2) - 30, height: original_CellHeight - 6)
             border_Around_Bordered_Cell.borderWidth = 0.7
             border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
             border_Around_Bordered_Cell.cornerRadius = 15
+            border_Around_Bordered_Cell.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
             
             cell.layer.addSublayer(border_Around_Bordered_Cell)
             cell.layer.addSublayer(bottom_border)
@@ -224,10 +224,10 @@ class LocationsViewController: UITableViewController {
         tableView.reloadData()
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 40
-//    }
-//    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 67
+    }
+    
     // find the number of sections
     override func numberOfSections(in tableView: UITableView)
         -> Int {

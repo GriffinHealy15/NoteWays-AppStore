@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 //the app delegate is the object that gets notifications that concern the application as a whole. This is where iOS notifies the app that it has started up, for example.
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     let storyboard_1 = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -93,6 +94,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // customize the navigation bar to black and text color to white
         customizeAppearance()
+        
+        // Notification set up
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
         
 //        let bounds = UIScreen.main.bounds
 //        self.window = UIWindow(frame: bounds)
@@ -231,6 +236,11 @@ Press OK to terminate the app. Sorry for the inconvenience.
 //            print(keyboardHeight)
 //        }
 //    }
+    
+    // MARK:- User Notification Delegates
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+      print("Received local notification \(notification)")
+    }
 }
 
 

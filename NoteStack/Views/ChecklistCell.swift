@@ -40,18 +40,28 @@ class ChecklistCell: UITableViewCell {
     func configure(for checklist: ChecklistsGroup, remainingItems: Int, totalItems: Int) {
         //noteCountLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         //noteCountLabel.text = "\(count) Notes"
-        print("REMAINING Items are---")
-        print(remainingItems)
         if checklist.checklistName.isEmpty {
             checklistLabel1.text = "(No Group)"
         } else {
             if (remainingItems == 0) {
-                remainingItemsLabel.text = "Completed Checklist"
+                remainingItemsLabel.backgroundColor = .rgb(red: 0, green: 222, blue: 143)
+                remainingItemsLabel.textColor = .white
+                remainingItemsLabel.layer.cornerRadius = 5
+                remainingItemsLabel.layer.masksToBounds = true
+                remainingItemsLabel.text = " Completed Checklist"
             }
             if (totalItems == 0) {
+                remainingItemsLabel.backgroundColor = .white
+                remainingItemsLabel.textColor = .black
+                remainingItemsLabel.layer.cornerRadius = 0
+                remainingItemsLabel.layer.masksToBounds = false
                 remainingItemsLabel.text = "Empty Checklist"
             }
             if (remainingItems > 0) {
+                remainingItemsLabel.backgroundColor = .white
+                remainingItemsLabel.textColor = .black
+                remainingItemsLabel.layer.cornerRadius = 0
+                remainingItemsLabel.layer.masksToBounds = false
                 remainingItemsLabel.text = "\(remainingItems) Items Remaining"
             }
             checklistLabel1.textColor = .black

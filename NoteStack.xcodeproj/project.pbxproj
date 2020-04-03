@@ -21,6 +21,7 @@
 		99247E7A23E8A89F00C7BB18 /* TempCustomClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */; };
 		9934364D243263BA00A5A50C /* ChecklistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934364C243263BA00A5A50C /* ChecklistsViewController.swift */; };
 		993436502432731100A5A50C /* ChecklistNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934364F2432731100A5A50C /* ChecklistNameController.swift */; };
+		9944009C2436A6D30077C111 /* SharedNotificationCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9944009B2436A6D30077C111 /* SharedNotificationCount.swift */; };
 		994E174523FB401400152C6C /* CategoryPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994E174423FB401400152C6C /* CategoryPopoverController.swift */; };
 		994FE63F23FDCC3E007EDA09 /* SearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */; };
 		994FE64123FDCDDC007EDA09 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */; };
@@ -105,6 +106,7 @@
 		99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomClassViewController.swift; sourceTree = "<group>"; };
 		9934364C243263BA00A5A50C /* ChecklistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsViewController.swift; sourceTree = "<group>"; };
 		9934364F2432731100A5A50C /* ChecklistNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistNameController.swift; sourceTree = "<group>"; };
+		9944009B2436A6D30077C111 /* SharedNotificationCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedNotificationCount.swift; sourceTree = "<group>"; };
 		994E174423FB401400152C6C /* CategoryPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopoverController.swift; sourceTree = "<group>"; };
 		994FE63E23FDCC3E007EDA09 /* SearchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarController.swift; sourceTree = "<group>"; };
 		994FE64023FDCDDC007EDA09 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				99A5C3E4220B3D3D00D0574D /* SearchViewController.swift */,
 				9990565A23EDEA7D00A7332F /* SettingsPopupController.swift */,
 				99BE3E082411964400D1908A /* SettingsPopupController2.swift */,
+				9944009B2436A6D30077C111 /* SharedNotificationCount.swift */,
 				9951FD28220A0AE300CC6F01 /* Sound */,
 				9951FD222204D55C00CC6F01 /* String+AddText.swift */,
 				99247E7923E8A89F00C7BB18 /* TempCustomClassViewController.swift */,
@@ -506,6 +509,7 @@
 				99551F362434028A003A4C61 /* ChecklistCell.swift in Sources */,
 				99E625B423EB4298002D578D /* NoteCell.swift in Sources */,
 				999B248E2432839C00005AEA /* ChecklistIconController.swift in Sources */,
+				9944009C2436A6D30077C111 /* SharedNotificationCount.swift in Sources */,
 				9951FD1F2200D8EC00CC6F01 /* MapViewController.swift in Sources */,
 				999B2489243277E700005AEA /* ChecklistsGroup+CoreDataProperties.swift in Sources */,
 				994FE63F23FDCC3E007EDA09 /* SearchBarController.swift in Sources */,

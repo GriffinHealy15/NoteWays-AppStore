@@ -29,7 +29,7 @@ class LocationCell: UITableViewCell {
         separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0,
                                       right: 0)
         //descriptionLabel.backgroundColor = UIColor.purple
-        //addressLabel.backgroundColor = UIColor.purple
+        addressLabel.textColor = .black
         descriptionLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
 
@@ -69,8 +69,9 @@ class LocationCell: UITableViewCell {
             return image.resized(withBounds: CGSize(width: 52,
                                                     height: 52), aspectFit: false)
         }
+
         else {
-            let image = UIImage(imageLiteralResourceName: "placeholderLocation.png")
+            let image = UIImage(imageLiteralResourceName: "Beach.png")
             return image
         }
         // if location object has no image, we give the object a placeholder image

@@ -16,7 +16,7 @@ protocol ItemsRefreshProtocol {
     func refreshItemsRemainingCount()
 }
 
-class ChecklistItemController: UITableViewController, CancelNoteDelegate, CreateChecklistItemDelegate {
+class ChecklistItemController: UITableViewController, CancelNoteDelegate, CreateChecklistItemDelegate, OptionItemButtonsDelegate {
  
     var managedObjectContext: NSManagedObjectContext!
     var InitialChecklistGroupNamePassed: String = ""
@@ -68,7 +68,7 @@ class ChecklistItemController: UITableViewController, CancelNoteDelegate, Create
     var delegate: ItemsRefreshProtocol?
     
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -245,12 +245,42 @@ class ChecklistItemController: UITableViewController, CancelNoteDelegate, Create
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.fetchGroup()
                 //self.tableView.reloadData()
+                self.view.isUserInteractionEnabled = false
+                let delayInSeconds = 0.5
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                    self.tableView.reloadData()
+                    self.view.isUserInteractionEnabled = true
+                }
             } catch {
                 fatalCoreDataError(error)
             }
         }
+
     }
     
+    func detailChecklistItemEdit(at index: IndexPath) {
+        //fetchGroup()
+        //self.tableView.reloadData()
+        let vc = ChecklistActualItemController()
+        vc.managedObjectContext = managedObjectContext
+        vc.createChecklistsContrll = self
+        vc.fromOptionsDisclosure = true
+        let checklistgroupitem = currentItems?[index.row] as? Items
+        vc.checklistItemName = checklistgroupitem?.itemName
+        vc.remindMe = checklistgroupitem!.remindMe
+        vc.ChecklistGroupNamePassed = InitialChecklistGroupNamePassed
+        vc.passedDate = checklistgroupitem!.dueDate!
+        vc.checklistItemToEdit = checklistgroupitem
+        //self.tabBarController?.tabBar.isHidden = true
+               if #available(iOS 11, *) {
+            self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        }
+
+        let delayInSeconds = 0.05
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+         self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     // MARK: - Table View Delegates
     
@@ -272,6 +302,8 @@ class ChecklistItemController: UITableViewController, CancelNoteDelegate, Create
             let item = currentItems?[indexPath.row] as? Items
             // configure cell for the location object
             //cell.onlyNoteText = onlyNoteTextPassToNoteCell
+            cell.delegateItemEdit = self
+            cell.indexPath = indexPath
             cell.configure(for: item!)
             
             // the following code increases cell border only on specified borders
@@ -326,7 +358,7 @@ class ChecklistItemController: UITableViewController, CancelNoteDelegate, Create
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete Note", message: "Are you sure you want to delete this note?", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Delete Item", message: "Are you sure you want to delete this item?", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: handleConfirmPressed(indexPath: indexPath)))
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
