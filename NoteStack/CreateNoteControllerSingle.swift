@@ -82,8 +82,8 @@ class CreateNoteControllerSingle: UITableViewController, CreateNoteDelegate, Edi
         //fetchAndPrintEachNote()
         fetchGroup()
         title = ("\(NoteGroupNamePassed) Notes")
-        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "backbutton"), style: .plain, target: self, action: #selector(backToGroup)), editButtonItem]
-        navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 151, blue: 248)
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "backbutton"), style: .plain, target: self, action: #selector(backToGroup))]
+        //navigationItem.leftBarButtonItems![1].tintColor = .rgb(red: 0, green: 151, blue: 248)
         tableView.delegate = self
         navigationItem.leftBarButtonItems![0].tintColor =  .black
         //navigationItem.rightBarButtonItem?.tintColor = .rgb(red: 3, green: 254, blue: 147)

@@ -4,6 +4,9 @@
         <attribute name="checklistIcon" optional="YES" attributeType="String"/>
         <attribute name="checklistName" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="itemNumberList" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="remindMeList" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="checklistitems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Items" inverseName="itemsChecklist" inverseEntity="Items"/>
     </entity>
     <entity name="Items" representedClassName="Items" syncable="YES">
@@ -16,7 +19,7 @@
         <relationship name="itemsChecklist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChecklistsGroup" inverseName="checklistitems" inverseEntity="ChecklistsGroup"/>
     </entity>
     <elements>
-        <element name="ChecklistsGroup" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="ChecklistsGroup" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="Items" positionX="-54" positionY="9" width="128" height="148"/>
     </elements>
 </model>

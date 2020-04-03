@@ -51,8 +51,8 @@ NoteRefreshProtocol{
         view.backgroundColor = .rgb(red: 242, green: 242, blue: 242)
         tableView.backgroundColor = .white
         performFetch()
-        navigationItem.leftBarButtonItem = editButtonItem
-        navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
+        //navigationItem.leftBarButtonItem = editButtonItem
+        //navigationItem.leftBarButtonItem?.tintColor = .rgb(red: 0, green: 151, blue: 248)
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
     

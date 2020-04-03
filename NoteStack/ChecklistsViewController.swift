@@ -94,9 +94,12 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
         self.tableView.reloadData()
     }
     
-    func retrievedChecklistName2(checklistNameText: String, checklistIconName: String, checklist: ChecklistsGroup) {
+    func retrievedChecklistName2(checklistNameText: String, checklistIconName: String, checklist: ChecklistsGroup, remindMe: Bool, passedDate: Date, itemNumber: NSNumber) {
         checklist.checklistName = checklistNameText
         checklist.checklistIcon = checklistIconName
+        checklist.remindMeList = remindMe
+        checklist.dueDate = passedDate
+        checklist.itemNumberList = itemNumber
         //checklist.date = date
         do {
             try managedObjectContext.save()
@@ -110,10 +113,13 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
          tableView.reloadData()
      }
      
-    func retrievedChecklistName(checklistNameText: String, checklistIconName: String) {
+    func retrievedChecklistName(checklistNameText: String, checklistIconName: String, remindMe: Bool, passedDate: Date, itemNumber: NSNumber) {
         checklistgroup = ChecklistsGroup(context: managedObjectContext)
         checklistgroup!.checklistName = checklistNameText
         checklistgroup!.checklistIcon = checklistIconName
+        checklistgroup?.remindMeList = remindMe
+        checklistgroup?.dueDate = passedDate
+        checklistgroup?.itemNumberList = itemNumber
         checklistgroup?.date = date
         
         do {
@@ -208,6 +214,9 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
         vc.checklistName = checklistgroup.checklistName
         vc.checklistIconName = checklistgroup.checklistIcon
         vc.checklistToEdit = checklistgroup
+        vc.remindMe = checklistgroup.remindMeList
+        vc.passedDate = checklistgroup.dueDate!
+        vc.itemNumber = checklistgroup.itemNumberList
         //self.tabBarController?.tabBar.isHidden = true
                if #available(iOS 11, *) {
             self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
@@ -375,7 +384,7 @@ class ChecklistsViewController: UITableViewController, UIPopoverPresentationCont
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
 }
 

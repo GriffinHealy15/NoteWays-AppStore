@@ -62,7 +62,7 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
     
     var reminderDueDateLabel = UILabel(text: "Reminder Date", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)!, textColor: .black, textAlignment: .left, numberOfLines: 0)
     
-    var reminderDateChangedLabel = UILabel(text: "Date", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
+    var reminderDateChangedLabel = UILabel(text: "Date", font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16.5)!, textColor: .black, textAlignment: .center, numberOfLines: 0)
     
     //var reminderDatePicker: UIDatePicker!
     lazy private var reminderDatePicker: UIDatePicker = {
@@ -106,7 +106,7 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
             navigationItem.rightBarButtonItem?.isEnabled = true
             reminderDateChangedLabel.text = dateFormatter.string(from: passedDate)
             reminderDatePicker.date = passedDate
-            reminderDateChangedLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)
+            reminderDateChangedLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16.5)
             if (remindMe == true) {
                 remindMeSwitch.isOn = true
             }
@@ -118,7 +118,7 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
         else if (fromOptionsDisclosure == false) {
             let dueDate = updateDueDateLabel()
             reminderDateChangedLabel.text = dueDate
-            reminderDateChangedLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 15)
+            reminderDateChangedLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16.5)
         }
         
         if #available(iOS 11, *) {
@@ -150,8 +150,8 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
         remindMeSwitchView.stack(remindMeSwitch).withMargins(.init(top: 0, left: (initial_Width / 2) - 50, bottom: 0, right: 0))
     
         let formView = UIView()
-        formView.stack(UIView().withHeight(10),newfolderLabel.withHeight(30), UIView().withHeight(10),enterfolderLabel.withHeight(30),itemNameTextField.withWidth(100),UIView().withHeight(15), formView.hstack(remindmeView, remindMeSwitchView), UIView().withHeight(10), formView.hstack(reminderDueDateLabel, reminderDateChangedLabel), UIView().withHeight(10),
-                       reminderDatePicker.withHeight(150)).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
+        formView.stack(UIView().withHeight(10),newfolderLabel.withHeight(30), UIView().withHeight(10),enterfolderLabel.withHeight(30),itemNameTextField.withWidth(100),UIView().withHeight(15), formView.hstack(remindmeView, remindMeSwitchView), UIView().withHeight(10), formView.hstack(reminderDueDateLabel, reminderDateChangedLabel), UIView().withHeight(5),
+                       reminderDatePicker.withHeight(210)).withMargins(.init(top: 0, left: 10, bottom: 0, right: 10))
        
        formContainerStackView.padBottom(0)
        formContainerStackView.addArrangedSubview(formView)
@@ -168,7 +168,7 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
        removeNotification(notificationId: notificationId)
        if remindMe && datePickerDate > Date() {
          let content = UNMutableNotificationContent()
-         content.title = "Checklist Reminder:"
+         content.title = "Checklist Item Reminder:"
         content.body = itemNameTextField.text!
          content.sound = UNNotificationSound.default
          
@@ -179,13 +179,14 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
          let request = UNNotificationRequest(identifier: "\(notificationId)", content: content, trigger: trigger)
          let center = UNUserNotificationCenter.current()
          center.add(request)
-         print("Scheduled:: \(request) for itemID: \(notificationId)")
+         print("Scheduled Item \(request) for itemID: \(notificationId)")
      }
     }
      
      func removeNotification(notificationId: Int) {
        let center = UNUserNotificationCenter.current()
        center.removePendingNotificationRequests(withIdentifiers: ["\(notificationId)"])
+       print("Remove Scheduled Checklist Item for itemID: \(notificationId)")
      }
     
     override func willMove(toParent parent: UIViewController?) {
@@ -282,7 +283,6 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
             else if (fromOptionsDisclosure == true) {
                 checklistItemToEdit!.itemName = groupText!
                 checklistItemToEdit!.remindMe = remindMe
-                print(datePickerDate)
                 checklistItemToEdit!.dueDate = passedDate
                 //checklistItemToEdit!.date = date
                 
@@ -344,14 +344,13 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
           // do nothing
         }
         
+        itemNameTextField.resignFirstResponder()
         let value = mySwitch.isOn
         if (value == true) {
             remindMe = true
-            print(remindMe)
         }
         else if (value == false) {
             remindMe = false
-            print(remindMe)
         }
     }
         

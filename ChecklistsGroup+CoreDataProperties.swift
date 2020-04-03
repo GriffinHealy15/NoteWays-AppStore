@@ -20,6 +20,9 @@ extension ChecklistsGroup {
     @NSManaged public var checklistName: String
     @NSManaged public var date: Date?
     @NSManaged public var checklistIcon: String?
+    @NSManaged public var dueDate: Date?
+    @NSManaged public var itemNumberList: NSNumber?
+    @NSManaged public var remindMeList: Bool
     @NSManaged public var checklistitems: NSOrderedSet?
 
 }
