@@ -238,9 +238,9 @@ class ChecklistActualItemController: LBTAFormController, UINavigationControllerD
                  item.date = date
                  item.remindMe = remindMe
                  item.dueDate = datePickerDate
-                 if ((remindMe == true) && (datePickerDate > Date())) {
                  notificationCount = SharedNotificationCount.nextChecklistItemID()
                  item.itemNumber = notificationCount as NSNumber
+                 if ((remindMe == true) && (datePickerDate > Date())) {
                     scheduleNotification(notificationId: item.itemNumber as! Int)
                  }
                 

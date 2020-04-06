@@ -38,6 +38,14 @@ class ChecklistCell: UITableViewCell {
 
     // MARK:- Helper Method
     func configure(for checklist: ChecklistsGroup, remainingItems: Int, totalItems: Int) {
+        print(self.frame.width)
+        if (self.frame.width == 375) {
+            checklistLabel1.withWidth(250)
+        }
+        if (self.frame.width == 320) {
+            checklistLabel1.withWidth(181)
+        }
+
         //noteCountLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         //noteCountLabel.text = "\(count) Notes"
         if checklist.checklistName.isEmpty {

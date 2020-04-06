@@ -363,8 +363,23 @@
                                                 <constraint firstAttribute="width" constant="49" id="S5q-1Y-XXj"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC6-70-wm5">
+                                            <rect key="frame" x="77" y="41" width="235" height="20"/>
+                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-iW-9jg">
+                                            <rect key="frame" x="77" y="11" width="267" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="267" id="tPU-24-5yl"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4P-zf-Bah">
-                                            <rect key="frame" x="332" y="5" width="50" height="60"/>
+                                            <rect key="frame" x="344" y="5" width="50" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="8BD-RN-eR2"/>
                                             </constraints>
@@ -373,26 +388,11 @@
                                                 <action selector="detailChecklistEditAction:" destination="VO9-AF-GnD" eventType="touchUpInside" id="vH8-ym-LDM"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC6-70-wm5">
-                                            <rect key="frame" x="77" y="41" width="187" height="20"/>
-                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-iW-9jg">
-                                            <rect key="frame" x="77" y="11" width="210" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="210" id="tPU-24-5yl"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="W4P-zf-Bah" firstAttribute="top" secondItem="OU3-or-ooH" secondAttribute="topMargin" constant="-6" id="0vl-2E-g30"/>
-                                        <constraint firstItem="W4P-zf-Bah" firstAttribute="leading" secondItem="gC6-70-wm5" secondAttribute="trailing" constant="68" id="1a6-RR-Uqg"/>
+                                        <constraint firstItem="W4P-zf-Bah" firstAttribute="leading" secondItem="gC6-70-wm5" secondAttribute="trailing" constant="32" id="1a6-RR-Uqg"/>
                                         <constraint firstItem="W0e-Zg-ZaA" firstAttribute="bottom" secondItem="OU3-or-ooH" secondAttribute="bottomMargin" id="2AE-7q-0AI"/>
                                         <constraint firstItem="gC6-70-wm5" firstAttribute="leading" secondItem="3KN-EF-UJX" secondAttribute="trailing" constant="8" id="4GW-Qx-eax"/>
                                         <constraint firstItem="W0e-Zg-ZaA" firstAttribute="leading" secondItem="OU3-or-ooH" secondAttribute="leadingMargin" constant="-6" id="7vi-tL-vsQ"/>
@@ -401,7 +401,7 @@
                                         <constraint firstItem="Ub3-iW-9jg" firstAttribute="bottom" secondItem="W4P-zf-Bah" secondAttribute="bottom" constant="-24" id="Ypf-Sb-qfD"/>
                                         <constraint firstItem="3KN-EF-UJX" firstAttribute="leading" secondItem="W0e-Zg-ZaA" secondAttribute="trailing" constant="6" id="Zyu-yQ-7T0"/>
                                         <constraint firstItem="3KN-EF-UJX" firstAttribute="centerY" secondItem="W4P-zf-Bah" secondAttribute="centerY" id="anG-fL-GS2"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="W4P-zf-Bah" secondAttribute="trailing" constant="12" id="efK-F4-KsC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="W4P-zf-Bah" secondAttribute="trailing" id="efK-F4-KsC"/>
                                         <constraint firstItem="W0e-Zg-ZaA" firstAttribute="top" secondItem="OU3-or-ooH" secondAttribute="topMargin" constant="8" id="feP-oZ-zQH"/>
                                         <constraint firstAttribute="bottom" secondItem="gC6-70-wm5" secondAttribute="bottom" constant="9" id="h5f-Cv-lfL"/>
                                         <constraint firstItem="Ub3-iW-9jg" firstAttribute="top" secondItem="OU3-or-ooH" secondAttribute="topMargin" id="hOm-dD-AdX"/>
@@ -429,7 +429,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Vg-zG-ia1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1004.3478260869566" y="1868.3035714285713"/>
+            <point key="canvasLocation" x="-1005.7971014492755" y="1866.9642857142856"/>
         </scene>
         <!--Checklists-->
         <scene sceneID="lVZ-OQ-wQJ">

@@ -256,6 +256,7 @@ class ChecklistNameController: LBTAFormController, UINavigationControllerDelegat
                     let alert = UIAlertController(title: "Checklist Name Taken", message: "Please choose another checklist name.", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
+                    return
                     }
             }
 
@@ -264,15 +265,17 @@ class ChecklistNameController: LBTAFormController, UINavigationControllerDelegat
                 createChecklistViewController!.managedObjectContext = managedObjectContext
                 self.delegate = createChecklistViewController
                 
-                if ((remindMe == true) && (datePickerDate > Date())) {
                 notificationCount = SharedNotificationCount.nextChecklistItemID()
                 itemNumber = notificationCount as NSNumber
+                if ((remindMe == true) && (datePickerDate > Date())) {
+//                notificationCount = SharedNotificationCount.nextChecklistItemID()
+//                itemNumber = notificationCount as NSNumber
                 scheduleNotification(notificationId: itemNumber as! Int)
                 }
                 
-                else {
-                itemNumber = 0 as NSNumber
-                }
+//                else {
+//                itemNumber = 0 as NSNumber
+//                }
                 
                 delegate?.retrievedChecklistName(checklistNameText: groupText!, checklistIconName: checklistIcon, remindMe: remindMe, passedDate: datePickerDate, itemNumber: itemNumber!)
                 self.dismiss(animated: true)
